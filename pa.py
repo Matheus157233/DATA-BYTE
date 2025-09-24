@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from PIL import Image
+import plotly.express as px
 
 # Configuração da página
 st.set_page_config(page_title="Projetos com Notebooks + Py Ciência de Dados", layout="wide")
@@ -11,7 +12,8 @@ tabs = st.tabs([
     "🚀 Introdução à Ciência de Dados",
     "📊 Limpeza de Dados",
     "🧠 Funções Python",
-    "📂 Operações com Listas"
+    "📂 Operações com Listas",
+    "📊 Visualização Avançada"
 ])
 
 # -------------------- ABA 1: Introdução à Ciência de Dados --------------------
@@ -54,8 +56,8 @@ Além disso, a área é reconhecida por **alta empregabilidade e oportunidades g
 """)
 
     st.markdown("---")
-    st.header("🖼️ Coisas legais para se fazer quando aprende python")
-    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTRsbTd3cWN4ZWRqZHh1NzlveTkydzUyN282aDBrbXV5NnU1MWYyNiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o7aTnQqygA3TcukFi/giphy.gif", use_container_width=True)
+    st.header("🖼️ LeBron James em ação")
+    st.image("https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif", use_container_width=True)
 
     st.markdown("---")
     st.header("🎮 Interatividade divertida")
@@ -113,8 +115,8 @@ with tabs[1]:
 with tabs[2]:
     st.subheader("🧠 Funções em Python")
     st.markdown("---")
-    st.header("📌 para quem não gosta de matemática 😅")
-    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTRsbTd3cWN4ZWRqZHh1NzlveTkydzUyN282aDBrbXV5NnU1MWYyNiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/D1ZArr6pCqsIlOZjme/giphy.gif", use_container_width=True)
+    st.header("📌 Matemática é difícil? 😅")
+    st.image("https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif", use_container_width=True)
 
     with st.expander("🙋‍♀️ Saudação divertida"):
         st.code("""def saudacao(nome):
@@ -170,3 +172,33 @@ print(lista)""", language="python")
     st.subheader("🎉 Dica divertida")
     st.write("Você pode criar listas de nomes engraçados e brincar com elas no Python! 😎")
 
+# -------------------- ABA 5: Visualização Avançada --------------------
+with tabs[4]:
+    st.subheader("📊 Visualização Avançada com Plotly")
+    st.write("Exemplos de gráficos interativos que deixam a análise de dados muito mais divertida!")
+
+    # Gráfico de linhas interativo
+    df_lin = pd.DataFrame({
+        "Dia": list(range(1, 11)),
+        "Vendas": np.random.randint(20, 100, 10)
+    })
+    fig_lin = px.line(df_lin, x="Dia", y="Vendas", title="📈 Vendas Diárias (Interativo)", markers=True)
+    st.plotly_chart(fig_lin)
+
+    # Gráfico de barras interativo
+    df_bar = pd.DataFrame({
+        "Produto": ["A", "B", "C", "D"],
+        "Quantidade": [23, 45, 12, 34]
+    })
+    fig_bar = px.bar(df_bar, x="Produto", y="Quantidade", color="Produto", title="📊 Quantidade por Produto")
+    st.plotly_chart(fig_bar)
+
+    # Gráfico de pizza interativo
+    df_pie = pd.DataFrame({
+        "Setor": ["Tech", "Financeiro", "Marketing", "RH"],
+        "Empregados": [50, 30, 20, 10]
+    })
+    fig_pie = px.pie(df_pie, names="Setor", values="Empregados", title="🥧 Distribuição de Funcionários por Setor")
+    st.plotly_chart(fig_pie)
+
+    st.write("💡 Experimente interagir com os gráficos: passar o mouse, clicar e filtrar dados!")
