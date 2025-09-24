@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from PIL import Image
-import time
 
 # Configuração da página
 st.set_page_config(page_title="Projetos com Notebooks + Py Ciência de Dados", layout="wide")
@@ -32,8 +31,8 @@ Ela envolve:
 """)
 
     st.markdown("---")
-    st.header("🖼️ Imagem divertida")
-    st.image("https://media.giphy.com/media/26FPy3QZQqGtDcrja/giphy.gif", use_container_width=True)
+    st.header("🖼️ LeBron James em ação")
+    st.image("https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif", use_container_width=True)
 
     st.markdown("---")
     st.header("🎮 Interatividade divertida")
@@ -56,7 +55,7 @@ Ela envolve:
     y = np.random.randint(1, 20, 10)
     st.line_chart(y)
 
-    st.subheader("📈 Gráfico com emojis")
+    st.subheader("📈 Gráfico de barras")
     df_emojis = pd.DataFrame({
         "Python": [5, 8, 12, 4, 9],
         "Data": [7, 3, 11, 8, 6]
@@ -64,16 +63,12 @@ Ela envolve:
     st.bar_chart(df_emojis)
 
     st.markdown("---")
-    st.header("🎯 Mini Projeto: Notas de Alunos")
-    notas = {"Aluno": ["João", "Maria", "Pedro", "Ana"], "Nota": [7.5, 9.0, 6.0, 8.5]}
-    notas_df = pd.DataFrame(notas)
-    st.dataframe(notas_df)
-
-    st.subheader("📊 Gráfico das Notas com emojis")
-    chart_data = pd.DataFrame({
-        "Notas": notas_df["Nota"]
-    }, index=notas_df["Aluno"])
-    st.bar_chart(chart_data)
+    st.header("🗺️ Mapa interativo")
+    mapa_data = pd.DataFrame(
+        np.random.randn(100, 2) / [50, 50] + [37.76, -122.4],
+        columns=['lat', 'lon']
+    )
+    st.map(mapa_data)
 
 # -------------------- ABA 2: Limpeza de Dados --------------------
 with tabs[1]:
@@ -95,6 +90,10 @@ with tabs[1]:
 # -------------------- ABA 3: Funções Python --------------------
 with tabs[2]:
     st.subheader("🧠 Funções em Python")
+
+    st.markdown("---")
+    st.header("📌 Matemática é difícil? 😅")
+    st.image("https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif", use_container_width=True)
 
     with st.expander("🙋‍♀️ Saudação divertida"):
         st.code("""def saudacao(nome):
@@ -149,4 +148,3 @@ print(lista)""", language="python")
 
     st.subheader("🎉 Dica divertida")
     st.write("Você pode criar listas de nomes engraçados e brincar com elas no Python! 😎")
-
