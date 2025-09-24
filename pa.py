@@ -22,24 +22,47 @@ with tabs[0]:
     st.markdown("---")
     st.header("📌 O que é Ciência de Dados?")
     st.write("""
-**Ciência de Dados** é o processo de coletar, organizar, analisar e interpretar dados para tomar decisões informadas.
+**Ciência de Dados** é a área que combina **programação, estatística e conhecimento do domínio** para analisar dados e gerar insights úteis para empresas e projetos.  
 Ela envolve:
-- Estatísticas 📊
-- Programação (Python é a linguagem mais usada!) 🐍
+- Estatísticas e análise de dados 📊
+- Programação (Python, R, SQL) 🐍
 - Visualização de dados 📈
 - Conhecimento do domínio (entender o problema) 🧠
+- Tomada de decisões baseada em dados ✅
+""")
+
+    st.markdown("---")
+    st.header("💼 Mercado e Salário")
+    st.write("""
+O mercado de Ciência de Dados está em **crescimento acelerado**, com demanda em diversas áreas:
+- Tecnologia e software  
+- Finanças e bancos  
+- Saúde e biotecnologia  
+- Marketing e varejo  
+
+Segundo pesquisas recentes, o **salário médio** de um Cientista de Dados no Brasil gira em torno de **R$7.000 a R$12.000 mensais**, podendo ser maior dependendo da experiência e localização.  
+Além disso, a área é reconhecida por **alta empregabilidade e oportunidades globais**. 🌎
+""")
+
+    st.markdown("---")
+    st.header("📈 Por que aprender Ciência de Dados?")
+    st.write("""
+- Ajuda a **tomar decisões estratégicas** com base em dados reais  
+- Permite **automatizar processos** e análises repetitivas  
+- É **uma habilidade altamente valorizada** no mercado de trabalho  
+- Conecta conhecimento de negócios, estatística e programação
 """)
 
     st.markdown("---")
     st.header("🖼️ LeBron James em ação")
-    st.image("https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif", use_container_width=True)
+    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTRsbTd3cWN4ZWRqZHh1NzlveTkydzUyN282aDBrbXV5NnU1MWYyNiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o7aTnQqygA3TcukFi/giphy.gif", use_container_width=True)
 
     st.markdown("---")
     st.header("🎮 Interatividade divertida")
     idade_slider = st.slider("Escolha sua idade:", 0, 120, 25)
     st.write(f"Você selecionou: {idade_slider} anos 😎")
 
-    if st.checkbox("Mostrar DataFrame engraçado"):
+    if st.checkbox("Mostrar DataFrame exemplo"):
         df = pd.DataFrame({"Nome": ["Ana", "Carlos", "Beatriz"], "Idade": [23, 35, 29]})
         st.dataframe(df)
 
@@ -51,11 +74,11 @@ Ela envolve:
         st.success("Python ama você também! 🎉")
 
     st.markdown("---")
-    st.header("📊 Gráficos divertidos")
+    st.header("📊 Gráficos dinâmicos")
     y = np.random.randint(1, 20, 10)
     st.line_chart(y)
 
-    st.subheader("📈 Gráfico de barras")
+    st.subheader("📈 Gráfico de barras exemplo")
     df_emojis = pd.DataFrame({
         "Python": [5, 8, 12, 4, 9],
         "Data": [7, 3, 11, 8, 6]
@@ -74,7 +97,6 @@ Ela envolve:
 with tabs[1]:
     st.title("📘 Limpeza de Dados")
     st.subheader("📊 Preparando e organizando dados sujos")
-
     with st.expander("📥 Importação de bibliotecas"):
         st.code("import pandas as pd\nimport numpy as np", language="python")
 
@@ -90,10 +112,9 @@ with tabs[1]:
 # -------------------- ABA 3: Funções Python --------------------
 with tabs[2]:
     st.subheader("🧠 Funções em Python")
-
     st.markdown("---")
-    st.header("📌 Matemática é difícil? 😅")
-    st.image("https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif", use_container_width=True)
+    st.header("📌 para quem não gosta de matemática 😅")
+    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTRsbTd3cWN4ZWRqZHh1NzlveTkydzUyN282aDBrbXV5NnU1MWYyNiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/D1ZArr6pCqsIlOZjme/giphy.gif", use_container_width=True)
 
     with st.expander("🙋‍♀️ Saudação divertida"):
         st.code("""def saudacao(nome):
