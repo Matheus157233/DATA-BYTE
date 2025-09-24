@@ -1,16 +1,18 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import math
 
 # Configuração da página
 st.set_page_config(page_title="Projetos com Notebooks + Py Ciência de Dados", layout="wide")
 
-# TABS principais (Introdução à Ciência de Dados em primeiro)
+# TABS principais
 tabs = st.tabs([
     "🚀 Introdução à Ciência de Dados",
     "📊 Limpeza de Dados",
     "🧠 Funções Python",
-    "📂 Operações com Listas"
+    "📂 Operações com Listas",
+    "⚡ Avançado Interativo"
 ])
 
 # --- Introdução à Ciência de Dados ---
@@ -29,7 +31,6 @@ Ela envolve:
 - Visualização de dados
 - Conhecimento do domínio (entender o problema)
 """)
-
     st.image("https://media.giphy.com/media/26AHONQ79FdWZhAI0/giphy.gif", use_container_width=True)
 
     st.markdown("---")
@@ -63,23 +64,18 @@ idades = np.array([23, 35, 29])
 media = np.mean(idades)
 print("Média das idades:", media)
 ''', language="python")
-
-    st.write("Resultado:")
     idades = np.array([23, 35, 29])
     media = np.mean(idades)
     st.write(f"Média das idades: {media}")
 
     st.markdown("---")
     st.header("📦 Trabalhando com pandas")
-    st.subheader("Criando um DataFrame")
     dados = {
         "Nome": ["Ana", "Carlos", "Beatriz"],
         "Idade": [23, 35, 29]
     }
     df = pd.DataFrame(dados)
     st.dataframe(df)
-
-    st.subheader("📍 Explorando os dados")
     st.write("Estatísticas descritivas:")
     st.dataframe(df.describe())
     st.write("Pessoa mais velha:")
@@ -102,7 +98,6 @@ print("Média das idades:", media)
 with tabs[1]:
     st.title("📊 Limpeza de Dados")
     st.subheader("Preparando e organizando dados sujos")
-
     st.image("https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif", use_container_width=True)
 
     with st.expander("📥 Importação de bibliotecas"):
@@ -179,3 +174,44 @@ lista.append(6)
 lista.remove(2)
 print(lista)
 """, language="python")
+
+# --- Avançado Interativo ---
+with tabs[4]:
+    st.title("⚡ Avançado Interativo")
+    st.subheader("Experimente interações com Python e dados!")
+    st.image("https://media.giphy.com/media/l0HlQ7LRal6oJocv2/giphy.gif", use_container_width=True)
+
+    st.markdown("### 1️⃣ Calculadora de Média Interativa")
+    numeros = st.text_input("Digite números separados por vírgula (ex: 10,20,30):")
+    if numeros:
+        try:
+            nums = [float(n.strip()) for n in numeros.split(",")]
+            media = np.mean(nums)
+            st.success(f"A média dos números é: {media}")
+        except:
+            st.error("Erro: digite apenas números separados por vírgula.")
+
+    st.markdown("### 2️⃣ Escolha uma operação matemática divertida")
+    operacao = st.selectbox("Escolha a operação:", ["Quadrado", "Raiz Quadrada", "Fatorial"])
+    valor = st.number_input("Digite um número:", min_value=0, step=1)
+    if operacao and valor is not None:
+        if operacao == "Quadrado":
+            st.write(f"{valor}² = {valor**2}")
+        elif operacao == "Raiz Quadrada":
+            st.write(f"√{valor} = {math.sqrt(valor)}")
+        elif operacao == "Fatorial":
+            st.write(f"{valor}! = {math.factorial(int(valor))}")
+
+    st.markdown("### 3️⃣ Upload de CSV para explorar seus dados")
+    uploaded_file = st.file_uploader("Escolha um arquivo CSV", type="csv")
+    if uploaded_file:
+        user_df = pd.read_csv(uploaded_file)
+        st.write("Seu arquivo CSV carregado:")
+        st.dataframe(user_df)
+        st.write("Estatísticas descritivas:")
+        st.dataframe(user_df.describe())
+
+    st.markdown("### 4️⃣ GIFs Motivacionais e Engraçados")
+    st.image("https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif", use_container_width=True)
+    st.image("https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif", use_container_width=True)
+    st.image("https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif", use_container_width=True)
