@@ -205,8 +205,6 @@ with tabs[4]:
         st.write("Estatísticas descritivas:")
         st.dataframe(user_df.describe())
 
-    st.markdown("### 4️⃣ GIFs Motivacionais e Engraçados na  apenas na cabeça do Matue Dnv")
-    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcW9mdGhmaTU1cGwzdHlxZG41NmVsMGVqMjFycG04bGdqNzgxOWFmdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/s5wFafpHxqKbIEERl9/giphy.gif", use_container_width=True)
     st.markdown("### E esse foi nosso site espero que tenham gostado")
     st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcW9mdGhmaTU1cGwzdHlxZG41NmVsMGVqMjFycG04bGdqNzgxOWFmdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/lxxOGaDRk4f7R5TkBd/giphy.gif", use_container_width=True)
     
@@ -216,6 +214,7 @@ with tabs[4]:
     st.markdown("### 5️⃣ Celebre com Balões 🎈")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
 
 
 
