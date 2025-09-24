@@ -17,101 +17,68 @@ tabs = st.tabs([
 with tabs[0]:
     st.title("🧠 Py - Sua Porta de Entrada para a Ciência de Dados")
     st.subheader("Aprenda Ciência de Dados do zero com Python de forma prática!")
-    
+
+    st.image("https://www.python.org/static/community_logos/python-logo.png", caption="Python Logo", use_column_width=True)
+    st.image("https://media.giphy.com/media/3o7aCTPPm4OHfRLSH6/giphy.gif", caption="Data Science é divertido!", use_column_width=True)
+
     st.markdown("---")
     st.header("📌 O que é Ciência de Dados?")
     st.write("""
 **Ciência de Dados** é o processo de coletar, organizar, analisar e interpretar dados para tomar decisões informadas.
-
-Ela envolve:
-- Estatísticas
-- Programação (Python é a linguagem mais usada!)
-- Visualização de dados
-- Conhecimento do domínio (entender o problema)
+Ela envolve estatísticas, programação (Python é a mais usada), visualização de dados e conhecimento do domínio.
 """)
 
     st.markdown("---")
-    st.header("🔢 O que são Dados?")
-    st.write("""
-Dados são **informações brutas**, que ainda precisam ser organizadas para fazer sentido.
-
-Exemplos de dados:
-- Números de vendas
-- Notas de alunos
-- Temperaturas registradas ao longo do dia
-""")
-
-    st.markdown("---")
-    st.header("🐍 Primeiros passos com Python")
-    st.write("O Python é simples e poderoso. Vamos ver exemplos básicos:")
-
-    st.subheader("✅ Exemplo 1: Olá, Mundo!")
-    st.code('print("Olá, mundo da Ciência de Dados com Py!")', language="python")
-
-    st.subheader("✅ Exemplo 2: Trabalhando com Variáveis")
-    st.code('''
-nome = "Ana"
-idade = 25
-print(nome, idade)
-''', language="python")
-
-    st.markdown("---")
-    st.header("📦 Bibliotecas úteis")
-    
-    st.subheader("🐼 pandas – Manipulação de dados")
-    st.write("Vamos criar um DataFrame e explorar algumas operações básicas:")
-    
+    st.header("📊 Mini-Projeto 1: Tabela de Alunos")
     dados = {
-        "Nome": ["Ana", "Carlos", "Beatriz", "João", "Maria"],
-        "Idade": [23, 35, 29, 19, 22],
-        "Nota": [8.5, 7.0, 9.0, 6.5, 7.5]
+        "Nome": ["Ana", "Carlos", "Beatriz", "Pedro", "João"],
+        "Idade": [23, 35, 29, 22, 28],
+        "Nota": [8.5, 9.0, 7.0, 6.5, 10.0],
+        "Turma": ["A", "B", "A", "B", "A"]
     }
     df = pd.DataFrame(dados)
     st.dataframe(df)
 
-    st.subheader("📊 Estatísticas rápidas")
-    st.write("Podemos calcular média, máximo e mínimo:")
-    st.write(f"Média de idade: {df['Idade'].mean():.2f}")
-    st.write(f"Maior nota: {df['Nota'].max()}")
-    st.write(f"Menor idade: {df['Idade'].min()}")
-
-    st.subheader("📈 Gráfico simples com pandas")
+    st.subheader("📊 Gráficos")
     st.bar_chart(df.set_index("Nome")["Nota"])
+    st.line_chart(df.set_index("Nome")["Nota"])
+    st.area_chart(df.set_index("Nome")["Nota"])
 
-    st.subheader("🔢 numpy – Cálculos avançados")
+    st.subheader("🔢 Estatísticas com Numpy")
     idades = np.array(df["Idade"])
-    st.write(f"Desvio padrão das idades: {np.std(idades):.2f}")
-    st.write(f"Soma das idades: {np.sum(idades)}")
+    notas = np.array(df["Nota"])
+    st.write(f"Média das idades: {np.mean(idades):.2f}")
+    st.write(f"Desvio padrão das notas: {np.std(notas):.2f}")
 
-    st.markdown("---")
-    st.header("📊 Prática: Filtrando Dados")
-    st.write("Filtrando alunos com nota maior que 7:")
-    df_filtrado = df[df["Nota"] > 7]
-    st.dataframe(df_filtrado)
+    st.subheader("📊 Mini-Projeto 2: Filtragem Interativa")
+    media_nota = st.slider("Escolha a nota mínima para filtrar alunos:", 0.0, 10.0, 7.0)
+    st.dataframe(df[df["Nota"] >= media_nota])
 
-    st.subheader("📌 Desafio prático")
-    st.write("Tente criar uma nova coluna que indique se o aluno passou (nota >= 7) ou não:")
-    df["Status"] = df["Nota"].apply(lambda x: "Aprovado" if x >= 7 else "Reprovado")
-    st.dataframe(df)
+    st.subheader("📊 Mini-Projeto 3: Simulação de Vendas")
+    meses = [f"Mês {i}" for i in range(1, 13)]
+    vendas = np.random.randint(50, 200, size=12)
+    df_vendas = pd.DataFrame({"Mês": meses, "Vendas": vendas})
+    st.line_chart(df_vendas.set_index("Mês")["Vendas"])
+    st.dataframe(df_vendas)
 
-    st.markdown("---")
-    st.header("🎯 Mini Projeto: Notas de Alunos")
-    st.write("Visualizando a distribuição das notas:")
-    st.bar_chart(df.set_index("Nome")["Nota"])
-
-    st.write("Parabéns! Você já aprendeu a criar DataFrames, calcular estatísticas, filtrar dados e criar gráficos simples com pandas e numpy.")
+    st.subheader("📍 Localização (mapa de exemplo)")
+    st.map(pd.DataFrame({
+        "lat": np.random.uniform(-23.6, -23.5, size=5),
+        "lon": np.random.uniform(-46.7, -46.6, size=5)
+    }, columns=["lat", "lon"]))
 
 # --- Limpeza de Dados ---
 with tabs[1]:
-    st.title("📘 Projeto: Visualização de Notebooks")
+    st.title("📘 Projeto: Limpeza de Dados")
     st.subheader("📊 Limpeza e Preparação de Dados")
+    
     with st.expander("📥 Importação de bibliotecas"):
         st.code("import pandas as pd\nimport numpy as np", language="python")
 
     with st.expander("📄 Leitura e visualização inicial"):
         st.code('df = pd.read_csv("DADOS_ALUNOS.csv", sep=";")\ndf.head()', language="python")
 
-    with st.expander("🔍 Verificação e tratamento de dados ausentes"):
+    with st.expander("🔍 Tratamento de dados ausentes"):
         st.code('df.isnull().sum()\ndf["Nota"] = df["Nota"].fillna(0)', language="python")
 
     with st.expander("🧹 Remoção de duplicatas e renomeação"):
@@ -120,68 +87,31 @@ with tabs[1]:
 # --- Funções Python ---
 with tabs[2]:
     st.subheader("🧠 Funções em Python")
+    
     with st.expander("🙋‍♀️ Saudação personalizada"):
-        st.code("""
-def saudacao(nome):
-    return f"Olá, {nome}!"
-""", language="python")
+        st.code("""def saudacao(nome):\n    return f"Olá, {nome}!"\n""", language="python")
 
     with st.expander("📐 Função com parâmetro padrão"):
-        st.code("""
-def potencia(base, expoente=2):
-    return base ** expoente
-
-potencia(3)
-potencia(3, 3)
-""", language="python")
+        st.code("""def potencia(base, expoente=2):\n    return base ** expoente\npotencia(3)\npotencia(3,3)\n""", language="python")
 
     with st.expander("🔁 Retorno múltiplo"):
-        st.code("""
-def operacoes(a, b):
-    soma = a + b
-    sub = a - b
-    return soma, sub
-
-s, sub = operacoes(10, 5)
-print(f"Soma: {s}, Subtração: {sub}")
-""", language="python")
+        st.code("""def operacoes(a,b):\n    soma=a+b\n    sub=a-b\n    return soma, sub\ns, sub = operacoes(10,5)\nprint(f'Soma: {s}, Sub: {sub}')\n""", language="python")
 
     with st.expander("💬 Repetição com argumentos nomeados"):
-        st.code("""
-def mensagem(texto, vezes=1):
-    for _ in range(vezes):
-        print(texto)
+        st.code("""def mensagem(texto, vezes=1):\n    for _ in range(vezes):\n        print(texto)\nmensagem("Estudando funções", 3)\n""", language="python")
 
-mensagem("Estudando funções", 3)
-""", language="python")
-
-# --- Listas e Operações ---
+# --- Operações com Listas ---
 with tabs[3]:
     st.subheader("📂 Operações com Listas")
+    
     with st.expander("➕ Soma e média"):
-        st.code("""
-lista = [1, 2, 3, 4, 5]
-soma = sum(lista)
-media = soma / len(lista)
-print(f"Soma: {soma}, Média: {media}")
-""", language="python")
+        st.code("""lista=[1,2,3,4,5]\nsoma=sum(lista)\nmedia=soma/len(lista)\nprint(f"Soma: {soma}, Média: {media}")\n""", language="python")
 
     with st.expander("📐 Quadrados com list comprehension"):
-        st.code("""
-quadrados = [x**2 for x in lista]
-print("Quadrados:", quadrados)
-""", language="python")
+        st.code("""quadrados=[x**2 for x in lista]\nprint(quadrados)\n""", language="python")
 
     with st.expander("📍 Enumerando elementos"):
-        st.code("""
-for i, valor in enumerate(lista):
-    print(f"Índice: {i}, Valor: {valor}")
-""", language="python")
+        st.code("""for i,valor in enumerate(lista):\n    print(f"Índice: {i}, Valor: {valor}")\n""", language="python")
 
     with st.expander("📏 Fatiamento e modificação"):
-        st.code("""
-print(lista[1:4])
-lista.append(6)
-lista.remove(2)
-print(lista)
-""", language="python")
+        st.code("""print(lista[1:4])\nlista.append(6)\nlista.remove(2)\nprint(lista)\n""", language="python")
