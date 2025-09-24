@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 
 # Configuração da página
 st.set_page_config(page_title="Projetos com Notebooks + Py Ciência de Dados", layout="wide")
@@ -77,27 +76,6 @@ print(nome, idade)
     df = pd.DataFrame(dados)
     st.dataframe(df)
 
-    st.subheader("📊 matplotlib – Para criar gráficos")
-    # Dados de exemplo
-    x = np.arange(0, 10, 1)        # eixo X: 0 a 9
-    y = np.array([2, 3, 5, 7, 6, 8, 7, 9, 10, 12])  # eixo Y
-
-    # Criando o gráfico de linhas
-    fig, ax = plt.subplots()
-    ax.plot(x, y, marker='o', linestyle='-', color='blue', label='Valores')
-    ax.set_title('Exemplo de Gráfico de Linhas')
-    ax.set_xlabel('Eixo X')
-    ax.set_ylabel('Eixo Y')
-    ax.legend()
-    ax.grid(True)
-
-    fig, ax = plt.subplots()
-    ax.bar(df['Nome'], df['Idade'], color='mediumseagreen')
-    ax.set_title('Idade por Pessoa')
-    ax.set_xlabel('Nome')
-    ax.set_ylabel('Idade')
-    st.pyplot(fig)
-
     st.subheader("🔢 numpy – Para cálculos e arrays")
     idades = np.array([23, 35, 29])
     media = np.mean(idades)
@@ -121,20 +99,12 @@ print(nome, idade)
     notas_df = pd.DataFrame(notas)
     st.dataframe(notas_df)
 
-    st.subheader("📊 Gráfico das Notas")
-    fig, ax = plt.subplots()
-    ax.bar(notas_df["Aluno"], notas_df["Nota"], color="orange")
-    ax.set_title("Notas dos Alunos")
-    ax.set_ylim(0, 10)
-    st.pyplot(fig)
-
     st.markdown("---")
     st.header("✅ Conclusão")
     st.write("""
 Parabéns! 🎉 Você aprendeu:
 - O que é Ciência de Dados
-- Como usar Python para manipulação e visualização de dados
-- Criar gráficos e fazer análises simples
+- Como usar Python para manipulação de dados
 """)
 
 # --- Limpeza de Dados ---
