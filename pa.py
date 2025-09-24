@@ -1,21 +1,19 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from PIL import Image
 
 # Configuração da página
 st.set_page_config(page_title="Projetos com Notebooks + Py Ciência de Dados", layout="wide")
 
-# TABS principais
+# TABS principais (Introdução à Ciência de Dados em primeiro)
 tabs = st.tabs([
     "🚀 Introdução à Ciência de Dados",
     "📊 Limpeza de Dados",
     "🧠 Funções Python",
-    "📂 Operações com Listas",
-    "📊 Visualização Avançada"
+    "📂 Operações com Listas"
 ])
 
-# -------------------- ABA 1: Introdução à Ciência de Dados --------------------
+# --- Introdução à Ciência de Dados ---
 with tabs[0]:
     st.title("🧠 Py - Sua Porta de Entrada para a Ciência de Dados")
     st.subheader("Aprenda Ciência de Dados do zero com Python de forma prática!")
@@ -23,155 +21,161 @@ with tabs[0]:
     st.markdown("---")
     st.header("📌 O que é Ciência de Dados?")
     st.write("""
-**Ciência de Dados** combina **programação, estatística e conhecimento do domínio** para gerar insights úteis a partir de dados.
+**Ciência de Dados** é o processo de coletar, organizar, analisar e interpretar dados para tomar decisões informadas.
+
 Ela envolve:
-- Estatísticas e análise de dados 📊
-- Programação (Python, R, SQL) 🐍
-- Visualização de dados 📈
-- Conhecimento do domínio 🧠
+- Estatísticas
+- Programação (Python é a linguagem mais usada!)
+- Visualização de dados
+- Conhecimento do domínio (entender o problema)
 """)
 
+    st.image("https://media.giphy.com/media/26AHONQ79FdWZhAI0/giphy.gif", use_container_width=True)
+
     st.markdown("---")
-    st.header("💼 Mercado e Salário")
+    st.header("📊 Importância no Mercado")
     st.write("""
-O mercado está em **crescimento acelerado**. Salário médio: **R$7.000 a R$12.000 mensais** no Brasil.
+A demanda por profissionais de Ciência de Dados está crescendo rapidamente:
+- Média salarial: **R$6.000 a R$15.000** dependendo do nível de experiência
+- Empresas buscam pessoas que saibam **analisar dados e gerar insights**
+- Aplicações: negócios, saúde, finanças, esportes, marketing
+""")
+    st.image("https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif", use_container_width=True)
+
+    st.markdown("---")
+    st.header("🔢 Tipos de Dados")
+    st.write("""
+- **Numéricos**: int, float (ex: 10, 3.14)  
+- **Texto (strings)**: "Olá", "Ciência"  
+- **Booleanos**: True, False  
+- **Categorias**: "Masculino", "Feminino", "Outros"
 """)
 
     st.markdown("---")
-    st.header("🖼️ LeBron James em ação")
-    st.image("https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif", use_container_width=True)
+    st.header("🐍 Primeiros passos com Python")
+    st.subheader("✅ Exemplo 1: Olá, Mundo!")
+    st.code('print("Olá, mundo da Ciência de Dados com Py!")', language="python")
+
+    st.subheader("✅ Exemplo 2: Variáveis e arrays com numpy")
+    st.code('''
+import numpy as np
+idades = np.array([23, 35, 29])
+media = np.mean(idades)
+print("Média das idades:", media)
+''', language="python")
+
+    st.write("Resultado:")
+    idades = np.array([23, 35, 29])
+    media = np.mean(idades)
+    st.write(f"Média das idades: {media}")
 
     st.markdown("---")
-    st.header("🎮 Interatividade divertida")
-    idade_slider = st.slider("Escolha sua idade:", 0, 120, 25)
-    st.write(f"Você selecionou: {idade_slider} anos 😎")
+    st.header("📦 Trabalhando com pandas")
+    st.subheader("Criando um DataFrame")
+    dados = {
+        "Nome": ["Ana", "Carlos", "Beatriz"],
+        "Idade": [23, 35, 29]
+    }
+    df = pd.DataFrame(dados)
+    st.dataframe(df)
 
-    if st.checkbox("Mostrar DataFrame exemplo"):
-        df = pd.DataFrame({"Nome": ["Ana", "Carlos", "Beatriz"], "Idade": [23, 35, 29]})
-        st.dataframe(df)
-
-    pessoa = st.selectbox("Escolha alguém engraçado:", ["😜 Zé", "😂 Maria", "🤪 Pedro"])
-    st.write(f"Você escolheu: {pessoa}")
-
-    if st.button("Clique se você ama Python"):
-        st.balloons()
-        st.success("Python ama você também! 🎉")
+    st.subheader("📍 Explorando os dados")
+    st.write("Estatísticas descritivas:")
+    st.dataframe(df.describe())
+    st.write("Pessoa mais velha:")
+    st.write(df[df["Idade"] == df["Idade"].max()])
 
     st.markdown("---")
-    st.header("📈 Gráfico de linhas exemplo")
-    y = np.random.randint(1, 20, 10)
-    st.line_chart(y)
+    st.header("🌍 Mapa interativo")
+    st.map(pd.DataFrame({
+        'lat': [-23.55052, -22.9068, -19.9167],
+        'lon': [-46.633308, -43.1729, -43.9345],
+        'Cidade': ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte']
+    }))
 
-    st.subheader("🗺️ Mapa interativo")
-    mapa_data = pd.DataFrame(
-        np.random.randn(100, 2) / [50, 50] + [37.76, -122.4],
-        columns=['lat', 'lon']
-    )
-    st.map(mapa_data)
+    st.markdown("---")
+    st.header("🎉 GIFs motivacionais")
+    st.image("https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif", use_container_width=True)
+    st.image("https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif", use_container_width=True)
 
-# -------------------- ABA 2: Limpeza de Dados --------------------
+# --- Limpeza de Dados ---
 with tabs[1]:
-    st.title("📘 Limpeza de Dados")
-    st.subheader("📊 Preparando e organizando dados sujos")
+    st.title("📊 Limpeza de Dados")
+    st.subheader("Preparando e organizando dados sujos")
+
+    st.image("https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif", use_container_width=True)
+
     with st.expander("📥 Importação de bibliotecas"):
         st.code("import pandas as pd\nimport numpy as np", language="python")
 
-    with st.expander("📄 Leitura de CSV"):
+    with st.expander("📄 Leitura e visualização inicial"):
         st.code('df = pd.read_csv("DADOS_ALUNOS.csv", sep=";")\ndf.head()', language="python")
 
-    with st.expander("🔍 Tratamento de valores ausentes"):
+    with st.expander("🔍 Verificação e tratamento de dados ausentes"):
         st.code('df.isnull().sum()\ndf["Nota"] = df["Nota"].fillna(0)', language="python")
 
-    with st.expander("🧹 Remoção de duplicatas"):
-        st.code('df = df.drop_duplicates()\ndf.head()', language="python")
+    with st.expander("🧹 Remoção de duplicatas e renomeação"):
+        st.code('df = df.drop_duplicates()\ndf = df.rename(columns={"Nota": "Nota_Final"})\ndf.head()', language="python")
 
-# -------------------- ABA 3: Funções Python --------------------
+# --- Funções Python ---
 with tabs[2]:
     st.subheader("🧠 Funções em Python")
-    st.markdown("---")
-    st.header("📌 Matemática é difícil? 😅")
-    st.image("https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif", use_container_width=True)
+    st.image("https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif", use_container_width=True)
 
-    with st.expander("🙋‍♀️ Saudação divertida"):
-        st.code("""def saudacao(nome):
-    return f"Olá, {nome}! Python te saúda! 😎" """, language="python")
+    with st.expander("🙋‍♀️ Saudação personalizada"):
+        st.code("""
+def saudacao(nome):
+    return f"Olá, {nome}!"
+""", language="python")
 
     with st.expander("📐 Função com parâmetro padrão"):
-        st.code("""def potencia(base, expoente=2):
+        st.code("""
+def potencia(base, expoente=2):
     return base ** expoente
 
 potencia(3)
-potencia(3, 3)""", language="python")
+potencia(3, 3)
+""", language="python")
 
     with st.expander("🔁 Retorno múltiplo"):
-        st.code("""def operacoes(a, b):
+        st.code("""
+def operacoes(a, b):
     soma = a + b
     sub = a - b
     return soma, sub
-
 s, sub = operacoes(10, 5)
-print(f"Soma: {s}, Subtração: {sub}")""", language="python")
+print(f"Soma: {s}, Subtração: {sub}")
+""", language="python")
 
-    with st.expander("💬 Repetição engraçada"):
-        st.code("""def mensagem(texto, vezes=1):
-    for _ in range(vezes):
-        print(texto + " 😂")
-
-mensagem("Aprendendo Python", 3)""", language="python")
-
-# -------------------- ABA 4: Operações com Listas --------------------
+# --- Operações com Listas ---
 with tabs[3]:
-    st.subheader("📂 Manipulação de Listas")
+    st.subheader("📂 Operações com Listas")
+    st.image("https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif", use_container_width=True)
 
     with st.expander("➕ Soma e média"):
-        st.code("""lista = [1, 2, 3, 4, 5]
+        st.code("""
+lista = [1, 2, 3, 4, 5]
 soma = sum(lista)
 media = soma / len(lista)
-print(f"Soma: {soma}, Média: {media}")""", language="python")
+print(f"Soma: {soma}, Média: {media}")
+""", language="python")
 
     with st.expander("📐 Quadrados com list comprehension"):
-        st.code("""quadrados = [x**2 for x in lista]
-print(quadrados)""", language="python")
+        st.code("""
+quadrados = [x**2 for x in lista]
+print("Quadrados:", quadrados)
+""", language="python")
 
     with st.expander("📍 Enumerando elementos"):
-        st.code("""for i, valor in enumerate(lista):
-    print(f"Índice: {i}, Valor: {valor}")""", language="python")
+        st.code("""
+for i, valor in enumerate(lista):
+    print(f"Índice: {i}, Valor: {valor}")
+""", language="python")
 
     with st.expander("📏 Fatiamento e modificação"):
-        st.code("""print(lista[1:4])
+        st.code("""
+print(lista[1:4])
 lista.append(6)
 lista.remove(2)
-print(lista)""", language="python")
-
-# -------------------- ABA 5: Visualização Avançada --------------------
-with tabs[4]:
-    st.subheader("📊 Visualização Avançada com Streamlit nativa")
-    st.write("Exemplos de gráficos usando apenas Streamlit:")
-
-    # Gráfico de linhas
-    dados_linha = pd.DataFrame(np.random.randint(10, 50, size=(10,1)), columns=["Vendas"])
-    st.line_chart(dados_linha)
-
-    # Gráfico de barras
-    dados_barra = pd.DataFrame({"Produto": ["A","B","C","D"], "Quantidade": [23, 45, 12, 34]}).set_index("Produto")
-    st.bar_chart(dados_barra)
-
-    # Gráfico de área
-    dados_area = pd.DataFrame(np.random.randint(1,20, size=(10,3)), columns=["Setor1","Setor2","Setor3"])
-    st.area_chart(dados_area)
-
-    st.markdown("---")
-    st.header("📂 Faça upload do seu próprio CSV!")
-    uploaded_file = st.file_uploader("Escolha um arquivo CSV", type="csv")
-    if uploaded_file is not None:
-        user_df = pd.read_csv(uploaded_file)
-        st.write("✅ Arquivo carregado com sucesso!")
-        st.dataframe(user_df)
-
-        st.subheader("📊 Gráfico de linhas do seu CSV")
-        st.line_chart(user_df.select_dtypes(include=[np.number]))
-
-        st.subheader("📈 Gráfico de barras do seu CSV")
-        numeric_df = user_df.select_dtypes(include=[np.number])
-        if not numeric_df.empty:
-            st.bar_chart(numeric_df)
+print(lista)
+""", language="python")
