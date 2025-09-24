@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from PIL import Image
-import plotly.express as px
 
 # Configuração da página
 st.set_page_config(page_title="Projetos com Notebooks + Py Ciência de Dados", layout="wide")
@@ -24,35 +23,18 @@ with tabs[0]:
     st.markdown("---")
     st.header("📌 O que é Ciência de Dados?")
     st.write("""
-**Ciência de Dados** é a área que combina **programação, estatística e conhecimento do domínio** para analisar dados e gerar insights úteis para empresas e projetos.  
+**Ciência de Dados** combina **programação, estatística e conhecimento do domínio** para gerar insights úteis a partir de dados.
 Ela envolve:
 - Estatísticas e análise de dados 📊
 - Programação (Python, R, SQL) 🐍
 - Visualização de dados 📈
-- Conhecimento do domínio (entender o problema) 🧠
-- Tomada de decisões baseada em dados ✅
+- Conhecimento do domínio 🧠
 """)
 
     st.markdown("---")
     st.header("💼 Mercado e Salário")
     st.write("""
-O mercado de Ciência de Dados está em **crescimento acelerado**, com demanda em diversas áreas:
-- Tecnologia e software  
-- Finanças e bancos  
-- Saúde e biotecnologia  
-- Marketing e varejo  
-
-Segundo pesquisas recentes, o **salário médio** de um Cientista de Dados no Brasil gira em torno de **R$7.000 a R$12.000 mensais**, podendo ser maior dependendo da experiência e localização.  
-Além disso, a área é reconhecida por **alta empregabilidade e oportunidades globais**. 🌎
-""")
-
-    st.markdown("---")
-    st.header("📈 Por que aprender Ciência de Dados?")
-    st.write("""
-- Ajuda a **tomar decisões estratégicas** com base em dados reais  
-- Permite **automatizar processos** e análises repetitivas  
-- É **uma habilidade altamente valorizada** no mercado de trabalho  
-- Conecta conhecimento de negócios, estatística e programação
+O mercado está em **crescimento acelerado**. Salário médio: **R$7.000 a R$12.000 mensais** no Brasil.
 """)
 
     st.markdown("---")
@@ -76,19 +58,11 @@ Além disso, a área é reconhecida por **alta empregabilidade e oportunidades g
         st.success("Python ama você também! 🎉")
 
     st.markdown("---")
-    st.header("📊 Gráficos dinâmicos")
+    st.header("📈 Gráfico de linhas exemplo")
     y = np.random.randint(1, 20, 10)
     st.line_chart(y)
 
-    st.subheader("📈 Gráfico de barras exemplo")
-    df_emojis = pd.DataFrame({
-        "Python": [5, 8, 12, 4, 9],
-        "Data": [7, 3, 11, 8, 6]
-    })
-    st.bar_chart(df_emojis)
-
-    st.markdown("---")
-    st.header("🗺️ Mapa interativo")
+    st.subheader("🗺️ Mapa interativo")
     mapa_data = pd.DataFrame(
         np.random.randn(100, 2) / [50, 50] + [37.76, -122.4],
         columns=['lat', 'lon']
@@ -169,36 +143,35 @@ lista.append(6)
 lista.remove(2)
 print(lista)""", language="python")
 
-    st.subheader("🎉 Dica divertida")
-    st.write("Você pode criar listas de nomes engraçados e brincar com elas no Python! 😎")
-
 # -------------------- ABA 5: Visualização Avançada --------------------
 with tabs[4]:
-    st.subheader("📊 Visualização Avançada com Plotly")
-    st.write("Exemplos de gráficos interativos que deixam a análise de dados muito mais divertida!")
+    st.subheader("📊 Visualização Avançada com Streamlit nativa")
+    st.write("Exemplos de gráficos usando apenas Streamlit:")
 
-    # Gráfico de linhas interativo
-    df_lin = pd.DataFrame({
-        "Dia": list(range(1, 11)),
-        "Vendas": np.random.randint(20, 100, 10)
-    })
-    fig_lin = px.line(df_lin, x="Dia", y="Vendas", title="📈 Vendas Diárias (Interativo)", markers=True)
-    st.plotly_chart(fig_lin)
+    # Gráfico de linhas
+    dados_linha = pd.DataFrame(np.random.randint(10, 50, size=(10,1)), columns=["Vendas"])
+    st.line_chart(dados_linha)
 
-    # Gráfico de barras interativo
-    df_bar = pd.DataFrame({
-        "Produto": ["A", "B", "C", "D"],
-        "Quantidade": [23, 45, 12, 34]
-    })
-    fig_bar = px.bar(df_bar, x="Produto", y="Quantidade", color="Produto", title="📊 Quantidade por Produto")
-    st.plotly_chart(fig_bar)
+    # Gráfico de barras
+    dados_barra = pd.DataFrame({"Produto": ["A","B","C","D"], "Quantidade": [23, 45, 12, 34]}).set_index("Produto")
+    st.bar_chart(dados_barra)
 
-    # Gráfico de pizza interativo
-    df_pie = pd.DataFrame({
-        "Setor": ["Tech", "Financeiro", "Marketing", "RH"],
-        "Empregados": [50, 30, 20, 10]
-    })
-    fig_pie = px.pie(df_pie, names="Setor", values="Empregados", title="🥧 Distribuição de Funcionários por Setor")
-    st.plotly_chart(fig_pie)
+    # Gráfico de área
+    dados_area = pd.DataFrame(np.random.randint(1,20, size=(10,3)), columns=["Setor1","Setor2","Setor3"])
+    st.area_chart(dados_area)
 
-    st.write("💡 Experimente interagir com os gráficos: passar o mouse, clicar e filtrar dados!")
+    st.markdown("---")
+    st.header("📂 Faça upload do seu próprio CSV!")
+    uploaded_file = st.file_uploader("Escolha um arquivo CSV", type="csv")
+    if uploaded_file is not None:
+        user_df = pd.read_csv(uploaded_file)
+        st.write("✅ Arquivo carregado com sucesso!")
+        st.dataframe(user_df)
+
+        st.subheader("📊 Gráfico de linhas do seu CSV")
+        st.line_chart(user_df.select_dtypes(include=[np.number]))
+
+        st.subheader("📈 Gráfico de barras do seu CSV")
+        numeric_df = user_df.select_dtypes(include=[np.number])
+        if not numeric_df.empty:
+            st.bar_chart(numeric_df)
