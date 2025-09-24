@@ -179,7 +179,7 @@ print(lista)
 with tabs[4]:
     st.title("⚡ Avançado Interativo")
     st.subheader("Experimente interações com Python e dados!")
-    st.image("https://media.giphy.com/media/l0HlQ7LRal6oJocv2/giphy.gif", use_container_width=True)
+    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTZnMHZobTZreG5lNHN1bHYyY2M2Y281enM1OGx6MXdqYTkyaDIwNCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/LKqDgLlK6SuIM/giphy.gif", use_container_width=True)
 
     st.markdown("### 1️⃣ Calculadora de Média Interativa")
     numeros = st.text_input("Digite números separados por vírgula (ex: 10,20,30):")
@@ -216,7 +216,11 @@ with tabs[4]:
     st.markdown("### E esse foi nosso site espero que tenham gostado")
     st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcW9mdGhmaTU1cGwzdHlxZG41NmVsMGVqMjFycG04bGdqNzgxOWFmdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/lxxOGaDRk4f7R5TkBd/giphy.gif", use_container_width=True)
     
+    st.markdown("### Melhor Projeto do ano de todos os tempos")
+    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTZnMHZobTZreG5lNHN1bHYyY2M2Y281enM1OGx6MXdqYTkyaDIwNCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/V8vOT1JVj1ok/giphy.gif",use_container_width=True)
+    
     st.markdown("### 5️⃣ Celebre com Balões 🎈")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
 
