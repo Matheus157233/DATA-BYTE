@@ -215,3 +215,7 @@ with tabs[4]:
     st.image("https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif", use_container_width=True)
     st.image("https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif", use_container_width=True)
     st.image("https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif", use_container_width=True)
+
+    st.markdown("### 5️⃣ Celebre com Balões 🎈")
+    if st.button("Clique para soltar balões!"):
+        st.balloons()
