@@ -54,7 +54,7 @@ Além disso, a área é reconhecida por **alta empregabilidade e oportunidades g
 """)
 
     st.markdown("---")
-    st.header("🖼️ LeBron James em ação")
+    st.header("🖼️ Coisas legais para se fazer quando aprende python")
     st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTRsbTd3cWN4ZWRqZHh1NzlveTkydzUyN282aDBrbXV5NnU1MWYyNiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o7aTnQqygA3TcukFi/giphy.gif", use_container_width=True)
 
     st.markdown("---")
@@ -169,3 +169,4 @@ print(lista)""", language="python")
 
     st.subheader("🎉 Dica divertida")
     st.write("Você pode criar listas de nomes engraçados e brincar com elas no Python! 😎")
+
