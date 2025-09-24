@@ -5,7 +5,7 @@ import numpy as np
 # Configuração da página
 st.set_page_config(page_title="Projetos com Notebooks + Py Ciência de Dados", layout="wide")
 
-# TABS principais (Introdução à Ciência de Dados em primeiro)
+# TABS principais
 tabs = st.tabs([
     "🚀 Introdução à Ciência de Dados",
     "📊 Limpeza de Dados",
@@ -42,17 +42,8 @@ Exemplos de dados:
 """)
 
     st.markdown("---")
-    st.header("🧱 Tipos de Dados")
-    st.write("""
-- **Numéricos** (int, float): 10, 3.14  
-- **Texto (strings)**: "Olá", "Ciência"  
-- **Booleanos**: `True`, `False`  
-- **Categorias**: "Masculino", "Feminino", "Outros"
-""")
-
-    st.markdown("---")
     st.header("🐍 Primeiros passos com Python")
-    st.write("O Python é uma linguagem simples e poderosa, perfeita para Ciência de Dados. Vamos começar com alguns exemplos básicos:")
+    st.write("O Python é simples e poderoso. Vamos ver exemplos básicos:")
 
     st.subheader("✅ Exemplo 1: Olá, Mundo!")
     st.code('print("Olá, mundo da Ciência de Dados com Py!")', language="python")
@@ -66,46 +57,49 @@ print(nome, idade)
 
     st.markdown("---")
     st.header("📦 Bibliotecas úteis")
-
-    st.subheader("🐼 pandas – Para trabalhar com tabelas")
-    st.write("A biblioteca `pandas` facilita a manipulação de dados em forma de tabelas (DataFrames).")
+    
+    st.subheader("🐼 pandas – Manipulação de dados")
+    st.write("Vamos criar um DataFrame e explorar algumas operações básicas:")
+    
     dados = {
-        "Nome": ["Ana", "Carlos", "Beatriz"],
-        "Idade": [23, 35, 29]
+        "Nome": ["Ana", "Carlos", "Beatriz", "João", "Maria"],
+        "Idade": [23, 35, 29, 19, 22],
+        "Nota": [8.5, 7.0, 9.0, 6.5, 7.5]
     }
     df = pd.DataFrame(dados)
     st.dataframe(df)
 
-    st.subheader("🔢 numpy – Para cálculos e arrays")
-    idades = np.array([23, 35, 29])
-    media = np.mean(idades)
-    st.write(f"Média das idades: {media}")
+    st.subheader("📊 Estatísticas rápidas")
+    st.write("Podemos calcular média, máximo e mínimo:")
+    st.write(f"Média de idade: {df['Idade'].mean():.2f}")
+    st.write(f"Maior nota: {df['Nota'].max()}")
+    st.write(f"Menor idade: {df['Idade'].min()}")
+
+    st.subheader("📈 Gráfico simples com pandas")
+    st.bar_chart(df.set_index("Nome")["Nota"])
+
+    st.subheader("🔢 numpy – Cálculos avançados")
+    idades = np.array(df["Idade"])
+    st.write(f"Desvio padrão das idades: {np.std(idades):.2f}")
+    st.write(f"Soma das idades: {np.sum(idades)}")
 
     st.markdown("---")
-    st.header("📊 Análise Simples de Dados")
-    st.subheader("📈 Estatísticas Descritivas")
-    st.dataframe(df.describe())
+    st.header("📊 Prática: Filtrando Dados")
+    st.write("Filtrando alunos com nota maior que 7:")
+    df_filtrado = df[df["Nota"] > 7]
+    st.dataframe(df_filtrado)
 
-    st.subheader("🔍 Quem é a pessoa mais velha?")
-    mais_velha = df[df["Idade"] == df["Idade"].max()]
-    st.write(mais_velha)
+    st.subheader("📌 Desafio prático")
+    st.write("Tente criar uma nova coluna que indique se o aluno passou (nota >= 7) ou não:")
+    df["Status"] = df["Nota"].apply(lambda x: "Aprovado" if x >= 7 else "Reprovado")
+    st.dataframe(df)
 
     st.markdown("---")
     st.header("🎯 Mini Projeto: Notas de Alunos")
-    notas = {
-        "Aluno": ["João", "Maria", "Pedro", "Ana"],
-        "Nota": [7.5, 9.0, 6.0, 8.5]
-    }
-    notas_df = pd.DataFrame(notas)
-    st.dataframe(notas_df)
+    st.write("Visualizando a distribuição das notas:")
+    st.bar_chart(df.set_index("Nome")["Nota"])
 
-    st.markdown("---")
-    st.header("✅ Conclusão")
-    st.write("""
-Parabéns! 🎉 Você aprendeu:
-- O que é Ciência de Dados
-- Como usar Python para manipulação de dados
-""")
+    st.write("Parabéns! Você já aprendeu a criar DataFrames, calcular estatísticas, filtrar dados e criar gráficos simples com pandas e numpy.")
 
 # --- Limpeza de Dados ---
 with tabs[1]:
@@ -163,7 +157,7 @@ mensagem("Estudando funções", 3)
 
 # --- Listas e Operações ---
 with tabs[3]:
-    st.subheader("📂 Operações com Listas (2CDD02)")
+    st.subheader("📂 Operações com Listas")
     with st.expander("➕ Soma e média"):
         st.code("""
 lista = [1, 2, 3, 4, 5]
