@@ -31,7 +31,6 @@ Ela envolve:
 - Visualização de dados
 - Conhecimento do domínio (entender o problema)
 """)
-    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTRsbTd3cWN4ZWRqZHh1NzlveTkydzUyN282aDBrbXV5NnU1MWYyNiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/laa75ehg46kBMGvIqe/giphy.gif", use_container_width=True)
 
     st.markdown("---")
     st.header("📊 Importância no Mercado")
@@ -41,7 +40,6 @@ A demanda por profissionais de Ciência de Dados está crescendo rapidamente:
 - Empresas buscam pessoas que saibam **analisar dados e gerar insights**
 - Aplicações: negócios, saúde, finanças, esportes, marketing
 """)
-    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTRsbTd3cWN4ZWRqZHh1NzlveTkydzUyN282aDBrbXV5NnU1MWYyNiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/MeDCkhoxIeAhwvJdXY/giphy.gif", use_container_width=True)
 
     st.markdown("---")
     st.header("🔢 Tipos de Dados")
@@ -90,15 +88,11 @@ print("Média das idades:", media)
     }))
 
     st.markdown("---")
-    st.header("🎉 GIFs divertidos(pelo menos para o Matue)")
-    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnowa3dtOGw3MXZsYXpkdnV0ZzI3amU1ZzNtZXJyajBsMTh5Y2tzdiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/14smAwp2uHM3Di/giphy.gif", use_container_width=True)
-    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjdmZGVkYmt6N3F2eWU2eHk0NTUwejlkYnpmdTNwc3NpZmFnaXhleCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/HSgT9ROq7AcO1zEZDC/giphy.gif", use_container_width=True)
-
+    
 # --- Limpeza de Dados ---
 with tabs[1]:
     st.title("📊 Limpeza de Dados")
     st.subheader("Preparando e organizando dados sujos")
-    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcW9mdGhmaTU1cGwzdHlxZG41NmVsMGVqMjFycG04bGdqNzgxOWFmdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/GCO5WNzFmlc0vjK8cA/giphy.gif", use_container_width=True)
 
     with st.expander("📥 Importação de bibliotecas"):
         st.code("import pandas as pd\nimport numpy as np", language="python")
@@ -222,5 +216,6 @@ with tabs[4]:
     st.markdown("### 5️⃣ Celebre com Balões 🎈")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
 
 
