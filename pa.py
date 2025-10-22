@@ -125,7 +125,7 @@ A **Ciência de Dados** une **estatística, programação e análise de dados** 
 - 🐍 **Programação com Python**
 - 🧭 **Entendimento do problema e contexto**
 """)
-    st.video("https://www.youtube.com/watch?v=X3paOmcrTjQ")  # vídeo introdutório
+    st.video("https://youtu.be/i6fcwf31htU?si=VVAvfOiipAvHii31")  # vídeo introdutório
 
     st.markdown("---")
     st.header("💼 Importância no Mercado de Trabalho")
@@ -136,7 +136,7 @@ O mercado de Ciência de Dados cresce rapidamente:
 - 🧠 Alta demanda em saúde, finanças, marketing e tecnologia  
 - 🌍 Empresas valorizam profissionais que transformam dados em estratégias
 """)
-    st.video("https://www.youtube.com/watch?v=ua-CiDNNj30")  # vídeo explicativo
+
 
     st.markdown("---")
     st.header("🔢 Tipos de Dados em Python")
@@ -146,7 +146,7 @@ O mercado de Ciência de Dados cresce rapidamente:
 - **Booleanos**: `True`, `False`  
 - **Categorias**: `"Masculino"`, `"Feminino"`, `"Outro"`
 """)
-    st.video("https://www.youtube.com/watch?v=OT2E5Tj6flE")  # vídeo sobre tipos de dados
+    st.video("https://youtu.be/2ckX4M3ocdQ?si=Q94aklrJKTR68M6l")  # vídeo sobre tipos de dados
 
     st.markdown("---")
     st.header("🐍 Primeiros Passos com Python")
@@ -338,4 +338,5 @@ Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios**
     st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
 
