@@ -386,7 +386,7 @@ Listas são estruturas de dados que permitem **armazenar múltiplos valores**, p
     st.video("https://www.youtube.com/watch?v=ohCDWZgNIU0")  # vídeo listas
 
     st.markdown("""
-## 📂 Operações com Listas em Python
+    ## 📂 Operações com Listas em Python
 
 Listas são **estruturas de dados que armazenam múltiplos elementos** em uma única variável.  
 Elas permitem **armazenar, acessar, modificar e manipular dados de forma eficiente**.
@@ -489,6 +489,7 @@ Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios**
     st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
 
 
 
