@@ -3,96 +3,191 @@ import pandas as pd
 import numpy as np
 import math
 
-# Configuração da página
-st.set_page_config(page_title="Projetos com Notebooks + Py Ciência de Dados", layout="wide")
+# ------------------------------------------------------------
+# CONFIGURAÇÃO GERAL DA PÁGINA
+# ------------------------------------------------------------
+st.set_page_config(
+    page_title="Curso Completo: Introdução à Ciência de Dados com Python",
+    page_icon="🧠",
+    layout="wide"
+)
 
-# TABS principais
-tabs = st.tabs([
-    "🚀 Introdução à Ciência de Dados",
+# ------------------------------------------------------------
+# ESTILO PERSONALIZADO (CSS)
+# ------------------------------------------------------------
+st.markdown("""
+<style>
+    body {
+        background-color: #f5f5f5;
+    }
+    .stApp {
+        background-color: #ffffff;
+    }
+    h1, h2, h3 {
+        color: #0E1117;
+    }
+    .main-title {
+        text-align: center;
+        color: #1f77b4;
+        font-weight: bold;
+    }
+    .sub-title {
+        text-align: center;
+        font-style: italic;
+        color: #555;
+    }
+    .block-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# ------------------------------------------------------------
+# MENU LATERAL (NAVBAR)
+# ------------------------------------------------------------
+st.sidebar.title("📚 Menu do Curso")
+st.sidebar.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3hyMjEydDh2ZnA2N3Zpb2xzcmhoYzRrd3lxMG03bmd4NjFhb3Y5eCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3og0ILmP5mKAzV3faw/giphy.gif", use_container_width=True)
+menu = st.sidebar.radio("Navegue entre as seções:", [
+    "🏠 Página Inicial",
+    "🧩 Introdução à Ciência de Dados",
     "📊 Limpeza de Dados",
     "🧠 Funções Python",
     "📂 Operações com Listas",
-    "⚡ Avançado Interativo"
+    "⚡ Módulo Avançado Interativo"
 ])
+st.sidebar.markdown("---")
+st.sidebar.info("💡 Dica: explore cada módulo em ordem para aproveitar melhor o conteúdo!")
 
-# --- Introdução à Ciência de Dados ---
-with tabs[0]:
+# ------------------------------------------------------------
+# --- 0. PÁGINA INICIAL ---
+# ------------------------------------------------------------
+if menu == "🏠 Página Inicial":
+    st.markdown("<h1 class='main-title'>🚀 Curso Completo de Ciência de Dados com Python</h1>", unsafe_allow_html=True)
+    st.markdown("<p class='sub-title'>Do zero à prática — entenda, limpe, analise e visualize dados com Python!</p>", unsafe_allow_html=True)
+
+    st.markdown("---")
+    st.image("https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif", use_container_width=True)
+
+    st.header("📖 Sobre o Curso")
+    st.write("""
+Este curso foi desenvolvido para **introduzir você à Ciência de Dados**, combinando **teoria e prática** em um ambiente interativo com Python.
+
+Você aprenderá:
+- 🧮 Conceitos fundamentais de Ciência de Dados  
+- 🐍 Programação prática em Python  
+- 📊 Limpeza e manipulação de dados com Pandas e Numpy  
+- 💡 Funções e estruturas de dados em Python  
+- ⚡ Interatividade com Streamlit  
+""")
+
+    st.header("🎯 Objetivo")
+    st.write("""
+Ao final deste curso, você será capaz de:
+- Compreender os **fundamentos da análise de dados**
+- Criar e limpar **DataFrames**
+- Escrever **funções eficientes**
+- Trabalhar com **listas e estruturas dinâmicas**
+- Construir **pequenos projetos interativos**
+""")
+
+    st.header("🧭 Estrutura do Curso")
+    st.write("""
+1. **Introdução à Ciência de Dados**  
+2. **Limpeza e Tratamento de Dados**  
+3. **Funções Python**  
+4. **Operações com Listas**  
+5. **Módulo Avançado Interativo**
+""")
+
+    st.success("✅ Clique no menu lateral para iniciar sua jornada!")
+
+# ------------------------------------------------------------
+# --- 1. Introdução à Ciência de Dados ---
+# ------------------------------------------------------------
+elif menu == "🧩 Introdução à Ciência de Dados":
     st.title("🧠 Py - Sua Porta de Entrada para a Ciência de Dados")
     st.subheader("Aprenda Ciência de Dados do zero com Python de forma prática!")
 
     st.markdown("---")
-    st.header("📌 O que é Ciência de Dados?")
+    st.header("📘 O que é Ciência de Dados?")
     st.write("""
-**Ciência de Dados** é o processo de coletar, organizar, analisar e interpretar dados para tomar decisões informadas.
+A **Ciência de Dados** é o campo que une **estatística, programação e análise de dados** para descobrir padrões, gerar insights e tomar decisões baseadas em fatos.
 
 Ela envolve:
-- Estatísticas
-- Programação (Python é a linguagem mais usada!)
-- Visualização de dados
-- Conhecimento do domínio (entender o problema)
+- 📊 **Análise e visualização de dados**
+- 🧮 **Modelagem estatística**
+- 🐍 **Programação com Python**
+- 🧭 **Entendimento do problema e contexto**
 """)
 
     st.markdown("---")
-    st.header("📊 Importância no Mercado")
+    st.header("💼 Importância no Mercado de Trabalho")
     st.write("""
-A demanda por profissionais de Ciência de Dados está crescendo rapidamente:
-- Média salarial: **R$6.000 a R$15.000** dependendo do nível de experiência
-- Empresas buscam pessoas que saibam **analisar dados e gerar insights**
-- Aplicações: negócios, saúde, finanças, esportes, marketing
+O mercado de Ciência de Dados está em constante crescimento:
+
+- 💰 **Salário médio**: R$6.000 a R$15.000  
+- 🧠 **Alta demanda** em setores como saúde, finanças, marketing e tecnologia  
+- 🌍 **Empresas buscam profissionais capazes de transformar dados em estratégias**
 """)
 
     st.markdown("---")
-    st.header("🔢 Tipos de Dados")
+    st.header("🔢 Tipos de Dados em Python")
     st.write("""
-- **Numéricos**: int, float (ex: 10, 3.14)  
-- **Texto (strings)**: "Olá", "Ciência"  
-- **Booleanos**: True, False  
-- **Categorias**: "Masculino", "Feminino", "Outros"
+- **Numéricos**: `int`, `float` → 10, 3.14  
+- **Texto (strings)**: `"Olá", "Python"`  
+- **Booleanos**: `True`, `False`  
+- **Categorias**: `"Masculino"`, `"Feminino"`, `"Outro"`
 """)
 
     st.markdown("---")
-    st.header("🐍 Primeiros passos com Python")
+    st.header("🐍 Primeiros Passos com Python")
     st.subheader("✅ Exemplo 1: Olá, Mundo!")
     st.code('print("Olá, mundo da Ciência de Dados com Py!")', language="python")
 
-    st.subheader("✅ Exemplo 2: Variáveis e arrays com numpy")
+    st.subheader("✅ Exemplo 2: Variáveis e Arrays com Numpy")
     st.code('''
 import numpy as np
 idades = np.array([23, 35, 29])
 media = np.mean(idades)
 print("Média das idades:", media)
 ''', language="python")
+
     idades = np.array([23, 35, 29])
     media = np.mean(idades)
-    st.write(f"Média das idades: {media}")
+    st.success(f"Média das idades: {media}")
 
     st.markdown("---")
-    st.header("📦 Trabalhando com pandas")
-    dados = {
-        "Nome": ["Ana", "Carlos", "Beatriz"],
-        "Idade": [23, 35, 29]
-    }
+    st.header("📦 Trabalhando com pandas (DataFrames)")
+    dados = {"Nome": ["Ana", "Carlos", "Beatriz"], "Idade": [23, 35, 29]}
     df = pd.DataFrame(dados)
-    st.dataframe(df)
-    st.write("Estatísticas descritivas:")
+    st.dataframe(df, use_container_width=True)
+    st.write("📈 Estatísticas descritivas:")
     st.dataframe(df.describe())
-    st.write("Pessoa mais velha:")
+    st.write("👴 Pessoa mais velha:")
     st.write(df[df["Idade"] == df["Idade"].max()])
 
     st.markdown("---")
-    st.header("🌍 Mapa interativo")
+    st.header("🌍 Mapa Interativo de Cidades")
     st.map(pd.DataFrame({
         'lat': [-23.55052, -22.9068, -19.9167],
         'lon': [-46.633308, -43.1729, -43.9345],
         'Cidade': ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte']
     }))
 
-    st.markdown("---")
-    
-# --- Limpeza de Dados ---
-with tabs[1]:
+    st.success("🎯 Parabéns! Você concluiu a introdução à Ciência de Dados!")
+
+# ------------------------------------------------------------
+# --- 2. Limpeza de Dados ---
+# ------------------------------------------------------------
+elif menu == "📊 Limpeza de Dados":
     st.title("📊 Limpeza de Dados")
-    st.subheader("Preparando e organizando dados sujos")
+    st.subheader("Preparando e organizando dados sujos para análise")
+
+    st.markdown("""
+Antes de analisar dados, é essencial **limpá-los e estruturá-los** corretamente.
+Este módulo mostra exemplos práticos usando a biblioteca **pandas**.
+""")
 
     with st.expander("📥 Importação de bibliotecas"):
         st.code("import pandas as pd\nimport numpy as np", language="python")
@@ -103,12 +198,16 @@ with tabs[1]:
     with st.expander("🔍 Verificação e tratamento de dados ausentes"):
         st.code('df.isnull().sum()\ndf["Nota"] = df["Nota"].fillna(0)', language="python")
 
-    with st.expander("🧹 Remoção de duplicatas e renomeação"):
+    with st.expander("🧹 Remoção de duplicatas e renomeação de colunas"):
         st.code('df = df.drop_duplicates()\ndf = df.rename(columns={"Nota": "Nota_Final"})\ndf.head()', language="python")
 
-# --- Funções Python ---
-with tabs[2]:
-    st.subheader("🧠 Funções em Python")
+# ------------------------------------------------------------
+# --- 3. Funções Python ---
+# ------------------------------------------------------------
+elif menu == "🧠 Funções Python":
+    st.title("🧠 Funções em Python")
+    st.subheader("Organizando códigos e automatizando tarefas")
+
     st.image("https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif", use_container_width=True)
 
     with st.expander("🙋‍♀️ Saudação personalizada"):
@@ -121,9 +220,6 @@ def saudacao(nome):
         st.code("""
 def potencia(base, expoente=2):
     return base ** expoente
-
-potencia(3)
-potencia(3, 3)
 """, language="python")
 
     with st.expander("🔁 Retorno múltiplo"):
@@ -132,13 +228,15 @@ def operacoes(a, b):
     soma = a + b
     sub = a - b
     return soma, sub
-s, sub = operacoes(10, 5)
-print(f"Soma: {s}, Subtração: {sub}")
 """, language="python")
 
-# --- Operações com Listas ---
-with tabs[3]:
-    st.subheader("📂 Operações com Listas")
+# ------------------------------------------------------------
+# --- 4. Operações com Listas ---
+# ------------------------------------------------------------
+elif menu == "📂 Operações com Listas":
+    st.title("📂 Operações com Listas")
+    st.subheader("Aprenda manipular dados de forma prática")
+
     st.image("https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif", use_container_width=True)
 
     with st.expander("➕ Soma e média"):
@@ -169,10 +267,13 @@ lista.remove(2)
 print(lista)
 """, language="python")
 
-# --- Avançado Interativo ---
-with tabs[4]:
-    st.title("⚡ Avançado Interativo")
-    st.subheader("Experimente interações com Python e dados!")
+# ------------------------------------------------------------
+# --- 5. Módulo Avançado Interativo ---
+# ------------------------------------------------------------
+elif menu == "⚡ Módulo Avançado Interativo":
+    st.title("⚡ Módulo Avançado Interativo")
+    st.subheader("Experimente interações em tempo real com Python e Dados!")
+
     st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTZnMHZobTZreG5lNHN1bHYyY2M2Y281enM1OGx6MXdqYTkyaDIwNCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/LKqDgLlK6SuIM/giphy.gif", use_container_width=True)
 
     st.markdown("### 1️⃣ Calculadora de Média Interativa")
@@ -183,9 +284,9 @@ with tabs[4]:
             media = np.mean(nums)
             st.success(f"A média dos números é: {media}")
         except:
-            st.error("Erro: digite apenas números separados por vírgula.")
+            st.error("❌ Erro: digite apenas números separados por vírgula.")
 
-    st.markdown("### 2️⃣ Escolha uma operação matemática divertida")
+    st.markdown("### 2️⃣ Operações Matemáticas")
     operacao = st.selectbox("Escolha a operação:", ["Quadrado", "Raiz Quadrada", "Fatorial"])
     valor = st.number_input("Digite um número:", min_value=0, step=1)
     if operacao and valor is not None:
@@ -196,25 +297,21 @@ with tabs[4]:
         elif operacao == "Fatorial":
             st.write(f"{valor}! = {math.factorial(int(valor))}")
 
-    st.markdown("### 3️⃣ Upload de CSV para explorar seus dados")
+    st.markdown("### 3️⃣ Upload de CSV para Explorar Dados")
     uploaded_file = st.file_uploader("Escolha um arquivo CSV", type="csv")
     if uploaded_file:
         user_df = pd.read_csv(uploaded_file)
-        st.write("Seu arquivo CSV carregado:")
+        st.write("✅ Seu arquivo CSV carregado com sucesso:")
         st.dataframe(user_df)
-        st.write("Estatísticas descritivas:")
+        st.write("📈 Estatísticas descritivas:")
         st.dataframe(user_df.describe())
 
-    st.markdown("### E esse foi nosso site espero que tenham gostado")
-    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcW9mdGhmaTU1cGwzdHlxZG41NmVsMGVqMjFycG04bGdqNzgxOWFmdCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/lxxOGaDRk4f7R5TkBd/giphy.gif", use_container_width=True)
-    
-    st.markdown("### Melhor Projeto do ano de todos os tempos")
-    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTZnMHZobTZreG5lNHN1bHYyY2M2Y281enM1OGx6MXdqYTkyaDIwNCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/V8vOT1JVj1ok/giphy.gif",use_container_width=True)
-    
-    st.markdown("### 5️⃣ Celebre com Balões 🎈")
+    st.markdown("---")
+    st.success("🎓 Parabéns! Você concluiu o módulo final do curso de Ciência de Dados!")
+
+    st.markdown("### 🏆 Melhor Projeto do Ano!")
+    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTZnMHZobTZreG5lNHN1bHYyY2M2Y281enM1OGx6MXdqYTkyaDIwNCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/V8vOT1JVj1ok/giphy.gif", use_container_width=True)
+
+    st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
         st.balloons()
-
-
-
-
