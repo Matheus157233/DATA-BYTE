@@ -385,31 +385,30 @@ Listas são estruturas de dados que permitem **armazenar múltiplos valores**, p
 """)
     st.video("https://www.youtube.com/watch?v=ohCDWZgNIU0")  # vídeo listas
 
-    st.markdown("""
-    ## 📂 Operações com Listas em Python
+st.markdown("""
+## Operações com Listas em Python
 
-Listas são **estruturas de dados que armazenam múltiplos elementos** em uma única variável.  
-Elas permitem **armazenar, acessar, modificar e manipular dados de forma eficiente**.
-
----
-
-### Por que usar listas?
-
-- 📚 **Organização**: guarda vários itens relacionados em uma única variável.  
-- 🔄 **Iteração**: facilita percorrer todos os elementos com loops (`for`, `while`).  
-- ⚡ **Flexibilidade**: permite adicionar, remover e modificar itens dinamicamente.
+Listas são estruturas de dados que armazenam múltiplos elementos em uma única variável.  
+Elas permitem armazenar, acessar, modificar e manipular dados de forma eficiente.
 
 ---
 
-### Operações comuns em listas:
+Por que usar listas?
 
-1. **Soma e média de elementos**
+- Organização: guarda vários itens relacionados em uma única variável.  
+- Iteração: facilita percorrer todos os elementos com loops (for, while).  
+- Flexibilidade: permite adicionar, remover e modificar itens dinamicamente.
+
+---
+
+Operações comuns em listas:
+
+1. Soma e média de elementos
 ```python
 lista = [1, 2, 3, 4, 5]
 soma = sum(lista)
 media = soma / len(lista)
 print(f"Soma: {soma}, Média: {media}")
-
 
     with st.expander("➕ Soma e média"):
         st.code("""
@@ -489,6 +488,7 @@ Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios**
     st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
 
 
 
