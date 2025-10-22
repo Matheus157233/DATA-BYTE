@@ -274,6 +274,34 @@ Este módulo mostra exemplos práticos usando a biblioteca **pandas**.
 """)
     st.video("https://youtu.be/WQ5rsl8y_dw?si=35oVa936wfIemcz-")  # vídeo limpeza de dados
 
+    st.markdown("""
+## 🧹 Limpeza e Preparação de Dados
+
+Antes de começar qualquer análise em **Ciência de Dados**, é essencial garantir que as informações estejam **limpas, completas e organizadas**.  
+Esse processo é chamado de **limpeza de dados** (ou *data cleaning*) e é uma das etapas mais importantes do trabalho de um cientista de dados.
+
+---
+
+Durante a coleta, os dados muitas vezes chegam **cheios de problemas**: valores ausentes, duplicados, erros de digitação, formatações inconsistentes ou até informações irrelevantes.  
+Se esses problemas não forem corrigidos, os resultados das análises podem ser **enganosos** ou **inúteis**.
+
+Por isso, usamos bibliotecas como **Pandas** e **NumPy**, que oferecem funções poderosas para tratar e organizar os dados.  
+Com o Pandas, por exemplo, podemos remover linhas vazias, preencher valores nulos, renomear colunas e até converter tipos de dados (como transformar um texto em número).  
+Já o NumPy é muito útil para corrigir ou substituir valores incorretos e realizar operações matemáticas com eficiência.
+
+---
+
+Imagine uma planilha com idades de clientes onde alguns campos estão em branco ou escritos de forma errada.  
+Com o comando `df.dropna()`, podemos **remover as linhas com valores ausentes**, e com `df.fillna(0)` é possível **preencher automaticamente esses espaços com zero ou outro valor padrão**.  
+Essas pequenas ações garantem que os dados fiquem prontos para análise e evitem erros durante os cálculos.
+
+---
+
+A limpeza de dados é, portanto, o **alicerce da análise confiável**.  
+Sem ela, qualquer modelo ou gráfico pode gerar conclusões erradas.  
+Depois que os dados estão limpos, o cientista pode seguir para as etapas seguintes — como **análise exploratória, visualização e modelagem preditiva** — com muito mais segurança e precisão.
+""")
+
     with st.expander("📥 Importação de bibliotecas"):
         st.code("import pandas as pd\nimport numpy as np", language="python")
 
@@ -410,6 +438,7 @@ Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios**
     st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
 
 
 
