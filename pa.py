@@ -84,6 +84,48 @@ Você aprenderá:
 - ⚡ Interatividade com Streamlit  
 """)
     st.video("https://youtu.be/cm_tM0m9zcI")
+st.markdown("""
+## 🚀 Você aprenderá:
+
+Durante este curso, você vai explorar o universo da **Ciência de Dados** de forma prática e didática.  
+Cada módulo foi pensado para te guiar passo a passo, da teoria à aplicação real.
+
+---
+
+### 🧮 Conceitos Fundamentais de Ciência de Dados
+Você vai entender o que é **Ciência de Dados**, como os dados são coletados, processados e analisados.  
+Aprenderá sobre **estatística, visualização e tomada de decisão baseada em dados**, entendendo como esses elementos se conectam para gerar insights valiosos.
+
+---
+
+### 🐍 Programação Prática em Python
+Python é a linguagem mais usada no mundo dos dados!  
+Aqui, você aprenderá desde os comandos básicos até o uso de bibliotecas específicas para manipulação e análise.  
+Vai descobrir como **automatizar tarefas**, criar algoritmos e resolver problemas de forma eficiente.
+
+---
+
+### 📊 Limpeza e Manipulação de Dados com Pandas e Numpy
+Nem todos os dados vêm prontos — muitos estão sujos, incompletos ou desorganizados.  
+Neste módulo, você vai aprender a **tratar valores nulos, corrigir erros e padronizar informações**.  
+Com **Pandas** e **NumPy**, será possível transformar dados brutos em tabelas organizadas prontas para análise.
+
+---
+
+### 💡 Funções e Estruturas de Dados em Python
+Você entenderá como criar **funções reutilizáveis**, economizando tempo e tornando seu código mais limpo e modular.  
+Além disso, vai dominar **estruturas de dados** como listas, dicionários e tuplas — elementos essenciais para armazenar e manipular informações de forma inteligente.
+
+---
+
+### ⚡ Interatividade com Streamlit
+Por fim, você aprenderá a transformar seus códigos em **aplicações interativas e visualmente atraentes**.  
+Com o Streamlit, é possível criar **dashboards, simuladores e ferramentas web** que mostram seus resultados de maneira prática e profissional.
+
+---
+
+💬 Este curso é o seu primeiro passo para dominar a Ciência de Dados — do básico à criação de projetos reais!
+""")
 
     st.header("🎯 Objetivo")
     st.write("""
@@ -335,6 +377,7 @@ Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios**
     st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
 
 
 
