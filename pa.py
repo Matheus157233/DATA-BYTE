@@ -241,10 +241,10 @@ def saudacao(nome):
     return f"Olá, {nome}!"
 """, language="python")
 
-    with st.expander("📐 Função com parâmetro padrão"):
-        st.code("""
+  with st.expander("📐 Função com parâmetro padrão"):
+    st.code("""
 def potencia(base, expoente=2):
     return base ** expoente
-""
-::contentReference[oaicite:0]{index=0}
+""", language="python")
  
+
