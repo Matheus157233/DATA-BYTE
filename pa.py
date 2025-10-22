@@ -40,6 +40,9 @@ st.markdown("""
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
+    .small-gif {
+        max-height: 200px;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -47,7 +50,7 @@ st.markdown("""
 # MENU LATERAL (NAVBAR)
 # ------------------------------------------------------------
 st.sidebar.title("📚 Menu do Curso")
-st.sidebar.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3hyMjEydDh2ZnA2N3Zpb2xzcmhoYzRrd3lxMG03bmd4NjFhb3Y5eCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3og0ILmP5mKAzV3faw/giphy.gif", use_container_width=True)
+st.sidebar.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3hyMjEydDh2ZnA2N3Zpb2xzcmhoYzRrd3lxMG03bmd4NjFhb3Y5eCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3og0ILmP5mKAzV3faw/giphy.gif", use_column_width=True)
 menu = st.sidebar.radio("Navegue entre as seções:", [
     "🏠 Página Inicial",
     "🧩 Introdução à Ciência de Dados",
@@ -67,7 +70,7 @@ if menu == "🏠 Página Inicial":
     st.markdown("<p class='sub-title'>Do zero à prática — entenda, limpe, analise e visualize dados com Python!</p>", unsafe_allow_html=True)
 
     st.markdown("---")
-    st.image("https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif", use_container_width=True)
+    st.image("https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif", width=300)
 
     st.header("📖 Sobre o Curso")
     st.write("""
@@ -80,6 +83,7 @@ Você aprenderá:
 - 💡 Funções e estruturas de dados em Python  
 - ⚡ Interatividade com Streamlit  
 """)
+    st.video("https://www.youtube.com/watch?v=ua-CiDNNj30")
 
     st.header("🎯 Objetivo")
     st.write("""
@@ -109,27 +113,30 @@ elif menu == "🧩 Introdução à Ciência de Dados":
     st.title("🧠 Py - Sua Porta de Entrada para a Ciência de Dados")
     st.subheader("Aprenda Ciência de Dados do zero com Python de forma prática!")
 
+    st.image("https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif", width=250)
+
     st.markdown("---")
     st.header("📘 O que é Ciência de Dados?")
     st.write("""
-A **Ciência de Dados** é o campo que une **estatística, programação e análise de dados** para descobrir padrões, gerar insights e tomar decisões baseadas em fatos.
+A **Ciência de Dados** une **estatística, programação e análise de dados** para gerar insights e apoiar decisões.
 
-Ela envolve:
 - 📊 **Análise e visualização de dados**
 - 🧮 **Modelagem estatística**
 - 🐍 **Programação com Python**
 - 🧭 **Entendimento do problema e contexto**
 """)
+    st.video("https://www.youtube.com/watch?v=X3paOmcrTjQ")  # vídeo introdutório
 
     st.markdown("---")
     st.header("💼 Importância no Mercado de Trabalho")
     st.write("""
-O mercado de Ciência de Dados está em constante crescimento:
+O mercado de Ciência de Dados cresce rapidamente:
 
-- 💰 **Salário médio**: R$6.000 a R$15.000  
-- 🧠 **Alta demanda** em setores como saúde, finanças, marketing e tecnologia  
-- 🌍 **Empresas buscam profissionais capazes de transformar dados em estratégias**
+- 💰 Salários: R$6.000 a R$15.000  
+- 🧠 Alta demanda em saúde, finanças, marketing e tecnologia  
+- 🌍 Empresas valorizam profissionais que transformam dados em estratégias
 """)
+    st.video("https://www.youtube.com/watch?v=ua-CiDNNj30")  # vídeo explicativo
 
     st.markdown("---")
     st.header("🔢 Tipos de Dados em Python")
@@ -139,6 +146,7 @@ O mercado de Ciência de Dados está em constante crescimento:
 - **Booleanos**: `True`, `False`  
 - **Categorias**: `"Masculino"`, `"Feminino"`, `"Outro"`
 """)
+    st.video("https://www.youtube.com/watch?v=OT2E5Tj6flE")  # vídeo sobre tipos de dados
 
     st.markdown("---")
     st.header("🐍 Primeiros Passos com Python")
@@ -152,10 +160,10 @@ idades = np.array([23, 35, 29])
 media = np.mean(idades)
 print("Média das idades:", media)
 ''', language="python")
-
     idades = np.array([23, 35, 29])
     media = np.mean(idades)
     st.success(f"Média das idades: {media}")
+    st.video("https://www.youtube.com/watch?v=khKv-8q7YmY")  # vídeo explicando arrays
 
     st.markdown("---")
     st.header("📦 Trabalhando com pandas (DataFrames)")
@@ -166,6 +174,7 @@ print("Média das idades:", media)
     st.dataframe(df.describe())
     st.write("👴 Pessoa mais velha:")
     st.write(df[df["Idade"] == df["Idade"].max()])
+    st.video("https://www.youtube.com/watch?v=vmEHCJofslg")  # vídeo pandas intro
 
     st.markdown("---")
     st.header("🌍 Mapa Interativo de Cidades")
@@ -183,11 +192,13 @@ print("Média das idades:", media)
 elif menu == "📊 Limpeza de Dados":
     st.title("📊 Limpeza de Dados")
     st.subheader("Preparando e organizando dados sujos para análise")
+    st.image("https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif", width=200)
 
-    st.markdown("""
+    st.write("""
 Antes de analisar dados, é essencial **limpá-los e estruturá-los** corretamente.
 Este módulo mostra exemplos práticos usando a biblioteca **pandas**.
 """)
+    st.video("https://www.youtube.com/watch?v=otCriSKVV_8")  # vídeo limpeza de dados
 
     with st.expander("📥 Importação de bibliotecas"):
         st.code("import pandas as pd\nimport numpy as np", language="python")
@@ -207,8 +218,12 @@ Este módulo mostra exemplos práticos usando a biblioteca **pandas**.
 elif menu == "🧠 Funções Python":
     st.title("🧠 Funções em Python")
     st.subheader("Organizando códigos e automatizando tarefas")
+    st.image("https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif", width=200)
 
-    st.image("https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif", use_container_width=True)
+    st.write("""
+Funções permitem **automatizar tarefas repetitivas** e deixar seu código **mais limpo e organizado**.
+""")
+    st.video("https://www.youtube.com/watch?v=9Os0o3wzS_I")  # vídeo sobre funções
 
     with st.expander("🙋‍♀️ Saudação personalizada"):
         st.code("""
@@ -236,8 +251,12 @@ def operacoes(a, b):
 elif menu == "📂 Operações com Listas":
     st.title("📂 Operações com Listas")
     st.subheader("Aprenda manipular dados de forma prática")
+    st.image("https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif", width=200)
 
-    st.image("https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif", use_container_width=True)
+    st.write("""
+Listas são estruturas de dados que permitem **armazenar múltiplos valores**, podendo manipulá-los facilmente.
+""")
+    st.video("https://www.youtube.com/watch?v=ohCDWZgNIU0")  # vídeo listas
 
     with st.expander("➕ Soma e média"):
         st.code("""
@@ -273,8 +292,12 @@ print(lista)
 elif menu == "⚡ Módulo Avançado Interativo":
     st.title("⚡ Módulo Avançado Interativo")
     st.subheader("Experimente interações em tempo real com Python e Dados!")
+    st.image("https://media.giphy.com/media/LKqDgLlK6SuIM/giphy.gif", width=200)
 
-    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTZnMHZobTZreG5lNHN1bHYyY2M2Y281enM1OGx6MXdqYTkyaDIwNCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/LKqDgLlK6SuIM/giphy.gif", use_container_width=True)
+    st.write("""
+Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios** e explorar **estatísticas descritivas**.
+""")
+    st.video("https://www.youtube.com/watch?v=rfscVS0vtbw")  # vídeo interatividade streamlit
 
     st.markdown("### 1️⃣ Calculadora de Média Interativa")
     numeros = st.text_input("Digite números separados por vírgula (ex: 10,20,30):")
@@ -310,7 +333,7 @@ elif menu == "⚡ Módulo Avançado Interativo":
     st.success("🎓 Parabéns! Você concluiu o módulo final do curso de Ciência de Dados!")
 
     st.markdown("### 🏆 Melhor Projeto do Ano!")
-    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTZnMHZobTZreG5lNHN1bHYyY2M2Y281enM1OGx6MXdqYTkyaDIwNCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/V8vOT1JVj1ok/giphy.gif", use_container_width=True)
+    st.image("https://media.giphy.com/media/V8vOT1JVj1ok/giphy.gif", width=200)
 
     st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
