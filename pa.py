@@ -410,6 +410,7 @@ soma = sum(lista)
 media = soma / len(lista)
 print(f"Soma: {soma}, Média: {media}")
 
+
     with st.expander("➕ Soma e média"):
         st.code("""
 lista = [1, 2, 3, 4, 5]
@@ -488,6 +489,7 @@ Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios**
     st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
 
 
 
