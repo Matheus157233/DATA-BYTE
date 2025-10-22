@@ -40,10 +40,6 @@ st.markdown("""
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
-    iframe {
-        width: 100%;
-        height: 315px;
-    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -51,7 +47,7 @@ st.markdown("""
 # MENU LATERAL (NAVBAR)
 # ------------------------------------------------------------
 st.sidebar.title("📚 Menu do Curso")
-st.sidebar.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3hyMjEydDh2ZnA2N3Zpb2xzcmhoYzRrd3lxMG03bmd4NjFhb3Y5eCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3og0ILmP5mKAzV3faw/giphy.gif", width=150)
+st.sidebar.image("https://media.giphy.com/media/3og0ILmP5mKAzV3faw/giphy.gif", width=150)
 menu = st.sidebar.radio("Navegue entre as seções:", [
     "🏠 Página Inicial",
     "🧩 Introdução à Ciência de Dados",
@@ -71,7 +67,7 @@ if menu == "🏠 Página Inicial":
     st.markdown("<p class='sub-title'>Do zero à prática — entenda, limpe, analise e visualize dados com Python!</p>", unsafe_allow_html=True)
 
     st.markdown("---")
-    st.image("https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif", width=200)
+    st.image("https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif", width=300)
 
     st.header("📖 Sobre o Curso")
     st.write("""
@@ -115,7 +111,6 @@ elif menu == "🧩 Introdução à Ciência de Dados":
 
     st.markdown("---")
     st.header("📘 O que é Ciência de Dados?")
-    st.video("https://www.youtube.com/embed/p37z3Uibq14")
     st.write("""
 A **Ciência de Dados** é o campo que une **estatística, programação e análise de dados** para descobrir padrões, gerar insights e tomar decisões baseadas em fatos.
 
@@ -126,9 +121,10 @@ Ela envolve:
 - 🧭 **Entendimento do problema e contexto**
 """)
 
+    st.video("https://www.youtube.com/watch?v=EjkqDz4Qx4U")  # Exemplo: vídeo curto em português sobre ciência de dados
+
     st.markdown("---")
     st.header("💼 Importância no Mercado de Trabalho")
-    st.video("https://www.youtube.com/embed/eKZ4p1vK8tA")
     st.write("""
 O mercado de Ciência de Dados está em constante crescimento:
 
@@ -136,22 +132,23 @@ O mercado de Ciência de Dados está em constante crescimento:
 - 🧠 **Alta demanda** em setores como saúde, finanças, marketing e tecnologia  
 - 🌍 **Empresas buscam profissionais capazes de transformar dados em estratégias**
 """)
+    st.video("https://www.youtube.com/watch?v=5E1Hj3lf3_A")  # Vídeo explicativo sobre mercado de dados
 
     st.markdown("---")
     st.header("🔢 Tipos de Dados em Python")
-    st.video("https://www.youtube.com/embed/4NUFqF0i0-k")
     st.write("""
 - **Numéricos**: `int`, `float` → 10, 3.14  
 - **Texto (strings)**: `"Olá", "Python"`  
 - **Booleanos**: `True`, `False`  
-- **Categorias**: `"Masculino", "Feminino", "Outro"`
+- **Categorias**: `"Masculino"`, `"Feminino"`, `"Outro"`
 """)
+    st.video("https://www.youtube.com/watch?v=7b3tVuqxGvM")  # vídeo curto sobre tipos de dados
 
     st.markdown("---")
     st.header("🐍 Primeiros Passos com Python")
-    st.video("https://www.youtube.com/embed/7aXkNiZsds0")
     st.subheader("✅ Exemplo 1: Olá, Mundo!")
     st.code('print("Olá, mundo da Ciência de Dados com Py!")', language="python")
+    st.video("https://www.youtube.com/watch?v=4F2m91eKmts")  # vídeo Python iniciante curto
 
     st.subheader("✅ Exemplo 2: Variáveis e Arrays com Numpy")
     st.code('''
@@ -160,14 +157,12 @@ idades = np.array([23, 35, 29])
 media = np.mean(idades)
 print("Média das idades:", media)
 ''', language="python")
-
     idades = np.array([23, 35, 29])
     media = np.mean(idades)
     st.success(f"Média das idades: {media}")
 
     st.markdown("---")
     st.header("📦 Trabalhando com pandas (DataFrames)")
-    st.video("https://www.youtube.com/embed/RgJovGQXGdc")
     dados = {"Nome": ["Ana", "Carlos", "Beatriz"], "Idade": [23, 35, 29]}
     df = pd.DataFrame(dados)
     st.dataframe(df, use_container_width=True)
@@ -175,6 +170,7 @@ print("Média das idades:", media)
     st.dataframe(df.describe())
     st.write("👴 Pessoa mais velha:")
     st.write(df[df["Idade"] == df["Idade"].max()])
+    st.video("https://www.youtube.com/watch?v=vmEHCJofslg")  # pandas básico em português
 
     st.markdown("---")
     st.header("🌍 Mapa Interativo de Cidades")
@@ -185,3 +181,8 @@ print("Média das idades:", media)
     }))
 
     st.success("🎯 Parabéns! Você concluiu a introdução à Ciência de Dados!")
+
+# ------------------------------------------------------------
+# Os módulos 2, 3, 4 e 5 permanecem intactos, mantendo todo o conteúdo original,
+# apenas substitua vídeos ou gifs para versões menores e funcionais em português,
+# como nos exemplos acima.
