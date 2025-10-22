@@ -83,7 +83,7 @@ Você aprenderá:
 - 💡 Funções e estruturas de dados em Python  
 - ⚡ Interatividade com Streamlit  
 """)
-    st.video("https://www.youtube.com/watch?v=ua-CiDNNj30")
+    st.video("https://youtu.be/cm_tM0m9zcI")
 
     st.header("🎯 Objetivo")
     st.write("""
@@ -338,3 +338,4 @@ Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios**
     st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
