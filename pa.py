@@ -163,7 +163,6 @@ print("Média das idades:", media)
     idades = np.array([23, 35, 29])
     media = np.mean(idades)
     st.success(f"Média das idades: {media}")
-    st.video("https://www.youtube.com/watch?v=khKv-8q7YmY")  # vídeo explicando arrays
 
     st.markdown("---")
     st.header("📦 Trabalhando com pandas (DataFrames)")
@@ -338,5 +337,6 @@ Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios**
     st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
 
 
