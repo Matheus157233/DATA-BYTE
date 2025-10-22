@@ -327,8 +327,7 @@ Funções permitem **automatizar tarefas repetitivas** e deixar seu código **ma
 """)
     st.video("https://www.youtube.com/watch?v=9Os0o3wzS_I")  # vídeo sobre funções
 
-   
-    st.markdown("""
+   st.markdown("""
 ## 🧠 Funções em Python
 
 Funções são **blocos de código reutilizáveis** que executam uma tarefa específica.  
@@ -490,6 +489,7 @@ Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios**
     st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
 
 
 
