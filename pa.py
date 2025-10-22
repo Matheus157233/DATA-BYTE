@@ -409,6 +409,14 @@ lista = [1, 2, 3, 4, 5]
 soma = sum(lista)
 media = soma / len(lista)
 print(f"Soma: {soma}, Média: {media}")
+quadrados = [x**2 for x in lista]
+print("Quadrados:", quadrados)
+for i, valor in enumerate(lista):
+    print(f"Índice: {i}, Valor: {valor}")
+print(lista[1:4])  # Acessa elementos do índice 1 ao 3
+lista.append(6)    # Adiciona um elemento
+lista.remove(2)    # Remove o elemento 2
+print(lista)""")
 
 
     with st.expander("➕ Soma e média"):
@@ -489,6 +497,7 @@ Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios**
     st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
 
 
 
