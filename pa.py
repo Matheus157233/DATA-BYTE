@@ -327,6 +327,31 @@ Funções permitem **automatizar tarefas repetitivas** e deixar seu código **ma
 """)
     st.video("https://www.youtube.com/watch?v=9Os0o3wzS_I")  # vídeo sobre funções
 
+    st.markdown("""
+## 🧠 Funções em Python
+
+Funções são **blocos de código reutilizáveis** que executam uma tarefa específica.  
+Elas ajudam a **organizar o código**, evitando repetição e tornando os programas mais claros e fáceis de manter.
+
+---
+
+### Por que usar funções?
+
+- 📝 **Organização**: separa tarefas em partes menores e mais compreensíveis.  
+- 🔁 **Reutilização**: você pode chamar a mesma função várias vezes sem reescrever o código.  
+- 🛠 **Modularidade**: facilita testes e depuração de trechos específicos do programa.  
+
+---
+
+### Estrutura de uma função em Python
+
+Uma função é criada usando a palavra-chave `def` seguida do nome da função e parâmetros entre parênteses.  
+Por exemplo:
+
+```python
+def saudacao(nome):
+    return f"Olá, {nome}!"
+
     with st.expander("🙋‍♀️ Saudação personalizada"):
         st.code("""
 def saudacao(nome):
@@ -359,6 +384,32 @@ elif menu == "📂 Operações com Listas":
 Listas são estruturas de dados que permitem **armazenar múltiplos valores**, podendo manipulá-los facilmente.
 """)
     st.video("https://www.youtube.com/watch?v=ohCDWZgNIU0")  # vídeo listas
+
+    st.markdown("""
+## 📂 Operações com Listas em Python
+
+Listas são **estruturas de dados que armazenam múltiplos elementos** em uma única variável.  
+Elas permitem **armazenar, acessar, modificar e manipular dados de forma eficiente**.
+
+---
+
+### Por que usar listas?
+
+- 📚 **Organização**: guarda vários itens relacionados em uma única variável.  
+- 🔄 **Iteração**: facilita percorrer todos os elementos com loops (`for`, `while`).  
+- ⚡ **Flexibilidade**: permite adicionar, remover e modificar itens dinamicamente.
+
+---
+
+### Operações comuns em listas:
+
+1. **Soma e média de elementos**
+```python
+lista = [1, 2, 3, 4, 5]
+soma = sum(lista)
+media = soma / len(lista)
+print(f"Soma: {soma}, Média: {media}")
+
 
     with st.expander("➕ Soma e média"):
         st.code("""
@@ -438,6 +489,7 @@ Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios**
     st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
 
 
 
