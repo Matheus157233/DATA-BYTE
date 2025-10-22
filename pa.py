@@ -84,7 +84,8 @@ Você aprenderá:
 - ⚡ Interatividade com Streamlit  
 """)
     st.video("https://youtu.be/cm_tM0m9zcI")
-st.markdown("""
+    
+    st.markdown("""
 ## 🚀 Você aprenderá:
 
 Durante este curso, você vai explorar o universo da **Ciência de Dados** de forma prática e didática.  
@@ -377,6 +378,7 @@ Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios**
     st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
 
 
 
