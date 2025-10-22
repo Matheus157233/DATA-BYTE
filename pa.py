@@ -197,7 +197,7 @@ elif menu == "📊 Limpeza de Dados":
 Antes de analisar dados, é essencial **limpá-los e estruturá-los** corretamente.
 Este módulo mostra exemplos práticos usando a biblioteca **pandas**.
 """)
-    st.video("https://www.youtube.com/watch?v=otCriSKVV_8")  # vídeo limpeza de dados
+    st.video("https://youtu.be/WQ5rsl8y_dw?si=35oVa936wfIemcz-")  # vídeo limpeza de dados
 
     with st.expander("📥 Importação de bibliotecas"):
         st.code("import pandas as pd\nimport numpy as np", language="python")
@@ -296,8 +296,6 @@ elif menu == "⚡ Módulo Avançado Interativo":
     st.write("""
 Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios** e explorar **estatísticas descritivas**.
 """)
-    st.video("https://www.youtube.com/watch?v=rfscVS0vtbw")  # vídeo interatividade streamlit
-
     st.markdown("### 1️⃣ Calculadora de Média Interativa")
     numeros = st.text_input("Digite números separados por vírgula (ex: 10,20,30):")
     if numeros:
@@ -337,6 +335,7 @@ Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios**
     st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
 
 
 
