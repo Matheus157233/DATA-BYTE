@@ -207,6 +207,38 @@ print("Média das idades:", media)
     media = np.mean(idades)
     st.success(f"Média das idades: {media}")
 
+    st.markdown("""
+## 🐍 Primeiros Passos com Python
+
+Neste exemplo, aprendemos dois conceitos fundamentais da programação em **Python**.
+
+Primeiro, com o clássico **“Olá, Mundo!”**, o código  
+`print("Olá, mundo da Ciência de Dados com Py!")`  
+mostra como exibir uma mensagem na tela.  
+Esse é o primeiro passo para entender como o Python se comunica com o usuário — o comando `print()` serve para mostrar qualquer tipo de informação, seja texto, números ou resultados de cálculos.
+
+---
+
+Em seguida, no **Exemplo 2**, exploramos algo mais prático: o uso de **variáveis e arrays com a biblioteca NumPy**, que é uma das ferramentas mais importantes da Ciência de Dados.  
+O comando `import numpy as np` importa essa biblioteca e dá a ela o apelido `np`, facilitando o uso de suas funções.  
+
+Depois, criamos um array chamado `idades` com três valores: `23`, `35` e `29`.  
+Diferente de uma lista comum do Python, um array do NumPy permite realizar cálculos matemáticos de forma muito mais rápida e eficiente.
+
+---
+
+Com o comando `np.mean(idades)`, calculamos a **média das idades** — ou seja, somamos todos os valores e dividimos pela quantidade de elementos.  
+O resultado foi `29.0`, mostrando que o NumPy já retorna um número no formato decimal (`float`), garantindo maior precisão.  
+
+Por fim, usamos novamente o `print()` para exibir o texto  
+**“Média das idades: 29.0”**, combinando código e resultado em uma mesma saída.
+
+---
+
+Esses dois exemplos mostram como o **Python é simples, direto e poderoso** — ideal para quem está começando na área de **Ciência de Dados** e quer aprender a transformar informações em conhecimento.
+""")
+
+
     st.markdown("---")
     st.header("📦 Trabalhando com pandas (DataFrames)")
     dados = {"Nome": ["Ana", "Carlos", "Beatriz"], "Idade": [23, 35, 29]}
@@ -378,6 +410,7 @@ Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios**
     st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
 
 
 
