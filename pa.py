@@ -421,7 +421,4 @@ elif menu == "⚡ Módulo Avançado Interativo":
     st.markdown("---")
     st.write("✅ Parabéns! Você explorou os principais conceitos de Ciência de Dados com Python!")
 
----
 
-✅ **Agora este código está totalmente funcional e livre do erro de aspas não fechadas.**  
-Pode ser executado diretamente no **Streamlit** (`streamlit run nome_do_arquivo.py`) sem travar.
