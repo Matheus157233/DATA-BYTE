@@ -425,6 +425,7 @@ elif menu == "⚡ Módulo Avançado Interativo":
     st.write("""
 Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios** e explorar **estatísticas descritivas**.
 """)
+
     st.markdown("### 1️⃣ Calculadora de Média Interativa")
     numeros = st.text_input("Digite números separados por vírgula (ex: 10,20,30):")
     if numeros:
@@ -464,3 +465,4 @@ Aqui você poderá testar **funções matemáticas**, carregar **CSV próprios**
     st.markdown("### 🎈 Celebre seu aprendizado!")
     if st.button("Clique para soltar balões!"):
         st.balloons()
+
