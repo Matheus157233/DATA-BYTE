@@ -75,77 +75,9 @@ if menu == "🏠 Página Inicial":
     st.header("📖 Sobre o Curso")
     st.write("""
 Este curso foi desenvolvido para **introduzir você à Ciência de Dados**, combinando **teoria e prática** em um ambiente interativo com Python.
-
-Você aprenderá:
-- 🧮 Conceitos fundamentais de Ciência de Dados  
-- 🐍 Programação prática em Python  
-- 📊 Limpeza e manipulação de dados com Pandas e Numpy  
-- 💡 Funções e estruturas de dados em Python  
-- ⚡ Interatividade com Streamlit  
 """)
+
     st.video("https://youtu.be/cm_tM0m9zcI")
-    
-    st.markdown("""
-## 🚀 Você aprenderá:
-
-Durante este curso, você vai explorar o universo da **Ciência de Dados** de forma prática e didática.  
-Cada módulo foi pensado para te guiar passo a passo, da teoria à aplicação real.
-
----
-
-### 🧮 Conceitos Fundamentais de Ciência de Dados
-Você vai entender o que é **Ciência de Dados**, como os dados são coletados, processados e analisados.  
-Aprenderá sobre **estatística, visualização e tomada de decisão baseada em dados**, entendendo como esses elementos se conectam para gerar insights valiosos.
-
----
-
-### 🐍 Programação Prática em Python
-Python é a linguagem mais usada no mundo dos dados!  
-Aqui, você aprenderá desde os comandos básicos até o uso de bibliotecas específicas para manipulação e análise.  
-Vai descobrir como **automatizar tarefas**, criar algoritmos e resolver problemas de forma eficiente.
-
----
-
-### 📊 Limpeza e Manipulação de Dados com Pandas e Numpy
-Nem todos os dados vêm prontos — muitos estão sujos, incompletos ou desorganizados.  
-Neste módulo, você vai aprender a **tratar valores nulos, corrigir erros e padronizar informações**.  
-Com **Pandas** e **NumPy**, será possível transformar dados brutos em tabelas organizadas prontas para análise.
-
----
-
-### 💡 Funções e Estruturas de Dados em Python
-Você entenderá como criar **funções reutilizáveis**, economizando tempo e tornando seu código mais limpo e modular.  
-Além disso, vai dominar **estruturas de dados** como listas, dicionários e tuplas — elementos essenciais para armazenar e manipular informações de forma inteligente.
-
----
-
-### ⚡ Interatividade com Streamlit
-Por fim, você aprenderá a transformar seus códigos em **aplicações interativas e visualmente atraentes**.  
-Com o Streamlit, é possível criar **dashboards, simuladores e ferramentas web** que mostram seus resultados de maneira prática e profissional.
-
----
-
-💬 Este curso é o seu primeiro passo para dominar a Ciência de Dados — do básico à criação de projetos reais!
-""")
-
-    st.header("🎯 Objetivo")
-    st.write("""
-Ao final deste curso, você será capaz de:
-- Compreender os **fundamentos da análise de dados**
-- Criar e limpar **DataFrames**
-- Escrever **funções eficientes**
-- Trabalhar com **listas e estruturas dinâmicas**
-- Construir **pequenos projetos interativos**
-""")
-
-    st.header("🧭 Estrutura do Curso")
-    st.write("""
-1. **Introdução à Ciência de Dados**  
-2. **Limpeza e Tratamento de Dados**  
-3. **Funções Python**  
-4. **Operações com Listas**  
-5. **Módulo Avançado Interativo**
-""")
 
     st.success("✅ Clique no menu lateral para iniciar sua jornada!")
 
@@ -155,163 +87,29 @@ Ao final deste curso, você será capaz de:
 elif menu == "🧩 Introdução à Ciência de Dados":
     st.title("🧠 Py - Sua Porta de Entrada para a Ciência de Dados")
     st.subheader("Aprenda Ciência de Dados do zero com Python de forma prática!")
-
     st.image("https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif", width=250)
 
     st.markdown("---")
     st.header("📘 O que é Ciência de Dados?")
     st.write("""
 A **Ciência de Dados** une **estatística, programação e análise de dados** para gerar insights e apoiar decisões.
-
-- 📊 **Análise e visualização de dados**
-- 🧮 **Modelagem estatística**
-- 🐍 **Programação com Python**
-- 🧭 **Entendimento do problema e contexto**
-""")
-    st.video("https://youtu.be/i6fcwf31htU?si=VVAvfOiipAvHii31")  # vídeo introdutório
-
-    st.markdown("---")
-    st.header("💼 Importância no Mercado de Trabalho")
-    st.write("""
-O mercado de Ciência de Dados cresce rapidamente:
-
-- 💰 Salários: R$6.000 a R$15.000  
-- 🧠 Alta demanda em saúde, finanças, marketing e tecnologia  
-- 🌍 Empresas valorizam profissionais que transformam dados em estratégias
 """)
 
-
-    st.markdown("---")
-    st.header("🔢 Tipos de Dados em Python")
-    st.write("""
-- **Numéricos**: `int`, `float` → 10, 3.14  
-- **Texto (strings)**: `"Olá", "Python"`  
-- **Booleanos**: `True`, `False`  
-- **Categorias**: `"Masculino"`, `"Feminino"`, `"Outro"`
-""")
-    st.video("https://youtu.be/2ckX4M3ocdQ?si=Q94aklrJKTR68M6l")  # vídeo sobre tipos de dados
+    st.video("https://youtu.be/i6fcwf31htU")
 
     st.markdown("---")
     st.header("🐍 Primeiros Passos com Python")
-    st.subheader("✅ Exemplo 1: Olá, Mundo!")
-    st.code('print("Olá, mundo da Ciência de Dados com Py!")', language="python")
-
-    st.subheader("✅ Exemplo 2: Variáveis e Arrays com Numpy")
-    st.code('''
-import numpy as np
-idades = np.array([23, 35, 29])
-media = np.mean(idades)
-print("Média das idades:", media)
-''', language="python")
+    st.code('print("Olá, mundo da Ciência de Dados!")', language="python")
     idades = np.array([23, 35, 29])
-    media = np.mean(idades)
-    st.success(f"Média das idades: {media}")
-
-    st.markdown("""
-## 🐍 Primeiros Passos com Python
-
-Neste exemplo, aprendemos dois conceitos fundamentais da programação em **Python**.
-
-Primeiro, com o clássico **“Olá, Mundo!”**, o código  
-`print("Olá, mundo da Ciência de Dados com Py!")`  
-mostra como exibir uma mensagem na tela.  
-Esse é o primeiro passo para entender como o Python se comunica com o usuário — o comando `print()` serve para mostrar qualquer tipo de informação, seja texto, números ou resultados de cálculos.
-
----
-
-Em seguida, no **Exemplo 2**, exploramos algo mais prático: o uso de **variáveis e arrays com a biblioteca NumPy**, que é uma das ferramentas mais importantes da Ciência de Dados.  
-O comando `import numpy as np` importa essa biblioteca e dá a ela o apelido `np`, facilitando o uso de suas funções.  
-
-Depois, criamos um array chamado `idades` com três valores: `23`, `35` e `29`.  
-Diferente de uma lista comum do Python, um array do NumPy permite realizar cálculos matemáticos de forma muito mais rápida e eficiente.
-
----
-
-Com o comando `np.mean(idades)`, calculamos a **média das idades** — ou seja, somamos todos os valores e dividimos pela quantidade de elementos.  
-O resultado foi `29.0`, mostrando que o NumPy já retorna um número no formato decimal (`float`), garantindo maior precisão.  
-
-Por fim, usamos novamente o `print()` para exibir o texto  
-**“Média das idades: 29.0”**, combinando código e resultado em uma mesma saída.
-
----
-
-Esses dois exemplos mostram como o **Python é simples, direto e poderoso** — ideal para quem está começando na área de **Ciência de Dados** e quer aprender a transformar informações em conhecimento.
-""")
-
-    st.markdown("---")
-    st.header("📦 Trabalhando com pandas (DataFrames)")
-    dados = {"Nome": ["Ana", "Carlos", "Beatriz"], "Idade": [23, 35, 29]}
-    df = pd.DataFrame(dados)
-    st.dataframe(df, use_container_width=True)
-    st.write("📈 Estatísticas descritivas:")
-    st.dataframe(df.describe())
-    st.write("👴 Pessoa mais velha:")
-    st.write(df[df["Idade"] == df["Idade"].max()])
-    st.video("https://www.youtube.com/watch?v=vmEHCJofslg")  # vídeo pandas intro
-
-    st.markdown("---")
-    st.header("🌍 Mapa Interativo de Cidades")
-    st.map(pd.DataFrame({
-        'lat': [-23.55052, -22.9068, -19.9167],
-        'lon': [-46.633308, -43.1729, -43.9345],
-        'Cidade': ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte']
-    }))
-
-    st.success("🎯 Parabéns! Você concluiu a introdução à Ciência de Dados!")
+    st.success(f"Média das idades: {np.mean(idades)}")
 
 # ------------------------------------------------------------
 # --- 2. Limpeza de Dados ---
 # ------------------------------------------------------------
 elif menu == "📊 Limpeza de Dados":
     st.title("📊 Limpeza de Dados")
-    st.subheader("Preparando e organizando dados sujos para análise")
-    st.image("https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif", width=200)
-
-    st.write("""
-Antes de analisar dados, é essencial **limpá-los e estruturá-los** corretamente.
-Este módulo mostra exemplos práticos usando a biblioteca **pandas**.
-""")
-    st.video("https://youtu.be/WQ5rsl8y_dw?si=35oVa936wfIemcz-")  # vídeo limpeza de dados
-
-    st.markdown("""
-## 🧹 Limpeza e Preparação de Dados
-
-Antes de começar qualquer análise em **Ciência de Dados**, é essencial garantir que as informações estejam **limpas, completas e organizadas**.  
-Esse processo é chamado de **limpeza de dados** (ou *data cleaning*) e é uma das etapas mais importantes do trabalho de um cientista de dados.
-
----
-
-Durante a coleta, os dados muitas vezes chegam **cheios de problemas**: valores ausentes, duplicados, erros de digitação, formatações inconsistentes ou até informações irrelevantes.  
-Se esses problemas não forem corrigidos, os resultados das análises podem ser **enganosos** ou **inúteis**.
-
-Por isso, usamos bibliotecas como **Pandas** e **NumPy**, que oferecem funções poderosas para tratar e organizar os dados.  
-Com o Pandas, por exemplo, podemos remover linhas vazias, preencher valores nulos, renomear colunas e até converter tipos de dados (como transformar um texto em número).  
-Já o NumPy é muito útil para corrigir ou substituir valores incorretos e realizar operações matemáticas com eficiência.
-
----
-
-Imagine uma planilha com idades de clientes onde alguns campos estão em branco ou escritos de forma errada.  
-Com o comando `df.dropna()`, podemos **remover as linhas com valores ausentes**, e com `df.fillna(0)` é possível **preencher automaticamente esses espaços com zero ou outro valor padrão**.  
-Essas pequenas ações garantem que os dados fiquem prontos para análise e evitem erros durante os cálculos.
-
----
-
-A limpeza de dados é, portanto, o **alicerce da análise confiável**.  
-Sem ela, qualquer modelo ou gráfico pode gerar conclusões erradas.  
-Depois que os dados estão limpos, o cientista pode seguir para as etapas seguintes — como **análise exploratória, visualização e modelagem preditiva** — com muito mais segurança e precisão.
-""")
-
-    with st.expander("📥 Importação de bibliotecas"):
-        st.code("import pandas as pd\nimport numpy as np", language="python")
-
-    with st.expander("📄 Leitura e visualização inicial"):
-        st.code('df = pd.read_csv("DADOS_ALUNOS.csv", sep=";")\ndf.head()', language="python")
-
-    with st.expander("🔍 Verificação e tratamento de dados ausentes"):
-        st.code('df.isnull().sum()\ndf["Nota"] = df["Nota"].fillna(0)', language="python")
-
-    with st.expander("🧹 Remoção de duplicatas e renomeação de colunas"):
-        st.code('df = df.drop_duplicates()\ndf = df.rename(columns={"Nota": "Nota_Final"})\ndf.head()', language="python")
+    st.write("Antes de analisar dados, é essencial limpá-los e estruturá-los corretamente.")
+    st.video("https://youtu.be/WQ5rsl8y_dw")
 
 # ------------------------------------------------------------
 # --- 3. Funções Python ---
@@ -319,58 +117,10 @@ Depois que os dados estão limpos, o cientista pode seguir para as etapas seguin
 elif menu == "🧠 Funções Python":
     st.title("🧠 Funções em Python")
     st.subheader("Organizando códigos e automatizando tarefas")
-    st.image("https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif", width=200)
-
-    st.write("""
-Funções permitem **automatizar tarefas repetitivas** e deixar seu código **mais limpo e organizado**.
-""")
-    st.video("https://www.youtube.com/watch?v=9Os0o3wzS_I")  # vídeo sobre funções
-
-    st.markdown("""
-## 🧠 Funções em Python
-
-Funções são **blocos de código reutilizáveis** que executam uma tarefa específica.  
-Elas ajudam a **organizar o código**, evitando repetição e tornando os programas mais claros e fáceis de manter.
-
----
-
-### Por que usar funções?
-
-- 📝 **Organização**: separa tarefas em partes menores e mais compreensíveis.  
-- 🔁 **Reutilização**: você pode chamar a mesma função várias vezes sem reescrever o código.  
-- 🛠 **Modularidade**: facilita testes e depuração de trechos específicos do programa.  
-
----
-
-### Estrutura de uma função em Python
-
-Uma função é criada usando a palavra-chave `def` seguida do nome da função e parâmetros entre parênteses.  
-Por exemplo:
-""")
-
+    st.video("https://www.youtube.com/watch?v=9Os0o3wzS_I")
     st.code("""
 def saudacao(nome):
     return f"Olá, {nome}!"
-""", language="python")
-
-    with st.expander("🙋‍♀️ Saudação personalizada"):
-        st.code("""
-def saudacao(nome):
-    return f"Olá, {nome}!"
-""", language="python")
-
-    with st.expander("📐 Função com parâmetro padrão"):
-        st.code("""
-def potencia(base, expoente=2):
-    return base ** expoente
-""", language="python")
-
-    with st.expander("🔁 Retorno múltiplo"):
-        st.code("""
-def operacoes(a, b):
-    soma = a + b
-    sub = a - b
-    return soma, sub
 """, language="python")
 
 # ------------------------------------------------------------
@@ -378,28 +128,12 @@ def operacoes(a, b):
 # ------------------------------------------------------------
 elif menu == "📂 Operações com Listas":
     st.title("📂 Operações com Listas")
-    st.subheader("Aprenda manipular dados de forma prática")
-    st.image("https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif", width=200)
-
-    st.write("""
-Listas são estruturas de dados que permitem **armazenar múltiplos valores**, podendo manipulá-los facilmente.
-""")
-    st.video("https://www.youtube.com/watch?v=ohCDWZgNIU0")  # vídeo listas
-
-    with st.expander("➕ Soma e média"):
-        st.code("""
+    st.video("https://www.youtube.com/watch?v=ohCDWZgNIU0")
+    st.code("""
 lista = [1, 2, 3, 4, 5]
 soma = sum(lista)
 media = soma / len(lista)
 print(f"Soma: {soma}, Média: {media}")
-""", language="python")
-
-    with st.expander("🔄 Adição e remoção de elementos"):
-        st.code("""
-lista = ['Python', 'R', 'SQL']
-lista.append('Julia')
-lista.remove('R')
-print(lista)
 """, language="python")
 
 # ------------------------------------------------------------
@@ -407,18 +141,88 @@ print(lista)
 # ------------------------------------------------------------
 elif menu == "⚡ Módulo Avançado Interativo":
     st.title("⚡ Módulo Avançado Interativo")
-    st.subheader("Experimente funções e cálculos ao vivo")
+    st.subheader("Experimente funções e cálculos ao vivo com Python!")
 
+    st.image("https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif", width=250)
+
+    # 1️⃣ Saudação personalizada
     nome = st.text_input("Digite seu nome:")
     if nome:
         st.success(f"Olá, {nome}! 👋 Vamos testar um pouco de Python ao vivo!")
 
+    # 2️⃣ Calculadora de potência
+    st.markdown("---")
+    st.header("🧮 Calculadora de Potência")
     numero = st.number_input("Digite um número:", value=2)
-    potencia = st.slider("Escolha o expoente:", 1, 5, 2)
+    potencia = st.slider("Escolha o expoente:", 1, 10, 2)
     resultado = numero ** potencia
     st.write(f"🔹 Resultado: {numero} elevado a {potencia} = **{resultado}**")
 
+    # 3️⃣ Calculadora personalizada
     st.markdown("---")
-    st.write("✅ Parabéns! Você explorou os principais conceitos de Ciência de Dados com Python!")
+    st.header("🧠 Mini Calculadora Inteligente")
+    col1, col2 = st.columns(2)
+    with col1:
+        a = st.number_input("Valor A:", value=0.0)
+    with col2:
+        b = st.number_input("Valor B:", value=0.0)
+    operacao = st.selectbox("Escolha uma operação:", ["Soma", "Subtração", "Multiplicação", "Divisão"])
+    if st.button("Calcular"):
+        if operacao == "Soma":
+            st.success(f"✅ Resultado: {a + b}")
+        elif operacao == "Subtração":
+            st.success(f"✅ Resultado: {a - b}")
+        elif operacao == "Multiplicação":
+            st.success(f"✅ Resultado: {a * b}")
+        elif operacao == "Divisão":
+            if b != 0:
+                st.success(f"✅ Resultado: {a / b}")
+            else:
+                st.error("❌ Erro: divisão por zero!")
 
+    # 4️⃣ Geração e visualização de dados
+    st.markdown("---")
+    st.header("📊 Gerador de Dados Aleatórios")
+    linhas = st.slider("Número de linhas:", 5, 100, 10)
+    df = pd.DataFrame({
+        "A": np.random.randn(linhas),
+        "B": np.random.rand(linhas),
+        "C": np.random.randint(0, 100, linhas)
+    })
+    st.dataframe(df, use_container_width=True)
+    st.line_chart(df)
 
+    # 5️⃣ Upload e análise automática de CSV
+    st.markdown("---")
+    st.header("📂 Upload de Arquivo CSV para Análise Rápida")
+    uploaded_file = st.file_uploader("Envie seu arquivo CSV", type=["csv"])
+    if uploaded_file is not None:
+        df_user = pd.read_csv(uploaded_file)
+        st.write("📄 Visualização das 5 primeiras linhas:")
+        st.dataframe(df_user.head(), use_container_width=True)
+        st.write("📊 Estatísticas descritivas:")
+        st.dataframe(df_user.describe())
+        st.bar_chart(df_user.select_dtypes(include=np.number).iloc[:, :2])
+
+    # 6️⃣ Simulador de previsão simples
+    st.markdown("---")
+    st.header("🤖 Simulador de Previsão (Modelo Linear Simples)")
+    x = st.number_input("Digite o valor de X:", value=5.0)
+    coef = st.slider("Coeficiente (a):", 0.0, 10.0, 2.0)
+    intercepto = st.slider("Intercepto (b):", 0.0, 10.0, 1.0)
+    previsao = coef * x + intercepto
+    st.write(f"🔮 Previsão: **y = {coef}x + {intercepto} → y = {previsao:.2f}**")
+
+    # 7️⃣ Editor de código Python simples
+    st.markdown("---")
+    st.header("💬 Experimente seu próprio código Python")
+    codigo = st.text_area("Digite seu código Python abaixo:", "print('Olá, Ciência de Dados!')")
+    if st.button("Executar código"):
+        try:
+            with st.redirect_stdout(st.container()):
+                exec(codigo)
+        except Exception as e:
+            st.error(f"❌ Erro ao executar o código: {e}")
+
+    st.markdown("---")
+    st.success("🎉 Parabéns! Você explorou todos os módulos interativos do curso!")
