@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import math
-import matplotlib.pyplot as plt
 
 # ------------------------------------------------------------
 # CONFIGURAÇÃO GERAL DA PÁGINA
@@ -130,12 +129,12 @@ elif menu == "⚡ Módulo Avançado Interativo":
     st.subheader("Experimente funções e cálculos ao vivo com Python!")
     st.image("https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif", width=250)
 
-    # 1️⃣ Saudação personalizada
+    # Saudação
     nome = st.text_input("Digite seu nome:")
     if nome:
         st.success(f"Olá, {nome}! 👋 Vamos testar um pouco de Python ao vivo!")
 
-    # 2️⃣ Calculadora de potência
+    # Calculadora de potência
     st.markdown("---")
     st.header("🧮 Calculadora de Potência")
     numero = st.number_input("Digite um número:", value=2.0, step=0.1, format="%.2f")
@@ -143,7 +142,7 @@ elif menu == "⚡ Módulo Avançado Interativo":
     resultado = numero ** potencia
     st.write(f"🔹 Resultado: {numero} elevado a {potencia} = **{resultado:.4f}**")
 
-    # 3️⃣ Calculadora personalizada
+    # Calculadora com floats
     st.markdown("---")
     st.header("🧠 Mini Calculadora Inteligente (com números decimais)")
     col1, col2 = st.columns(2)
@@ -168,7 +167,7 @@ elif menu == "⚡ Módulo Avançado Interativo":
         except Exception as e:
             st.error(f"Erro no cálculo: {e}")
 
-    # 4️⃣ Geração e visualização de dados
+    # Gerador de dados
     st.markdown("---")
     st.header("📊 Gerador de Dados Aleatórios")
     linhas = st.slider("Número de linhas:", 5, 100, 10)
@@ -180,7 +179,7 @@ elif menu == "⚡ Módulo Avançado Interativo":
     st.dataframe(df, use_container_width=True)
     st.line_chart(df)
 
-    # 5️⃣ Upload e análise automática de CSV
+    # Upload de CSV
     st.markdown("---")
     st.header("📂 Upload de Arquivo CSV para Análise Rápida")
     uploaded_file = st.file_uploader("Envie seu arquivo CSV", type=["csv"])
@@ -192,7 +191,7 @@ elif menu == "⚡ Módulo Avançado Interativo":
         st.dataframe(df_user.describe())
         st.bar_chart(df_user.select_dtypes(include=np.number).iloc[:, :2])
 
-    # 6️⃣ Simulador de previsão simples
+    # Simulador linear
     st.markdown("---")
     st.header("🤖 Simulador de Previsão (Modelo Linear Simples)")
     x = st.number_input("Digite o valor de X:", value=5.0, step=0.1)
@@ -201,7 +200,7 @@ elif menu == "⚡ Módulo Avançado Interativo":
     previsao = coef * x + intercepto
     st.write(f"🔮 Previsão: **y = {coef}x + {intercepto} → y = {previsao:.2f}**")
 
-    # 7️⃣ Editor de código Python simples
+    # Editor de código
     st.markdown("---")
     st.header("💬 Experimente seu próprio código Python")
     codigo = st.text_area("Digite seu código Python abaixo:", "print('Olá, Ciência de Dados!')")
