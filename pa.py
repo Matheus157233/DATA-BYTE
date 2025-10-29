@@ -4,10 +4,10 @@ import numpy as np
 import math
 
 # ------------------------------------------------------------
-# CONFIGURAÇÃO GERAL DA PÁGINA
+# CONFIGURAÇÃO DA PÁGINA
 # ------------------------------------------------------------
 st.set_page_config(
-    page_title="Curso Completo: Introdução à Ciência de Dados com Python",
+    page_title="Curso Completo: Ciência de Dados com Python",
     page_icon="🧠",
     layout="wide"
 )
@@ -17,13 +17,11 @@ st.set_page_config(
 # ------------------------------------------------------------
 st.markdown("""
 <style>
-    body {background-color: #f5f5f5;}
-    .stApp {background-color: #ffffff;}
+    body {background-color: #f0f2f6;}
     h1, h2, h3 {color: #0E1117;}
     .main-title {text-align: center; color: #1f77b4; font-weight: bold;}
     .sub-title {text-align: center; font-style: italic; color: #555;}
     .block-container {padding-top: 2rem; padding-bottom: 2rem;}
-    .small-gif {max-height: 200px;}
 </style>
 """, unsafe_allow_html=True)
 
@@ -31,7 +29,6 @@ st.markdown("""
 # MENU LATERAL
 # ------------------------------------------------------------
 st.sidebar.title("📚 Menu do Curso")
-st.sidebar.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3hyMjEydDh2ZnA2N3Zpb2xzcmhoYzRrd3lxMG03bmd4NjFhb3Y5eCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3og0ILmP5mKAzV3faw/giphy.gif", use_column_width=True)
 menu = st.sidebar.radio("Navegue entre as seções:", [
     "🏠 Página Inicial",
     "🧩 Introdução à Ciência de Dados",
@@ -42,7 +39,7 @@ menu = st.sidebar.radio("Navegue entre as seções:", [
     "❓ Quiz Interativo"
 ])
 st.sidebar.markdown("---")
-st.sidebar.info("💡 Dica: explore cada módulo em ordem para aproveitar melhor o conteúdo!")
+st.sidebar.info("💡 Explore cada módulo para aprender na prática!")
 
 # ------------------------------------------------------------
 # PÁGINA INICIAL
@@ -50,13 +47,10 @@ st.sidebar.info("💡 Dica: explore cada módulo em ordem para aproveitar melhor
 if menu == "🏠 Página Inicial":
     st.markdown("<h1 class='main-title'>🚀 Curso Completo de Ciência de Dados com Python</h1>", unsafe_allow_html=True)
     st.markdown("<p class='sub-title'>Do zero à prática — entenda, limpe, analise e visualize dados com Python!</p>", unsafe_allow_html=True)
-
     st.markdown("---")
-    st.image("https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif", width=300)
-
     st.header("📖 Sobre o Curso")
     st.write("""
-Este curso foi desenvolvido para **introduzir você à Ciência de Dados**, combinando **teoria e prática** em um ambiente interativo com Python.
+Este curso foi desenvolvido para **introduzir você à Ciência de Dados**, combinando **teoria e prática**.
 Você aprenderá:
 - 🧮 Conceitos fundamentais de Ciência de Dados  
 - 🐍 Programação prática em Python  
@@ -64,71 +58,24 @@ Você aprenderá:
 - 💡 Funções e estruturas de dados em Python  
 - ⚡ Interatividade com Streamlit  
 """)
-    st.video("https://youtu.be/cm_tM0m9zcI")
-    
-    st.markdown("""
-## 🚀 Você aprenderá:
-Durante este curso, você vai explorar o universo da **Ciência de Dados** de forma prática e didática.  
-Cada módulo foi pensado para te guiar passo a passo, da teoria à aplicação real.
-
----
-
-### 🧮 Conceitos Fundamentais de Ciência de Dados
-Você vai entender o que é **Ciência de Dados**, como os dados são coletados, processados e analisados.  
-Aprenderá sobre **estatística, visualização e tomada de decisão baseada em dados**, entendendo como esses elementos se conectam para gerar insights valiosos.
-
----
-
-### 🐍 Programação Prática em Python
-Python é a linguagem mais usada no mundo dos dados!  
-Aqui, você aprenderá desde os comandos básicos até o uso de bibliotecas específicas para manipulação e análise.  
-Vai descobrir como **automatizar tarefas**, criar algoritmos e resolver problemas de forma eficiente.
-
----
-
-### 📊 Limpeza e Manipulação de Dados com Pandas e Numpy
-Nem todos os dados vêm prontos — muitos estão sujos, incompletos ou desorganizados.  
-Neste módulo, você vai aprender a **tratar valores nulos, corrigir erros e padronizar informações**.  
-Com **Pandas** e **NumPy**, será possível transformar dados brutos em tabelas organizadas prontas para análise.
-
----
-
-### 💡 Funções e Estruturas de Dados em Python
-Você entenderá como criar **funções reutilizáveis**, economizando tempo e tornando seu código mais limpo e modular.  
-Além disso, vai dominar **estruturas de dados** como listas, dicionários e tuplas — elementos essenciais para armazenar e manipular informações de forma inteligente.
-
----
-
-### ⚡ Interatividade com Streamlit
-Por fim, você aprenderá a transformar seus códigos em **aplicações interativas e visualmente atraentes**.  
-Com o Streamlit, é possível criar **dashboards, simuladores e ferramentas web** que mostram seus resultados de maneira prática e profissional.
-
----
-
-💬 Este curso é o seu primeiro passo para dominar a Ciência de Dados — do básico à criação de projetos reais!
-""")
-
     st.header("🎯 Objetivo")
     st.write("""
 Ao final deste curso, você será capaz de:
-- Compreender os **fundamentos da análise de dados**
-- Criar e limpar **DataFrames**
-- Escrever **funções eficientes**
-- Trabalhar com **listas e estruturas dinâmicas**
-- Construir **pequenos projetos interativos**
+- Compreender os fundamentos da análise de dados
+- Criar e limpar DataFrames
+- Escrever funções eficientes
+- Trabalhar com listas e estruturas dinâmicas
+- Construir pequenos projetos interativos
 """)
-
     st.header("🧭 Estrutura do Curso")
     st.write("""
-1. **Introdução à Ciência de Dados**  
-2. **Limpeza e Tratamento de Dados**  
-3. **Funções Python**  
-4. **Operações com Listas**  
-5. **Módulo Avançado Interativo**
-6. **Quiz Interativo**
+1. Introdução à Ciência de Dados  
+2. Limpeza e Tratamento de Dados  
+3. Funções Python  
+4. Operações com Listas  
+5. Módulo Avançado Interativo  
+6. Quiz Interativo
 """)
-
-    st.success("✅ Clique no menu lateral para iniciar sua jornada!")
 
 # ------------------------------------------------------------
 # INTRODUÇÃO À CIÊNCIA DE DADOS
@@ -136,10 +83,9 @@ Ao final deste curso, você será capaz de:
 elif menu == "🧩 Introdução à Ciência de Dados":
     st.header("🧩 Introdução à Ciência de Dados")
     st.write("""
-A **Ciência de Dados** é a prática de extrair conhecimento e insights a partir de dados, combinando **estatística, programação e análise visual**.
-Ela está presente em áreas como negócios, saúde, tecnologia, marketing e muito mais.
+A **Ciência de Dados** é a prática de extrair conhecimento e insights a partir de dados.  
+Ela combina **estatística, programação e análise visual**, sendo aplicada em diversas áreas.
 """)
-    
     st.subheader("Tipos de Dados em Python")
     st.write("""
 Python possui vários tipos de dados nativos:
@@ -149,11 +95,8 @@ Python possui vários tipos de dados nativos:
 - **bool** → verdadeiro ou falso
 - **list, tuple, dict, set** → estruturas de dados
 """)
-    
     st.subheader("Exemplo prático")
-    st.write("Vamos criar algumas variáveis e imprimir seus tipos:")
-    code_intro = """
-# Tipos de dados
+    st.code("""
 numero_inteiro = 10
 numero_decimal = 3.14
 texto = "Olá, mundo!"
@@ -163,18 +106,15 @@ print(type(numero_inteiro))
 print(type(numero_decimal))
 print(type(texto))
 print(type(verdadeiro_falso))
-"""
-    st.code(code_intro, language="python")
-    
-    st.write("✅ Aqui você viu os principais tipos de dados em Python e como identificá-los usando `type()`.")
-
+""", language="python")
     st.subheader("Prática Interativa")
-    st.write("Crie seus próprios dados e veja os tipos:")
     numero = st.number_input("Digite um número:", value=5)
     texto_input = st.text_input("Digite um texto:", value="Olá")
     st.write(f"Tipo do número: {type(numero)}")
     st.write(f"Tipo do texto: {type(texto_input)}")
-    st.success("Prática concluída: você testou tipos de dados em tempo real!")
+
+    st.subheader("Curiosidade")
+    st.write("💡 Em Python, tudo é objeto! Até números e funções são objetos com métodos próprios.")
 
 # ------------------------------------------------------------
 # LIMPEZA E TRATAMENTO DE DADOS
@@ -182,35 +122,35 @@ print(type(verdadeiro_falso))
 elif menu == "📊 Limpeza e Tratamento de Dados":
     st.header("📊 Limpeza e Tratamento de Dados")
     st.write("""
-Antes de analisar dados, é fundamental **limpá-los e organizá-los**.
 Dados reais podem conter:
 - Valores nulos
 - Dados duplicados
 - Erros de digitação
 - Formatos inconsistentes
 """)
-    
     st.subheader("Exemplo de DataFrame sujo")
-    data = {
-        "Nome": ["Ana", "Bruno", "Carlos", None, "Ester", "Ana"],
-        "Idade": [23, 35, None, 40, 29, 23],
-        "Cidade": ["SP", "RJ", "SP", "MG", None, "SP"]
-    }
+    data = {"Nome": ["Ana", "Bruno", "Carlos", None, "Ester", "Ana"],
+            "Idade": [23, 35, None, 40, 29, 23],
+            "Cidade": ["SP", "RJ", "SP", "MG", None, "SP"]}
     df = pd.DataFrame(data)
     st.write("DataFrame original:")
     st.dataframe(df)
 
     st.subheader("Tratamento de dados")
-    st.write("""
-- **Remover linhas com valores nulos**
-- **Preencher valores ausentes**
-- **Remover duplicatas**
-""")
     df_clean = df.dropna()
     df_clean = df_clean.drop_duplicates()
     st.write("DataFrame limpo:")
     st.dataframe(df_clean)
-    st.success("Você aprendeu a limpar dados usando Pandas!")
+
+    st.subheader("Prática Interativa")
+    st.write("Adicione uma nova linha ao DataFrame:")
+    nome_novo = st.text_input("Nome:")
+    idade_nova = st.number_input("Idade:", min_value=0, max_value=120)
+    cidade_nova = st.text_input("Cidade:")
+    if st.button("Adicionar"):
+        df.loc[len(df)] = [nome_novo, idade_nova, cidade_nova]
+        st.dataframe(df)
+        st.success("Linha adicionada com sucesso!")
 
 # ------------------------------------------------------------
 # FUNÇÕES PYTHON
@@ -218,23 +158,30 @@ Dados reais podem conter:
 elif menu == "🧠 Funções Python":
     st.header("🧠 Funções em Python")
     st.write("""
-Funções são **blocos de código reutilizáveis** que realizam uma tarefa específica.
-Elas ajudam a tornar o código **mais organizado e modular**.
+Funções são blocos de código reutilizáveis que realizam uma tarefa específica.
+Elas tornam o código mais organizado e modular.
 """)
     st.subheader("Exemplo de função")
-    code_func = """
+    st.code("""
 def saudacao(nome):
     return f"Olá, {nome}!"
 
 print(saudacao("Maria"))
-"""
-    st.code(code_func, language="python")
-    st.write("✅ Você viu como criar e chamar uma função simples.")
+""", language="python")
 
     st.subheader("Prática Interativa")
     nome_user = st.text_input("Digite seu nome para receber uma saudação:")
     if nome_user:
         st.write(f"Resultado da função: Olá, {nome_user}!")
+
+    st.subheader("Mini Projeto")
+    st.write("Crie uma função que calcula a média de uma lista de números:")
+    numeros_input = st.text_input("Digite números separados por vírgula:", value="5,10,15")
+    if numeros_input:
+        numeros_list = [float(x.strip()) for x in numeros_input.split(",")]
+        def media(lista):
+            return sum(lista)/len(lista)
+        st.write(f"Média dos números: {media(numeros_list)}")
 
 # ------------------------------------------------------------
 # OPERAÇÕES COM LISTAS
@@ -242,34 +189,43 @@ print(saudacao("Maria"))
 elif menu == "📂 Operações com Listas":
     st.header("📂 Trabalhando com Listas")
     st.write("""
-Listas são **estruturas de dados mutáveis** que armazenam múltiplos itens.
+Listas são estruturas de dados mutáveis que armazenam múltiplos itens.
+Você pode adicionar, remover e modificar elementos facilmente.
 """)
     st.subheader("Exemplo")
-    code_list = """
+    st.code("""
 frutas = ["maçã", "banana", "laranja"]
 frutas.append("uva")
 print(frutas)
-"""
-    st.code(code_list, language="python")
-    
+""", language="python")
+
     st.subheader("Prática Interativa")
     frutas_input = st.text_input("Adicione uma fruta à lista:", value="morango")
     frutas = ["maçã", "banana", "laranja"]
     frutas.append(frutas_input)
     st.write(f"Lista atualizada: {frutas}")
 
+    st.subheader("Mini Projeto")
+    st.write("Ordene a lista e remova duplicatas automaticamente:")
+    lista_final = list(set(frutas))
+    lista_final.sort()
+    st.write(f"Lista final organizada: {lista_final}")
+
 # ------------------------------------------------------------
 # MÓDULO AVANÇADO INTERATIVO
 # ------------------------------------------------------------
 elif menu == "⚡ Módulo Avançado Interativo":
     st.header("⚡ Módulo Avançado Interativo")
+
+    # Calculadora de Potência
     st.subheader("1️⃣ Calculadora de Potência com Números Quebrados")
     base = st.number_input("Digite a base:", value=2.0)
     expoente = st.number_input("Digite o expoente:", value=3.0)
     potencia = base ** expoente
     st.write(f"Resultado: {base}^{expoente} = {potencia}")
-    
-    st.subheader("2️⃣ Upload de CSV")
+
+    # Upload/Download CSV
+    st.subheader("2️⃣ Upload e Download de CSV")
     uploaded_file = st.file_uploader("Escolha um arquivo CSV", type="csv")
     if uploaded_file:
         df_uploaded = pd.read_csv(uploaded_file)
@@ -277,8 +233,8 @@ elif menu == "⚡ Módulo Avançado Interativo":
         st.dataframe(df_uploaded)
         st.download_button("📥 Baixar CSV", df_uploaded.to_csv(index=False), "meu_arquivo.csv", "text/csv")
 
+    # Operações numéricas avançadas
     st.subheader("3️⃣ Operações Numéricas Avançadas")
-    st.write("Crie uma tabela com números elevados a potências diferentes:")
     numeros = st.text_input("Digite números separados por vírgula:", value="1,2,3,4")
     expoentes = st.text_input("Digite expoentes separados por vírgula:", value="2,3")
     if numeros and expoentes:
@@ -287,7 +243,15 @@ elif menu == "⚡ Módulo Avançado Interativo":
         resultados = {f"x^{exp}": [n**exp for n in numeros_list] for exp in expoentes_list}
         df_resultados = pd.DataFrame(resultados, index=numeros_list)
         st.dataframe(df_resultados)
-        st.success("✅ Operações concluídas com sucesso!")
+
+    # Mini projeto: gerador de tabela multiplicativa
+    st.subheader("4️⃣ Mini Projeto: Tabela Multiplicativa")
+    n = st.number_input("Digite até qual número gerar a tabela:", min_value=1, max_value=20, value=5)
+    tabela = pd.DataFrame([[i*j for j in range(1,n+1)] for i in range(1,n+1)],
+                          columns=[f"{j}" for j in range(1,n+1)],
+                          index=[f"{i}" for i in range(1,n+1)])
+    st.dataframe(tabela)
+    st.success("Tabela multiplicativa gerada com sucesso!")
 
 # ------------------------------------------------------------
 # QUIZ INTERATIVO
@@ -318,12 +282,24 @@ elif menu == "❓ Quiz Interativo":
     if q5 == "drop_duplicates()":
         score += 1
 
-    st.write(f"✅ Sua pontuação: {score}/5")
+    q6 = st.radio("6️⃣ Qual comando cria um DataFrame em Pandas?", ["pd.DataFrame()", "pd.Series()", "pd.Matrix()"])
+    if q6 == "pd.DataFrame()":
+        score += 1
 
-    if score == 5:
+    q7 = st.radio("7️⃣ Qual operador usamos para potência em Python?", ["^", "**", "%"])
+    if q7 == "**":
+        score += 1
+
+    q8 = st.radio("8️⃣ Como adicionamos um elemento em uma lista?", ["append()", "add()", "insert()"])
+    if q8 == "append()":
+        score += 1
+
+    st.write(f"✅ Sua pontuação: {score}/8")
+
+    if score == 8:
         st.balloons()
         st.success("Parabéns! Você acertou todas!")
-    elif score >= 3:
+    elif score >= 5:
         st.info("Bom trabalho! Mas ainda dá para melhorar.")
     else:
         st.warning("Continue estudando, você consegue!")
