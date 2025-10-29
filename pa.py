@@ -40,9 +40,6 @@ st.markdown("""
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
-    .small-gif {
-        max-height: 200px;
-    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -75,46 +72,144 @@ if menu == "🏠 Página Inicial":
     st.markdown("<h1 class='main-title'>🚀 Curso Completo de Ciência de Dados com Python</h1>", unsafe_allow_html=True)
     st.markdown("<p class='sub-title'>Do zero à prática — entenda, limpe, analise e visualize dados com Python!</p>", unsafe_allow_html=True)
     st.image("https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif", width=300)
+
     st.header("📖 Sobre o Curso")
-    st.write("Curso prático de introdução à Ciência de Dados, combinando teoria e prática com Python.")
+    st.write("""
+Este curso foi desenvolvido para **introduzir você à Ciência de Dados**, combinando **teoria e prática** em um ambiente interativo com Python.
+
+Você aprenderá:
+- 🧮 Conceitos fundamentais de Ciência de Dados  
+- 🐍 Programação prática em Python  
+- 📊 Limpeza e manipulação de dados com Pandas e Numpy  
+- 💡 Funções e estruturas de dados em Python  
+- ⚡ Interatividade com Streamlit  
+""")
+
     st.video("https://youtu.be/cm_tM0m9zcI")
+
+    st.header("🎯 Objetivo")
+    st.write("""
+Ao final deste curso, você será capaz de:
+- Compreender os **fundamentos da análise de dados**
+- Criar e limpar **DataFrames**
+- Escrever **funções eficientes**
+- Trabalhar com **listas e estruturas dinâmicas**
+- Construir **pequenos projetos interativos**
+""")
+
     st.success("✅ Clique no menu lateral para iniciar sua jornada!")
 
 # ------------------------------------------------------------
-# --- 1. Introdução à Ciência de Dados ---
+# --- 1. INTRODUÇÃO À CIÊNCIA DE DADOS ---
 # ------------------------------------------------------------
 elif menu == "🧩 Introdução à Ciência de Dados":
     st.title("🧠 Py - Sua Porta de Entrada para a Ciência de Dados")
+    st.subheader("Aprenda Ciência de Dados do zero com Python de forma prática!")
     st.image("https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif", width=250)
+
     st.header("📘 O que é Ciência de Dados?")
-    st.write("A Ciência de Dados combina estatística, programação e análise para gerar insights.")
+    st.write("""
+A **Ciência de Dados** une **estatística, programação e análise de dados** para gerar insights e apoiar decisões.
+
+- 📊 **Análise e visualização de dados**
+- 🧮 **Modelagem estatística**
+- 🐍 **Programação com Python**
+- 🧭 **Entendimento do problema e contexto**
+""")
     st.video("https://youtu.be/i6fcwf31htU")
 
+    st.header("💼 Importância no Mercado de Trabalho")
+    st.write("""
+O mercado de Ciência de Dados cresce rapidamente:
+
+- 💰 Salários: R$6.000 a R$15.000  
+- 🧠 Alta demanda em saúde, finanças, marketing e tecnologia  
+- 🌍 Empresas valorizam profissionais que transformam dados em estratégias
+""")
+
+    st.header("🔢 Tipos de Dados em Python")
+    st.write("""
+- **Numéricos**: `int`, `float` → 10, 3.14  
+- **Texto (strings)**: `"Olá", "Python"`  
+- **Booleanos**: `True`, `False`  
+- **Categorias**: `"Masculino"`, `"Feminino"`, `"Outro"`
+""")
+    st.video("https://youtu.be/2ckX4M3ocdQ")
+
+    st.subheader("✅ Exemplo: Variáveis e Arrays com Numpy")
+    st.code('''
+import numpy as np
+idades = np.array([23, 35, 29])
+media = np.mean(idades)
+print("Média das idades:", media)
+''', language="python")
+
+    idades = np.array([23, 35, 29])
+    media = np.mean(idades)
+    st.success(f"Média das idades: {media}")
+
+    st.header("📦 Trabalhando com pandas (DataFrames)")
+    dados = {"Nome": ["Ana", "Carlos", "Beatriz"], "Idade": [23, 35, 29]}
+    df = pd.DataFrame(dados)
+    st.dataframe(df)
+    st.write("📈 Estatísticas descritivas:")
+    st.dataframe(df.describe())
+
+    st.map(pd.DataFrame({
+        'lat': [-23.55052, -22.9068, -19.9167],
+        'lon': [-46.633308, -43.1729, -43.9345],
+        'Cidade': ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte']
+    }))
+
+    st.success("🎯 Parabéns! Você concluiu a introdução à Ciência de Dados!")
+
 # ------------------------------------------------------------
-# --- 2. Limpeza de Dados ---
+# --- 2. LIMPEZA DE DADOS ---
 # ------------------------------------------------------------
 elif menu == "📊 Limpeza de Dados":
     st.title("📊 Limpeza de Dados")
+    st.image("https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif", width=200)
+    st.write("""
+Antes de analisar dados, é essencial **limpá-los e estruturá-los** corretamente.
+Este módulo mostra exemplos práticos usando a biblioteca **pandas**.
+""")
     st.video("https://youtu.be/WQ5rsl8y_dw")
 
+    with st.expander("📥 Importação de bibliotecas"):
+        st.code("import pandas as pd\nimport numpy as np", language="python")
+    with st.expander("📄 Leitura e visualização inicial"):
+        st.code('df = pd.read_csv("DADOS_ALUNOS.csv", sep=";")\ndf.head()', language="python")
+    with st.expander("🔍 Tratamento de dados ausentes"):
+        st.code('df.isnull().sum()\ndf["Nota"] = df["Nota"].fillna(0)', language="python")
+
 # ------------------------------------------------------------
-# --- 3. Funções Python ---
+# --- 3. FUNÇÕES PYTHON ---
 # ------------------------------------------------------------
 elif menu == "🧠 Funções Python":
     st.title("🧠 Funções em Python")
+    st.subheader("Organizando códigos e automatizando tarefas")
     st.video("https://www.youtube.com/watch?v=9Os0o3wzS_I")
+
     st.code("""
 def saudacao(nome):
     return f"Olá, {nome}!"
 """, language="python")
 
+    with st.expander("📐 Função com parâmetro padrão"):
+        st.code("""
+def potencia(base, expoente=2):
+    return base ** expoente
+""", language="python")
+
 # ------------------------------------------------------------
-# --- 4. Operações com Listas ---
+# --- 4. OPERAÇÕES COM LISTAS ---
 # ------------------------------------------------------------
 elif menu == "📂 Operações com Listas":
     st.title("📂 Operações com Listas")
     st.video("https://www.youtube.com/watch?v=ohCDWZgNIU0")
-    st.code("""
+
+    with st.expander("➕ Soma e média"):
+        st.code("""
 lista = [1, 2, 3, 4, 5]
 soma = sum(lista)
 media = soma / len(lista)
@@ -122,35 +217,25 @@ print(f"Soma: {soma}, Média: {media}")
 """, language="python")
 
 # ------------------------------------------------------------
-# --- 5. Módulo Avançado Interativo ---
+# --- 5. MÓDULO AVANÇADO INTERATIVO ---
 # ------------------------------------------------------------
 elif menu == "⚡ Módulo Avançado Interativo":
     st.title("⚡ Módulo Avançado Interativo")
-    st.subheader("Experimente funções e cálculos ao vivo com Python!")
-    st.image("https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif", width=250)
+    st.subheader("Experimente funções e cálculos ao vivo")
 
-    # Saudação
     nome = st.text_input("Digite seu nome:")
     if nome:
         st.success(f"Olá, {nome}! 👋 Vamos testar um pouco de Python ao vivo!")
 
-    # Calculadora de potência
-    st.markdown("---")
-    st.header("🧮 Calculadora de Potência")
-    numero = st.number_input("Digite um número:", value=2.0, step=0.1, format="%.2f")
-    potencia = st.slider("Escolha o expoente:", 1, 10, 2)
-    resultado = numero ** potencia
-    st.write(f"🔹 Resultado: {numero} elevado a {potencia} = **{resultado:.4f}**")
-
     # Calculadora com floats
     st.markdown("---")
-    st.header("🧠 Mini Calculadora Inteligente (com números decimais)")
+    st.header("🧮 Calculadora Inteligente")
     col1, col2 = st.columns(2)
     with col1:
         a = st.number_input("Valor A:", value=0.0, step=0.1, format="%.2f")
     with col2:
         b = st.number_input("Valor B:", value=0.0, step=0.1, format="%.2f")
-    operacao = st.selectbox("Escolha uma operação:", ["Soma", "Subtração", "Multiplicação", "Divisão"])
+    operacao = st.selectbox("Escolha a operação:", ["Soma", "Subtração", "Multiplicação", "Divisão"])
     if st.button("Calcular"):
         try:
             if operacao == "Soma":
@@ -163,9 +248,9 @@ elif menu == "⚡ Módulo Avançado Interativo":
                 if b != 0:
                     st.success(f"✅ Resultado: {a / b:.4f}")
                 else:
-                    st.error("❌ Erro: divisão por zero!")
+                    st.error("❌ Divisão por zero!")
         except Exception as e:
-            st.error(f"Erro no cálculo: {e}")
+            st.error(f"Erro: {e}")
 
     # Gerador de dados
     st.markdown("---")
@@ -176,106 +261,66 @@ elif menu == "⚡ Módulo Avançado Interativo":
         "B": np.random.rand(linhas),
         "C": np.random.randint(0, 100, linhas)
     })
-    st.dataframe(df, use_container_width=True)
+    st.dataframe(df)
     st.line_chart(df)
 
     # Upload de CSV
     st.markdown("---")
-    st.header("📂 Upload de Arquivo CSV para Análise Rápida")
+    st.header("📂 Upload de Arquivo CSV")
     uploaded_file = st.file_uploader("Envie seu arquivo CSV", type=["csv"])
-    if uploaded_file is not None:
+    if uploaded_file:
         df_user = pd.read_csv(uploaded_file)
-        st.write("📄 Visualização das 5 primeiras linhas:")
-        st.dataframe(df_user.head(), use_container_width=True)
-        st.write("📊 Estatísticas descritivas:")
+        st.dataframe(df_user.head())
         st.dataframe(df_user.describe())
         st.bar_chart(df_user.select_dtypes(include=np.number).iloc[:, :2])
 
     # Simulador linear
     st.markdown("---")
-    st.header("🤖 Simulador de Previsão (Modelo Linear Simples)")
+    st.header("🤖 Simulador de Previsão Linear")
     x = st.number_input("Digite o valor de X:", value=5.0, step=0.1)
     coef = st.slider("Coeficiente (a):", 0.0, 10.0, 2.0)
     intercepto = st.slider("Intercepto (b):", 0.0, 10.0, 1.0)
     previsao = coef * x + intercepto
-    st.write(f"🔮 Previsão: **y = {coef}x + {intercepto} → y = {previsao:.2f}**")
+    st.write(f"🔮 y = {coef}x + {intercepto} → y = **{previsao:.2f}**")
 
-    # Editor de código
-    st.markdown("---")
-    st.header("💬 Experimente seu próprio código Python")
-    codigo = st.text_area("Digite seu código Python abaixo:", "print('Olá, Ciência de Dados!')")
-    if st.button("Executar código"):
-        try:
-            with st.redirect_stdout(st.container()):
-                exec(codigo)
-        except Exception as e:
-            st.error(f"❌ Erro ao executar o código: {e}")
-
-    st.success("🎉 Parabéns! Você explorou todos os módulos interativos do curso!")
+    st.success("🎉 Parabéns! Você explorou os módulos práticos do curso!")
 
 # ------------------------------------------------------------
-# --- 6. QUIZ FINAL DO CURSO ---
+# --- 6. QUIZ FINAL ---
 # ------------------------------------------------------------
 elif menu == "📝 Quiz Final do Curso":
     st.title("📝 Quiz Final do Curso")
-    st.subheader("Teste seus conhecimentos em Ciência de Dados e Python!")
+    st.subheader("Teste seus conhecimentos!")
     st.image("https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif", width=250)
-    st.markdown("---")
-
-    st.info("📚 Responda as perguntas abaixo e veja sua pontuação!")
 
     perguntas = [
-        {
-            "pergunta": "1️⃣ O que é Ciência de Dados?",
-            "opcoes": [
-                "Um tipo de linguagem de programação",
-                "A combinação de estatística, programação e análise de dados para gerar insights",
-                "Um software de visualização de gráficos",
-                "Apenas análise de planilhas"
-            ],
-            "resposta": 1
-        },
-        {
-            "pergunta": "2️⃣ Qual biblioteca é mais usada para manipulação de tabelas em Python?",
-            "opcoes": ["Matplotlib", "Seaborn", "Pandas", "TensorFlow"],
-            "resposta": 2
-        },
-        {
-            "pergunta": "3️⃣ Observe o gráfico abaixo. Qual tipo de gráfico ele representa?",
-            "opcoes": ["Linha", "Barras", "Pizza", "Dispersão"],
-            "resposta": 1,
-            "imagem": "https://matplotlib.org/stable/_images/sphx_glr_bar_stacked_001.png"
-        },
-        {
-            "pergunta": "4️⃣ Qual comando remove valores nulos de um DataFrame?",
-            "opcoes": ["df.mean()", "df.dropna()", "df.fillna()", "df.describe()"],
-            "resposta": 1
-        },
-        {
-            "pergunta": "5️⃣ Em Python, o que o comando print() faz?",
-            "opcoes": ["Remove valores", "Mostra uma mensagem na tela", "Cria uma função", "Importa bibliotecas"],
-            "resposta": 1
-        }
+        {"pergunta": "O que é Ciência de Dados?",
+         "opcoes": ["Estudo de cores", "Combinação de estatística, programação e análise de dados", "Apenas visualização"],
+         "resposta": 1},
+        {"pergunta": "Qual biblioteca usamos para manipular tabelas?",
+         "opcoes": ["Matplotlib", "Seaborn", "Pandas"], "resposta": 2},
+        {"pergunta": "Qual comando remove valores nulos?",
+         "opcoes": ["df.mean()", "df.dropna()", "df.describe()"], "resposta": 1},
+        {"pergunta": "O que o comando print() faz?",
+         "opcoes": ["Remove valores", "Mostra uma mensagem na tela", "Cria gráficos"], "resposta": 1}
     ]
 
     pontuacao = 0
     for i, q in enumerate(perguntas):
         st.markdown(f"### {q['pergunta']}")
-        if "imagem" in q:
-            st.image(q["imagem"], width=400)
-        resposta = st.radio("Selecione a resposta:", q["opcoes"], key=i)
-        if st.button(f"✅ Confirmar questão {i+1}"):
+        resposta = st.radio("Selecione:", q["opcoes"], key=i)
+        if st.button(f"Confirmar questão {i+1}"):
             if q["opcoes"].index(resposta) == q["resposta"]:
                 st.success("Correto! 🎯")
                 pontuacao += 1
             else:
-                st.error(f"❌ Errado! Resposta correta: **{q['opcoes'][q['resposta']]}**")
+                st.error(f"Errado! Resposta correta: **{q['opcoes'][q['resposta']]}**")
 
     if st.button("📊 Ver resultado final"):
-        st.subheader(f"🎯 Sua pontuação final: **{pontuacao} / {len(perguntas)}**")
+        st.subheader(f"Sua pontuação final: **{pontuacao} / {len(perguntas)}**")
         if pontuacao == len(perguntas):
-            st.success("🏆 Excelente! Você dominou todos os conceitos de Ciência de Dados com Python!")
-        elif pontuacao >= 3:
-            st.info("👏 Muito bom! Continue praticando e explore mais exemplos.")
+            st.success("🏆 Excelente! Você dominou todos os conceitos!")
+        elif pontuacao >= 2:
+            st.info("👏 Muito bom! Continue praticando.")
         else:
-            st.warning("📘 Estude um pouco mais e tente novamente!")
+            st.warning("📘 Revise o conteúdo e tente novamente.")
