@@ -354,6 +354,8 @@ elif menu == "❓ Quiz do Curso":
     st.subheader("Teste seus conhecimentos adquiridos no curso!")
 
     pontuacao = 0
+    erros = []
+
     q1 = st.radio("1️⃣ O que é Ciência de Dados?", [
         "Apenas criar gráficos",
         "A união de estatística, programação e análise de dados",
@@ -361,29 +363,93 @@ elif menu == "❓ Quiz do Curso":
     ])
     if q1 == "A união de estatística, programação e análise de dados":
         pontuacao += 1
+    else:
+        erros.append("1️⃣ O que é Ciência de Dados")
 
     q2 = st.radio("2️⃣ Qual biblioteca é usada para DataFrames?", ["NumPy", "Pandas", "Math"])
     if q2 == "Pandas":
         pontuacao += 1
+    else:
+        erros.append("2️⃣ Biblioteca para DataFrames")
 
     q3 = st.radio("3️⃣ O que faz a função print()?", ["Mostra mensagens na tela", "Apaga dados", "Fecha o programa"])
     if q3 == "Mostra mensagens na tela":
         pontuacao += 1
+    else:
+        erros.append("3️⃣ Função print()")
 
     q4 = st.radio("4️⃣ Qual comando remove valores nulos?", ["df.remove()", "df.dropna()", "df.fillna()"])
     if q4 == "df.dropna()":
         pontuacao += 1
+    else:
+        erros.append("4️⃣ Remover valores nulos")
 
     q5 = st.radio("5️⃣ Qual palavra define uma função?", ["lambda", "def", "func"])
     if q5 == "def":
         pontuacao += 1
+    else:
+        erros.append("5️⃣ Definir função")
+
+    # 🆕 NOVAS PERGUNTAS
+    q6 = st.radio("6️⃣ O que significa o operador ** em Python?", [
+        "Multiplicação simples",
+        "Potência (elevação a um número)",
+        "Divisão inteira"
+    ])
+    if q6 == "Potência (elevação a um número)":
+        pontuacao += 1
+    else:
+        erros.append("6️⃣ Operador **")
+
+    q7 = st.radio("7️⃣ O que faz o comando df.describe()?", [
+        "Apaga colunas do DataFrame",
+        "Mostra estatísticas descritivas",
+        "Adiciona novas linhas"
+    ])
+    if q7 == "Mostra estatísticas descritivas":
+        pontuacao += 1
+    else:
+        erros.append("7️⃣ df.describe()")
+
+    q8 = st.radio("8️⃣ Qual dessas opções NÃO é uma biblioteca de dados em Python?", [
+        "Pandas", "NumPy", "HTML"
+    ])
+    if q8 == "HTML":
+        pontuacao += 1
+    else:
+        erros.append("8️⃣ Biblioteca não relacionada")
+
+    q9 = st.radio("9️⃣ Qual comando é usado para importar bibliotecas em Python?", [
+        "load", "import", "include"
+    ])
+    if q9 == "import":
+        pontuacao += 1
+    else:
+        erros.append("9️⃣ Comando importação")
+
+    q10 = st.radio("🔟 O que é um DataFrame?", [
+        "Um tipo de gráfico de barras",
+        "Uma tabela de dados bidimensional do Pandas",
+        "Uma função do NumPy"
+    ])
+    if q10 == "Uma tabela de dados bidimensional do Pandas":
+        pontuacao += 1
+    else:
+        erros.append("🔟 DataFrame")
 
     if st.button("Ver resultado"):
-        st.success(f"🎯 Sua pontuação final: **{pontuacao}/5**")
-        if pontuacao == 5:
+        st.success(f"🎯 Sua pontuação final: **{pontuacao}/10**")
+        if pontuacao == 10:
             st.balloons()
             st.success("🏆 Excelente! Você dominou o conteúdo!")
-        elif pontuacao >= 3:
+        elif pontuacao >= 7:
             st.info("💪 Bom trabalho! Reveja alguns conceitos para aperfeiçoar.")
         else:
             st.warning("📘 Continue estudando! Volte aos módulos e pratique mais.")
+
+        if erros:
+            st.error("❌ Você errou as seguintes perguntas:")
+            for e in erros:
+                st.write(f"• {e}")
+        else:
+            st.success("🎉 Você acertou todas as perguntas!")
