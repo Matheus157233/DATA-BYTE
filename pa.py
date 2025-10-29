@@ -64,7 +64,7 @@ st.sidebar.info("💡 Dica: explore cada módulo em ordem para aproveitar melhor
 # --- 0. PÁGINA INICIAL ---
 # ------------------------------------------------------------
 if menu == "🏠 Página Inicial":
-    st.markdown("<h1 class='main-title'>🚀 Curso Completo de Ciência de Dados com Python</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 class='main-title'>🚀 Curso Completo da introdução de Ciência de Dados com Python</h1>", unsafe_allow_html=True)
     st.markdown("<p class='sub-title'>Do zero à prática — entenda, limpe, analise e visualize dados com Python!</p>", unsafe_allow_html=True)
 
     st.markdown("---")
@@ -453,3 +453,4 @@ elif menu == "❓ Quiz do Curso":
                 st.write(f"• {e}")
         else:
             st.success("🎉 Você acertou todas as perguntas!")
+
