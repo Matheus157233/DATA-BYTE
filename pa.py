@@ -17,7 +17,6 @@ st.set_page_config(
 # ------------------------------------------------------------
 st.markdown("""
 <style>
-
     .main-title {
         text-align: center;
         color: #1f77b4;
@@ -445,4 +444,5 @@ elif menu == "❓ Quiz do Curso":
                 st.write(f"• {e}")
         else:
             st.success("🎉 Você acertou todas as perguntas!")
+
 
