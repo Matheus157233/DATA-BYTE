@@ -69,7 +69,7 @@ menu = st.sidebar.radio("Navegue entre as seções:", [
     "🧠 Funções Python",
     "📂 Operações com Listas",
     "⚡ Módulo Avançado Interativo",
-    "❓ Quiz do Curso"
+    "❓ Quiz do Curso",
     
 st.sidebar.markdown("### ⚙️ Preferências")
 
@@ -550,3 +550,4 @@ elif menu == "❓ Quiz do Curso":
                 st.write(f"• {e}")
         else:
             st.success("🎉 Você acertou todas as perguntas!")
+
