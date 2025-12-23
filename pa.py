@@ -1,19 +1,26 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from datetime import datetime
+from io import BytesIO
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas
 
 # ============================================================
-# CONFIGURAÇÃO DA PÁGINA
+# CONFIGURAÇÃO
 # ============================================================
 st.set_page_config(
-    page_title="Data Science Project | Matheus",
+    page_title="International Data Science Project",
     page_icon="📊",
     layout="wide"
 )
 
 # ============================================================
-# ESTADOS GLOBAIS
+# ESTADOS
 # ============================================================
+if "logged" not in st.session_state:
+    st.session_state.logged = False
+
 if "theme" not in st.session_state:
     st.session_state.theme = "light"
 
@@ -21,31 +28,37 @@ if "lang" not in st.session_state:
     st.session_state.lang = "PT"
 
 # ============================================================
-# SIDEBAR – CONTROLES GERAIS
+# LOGIN
 # ============================================================
-st.sidebar.title("⚙️ Configurações")
+if not st.session_state.logged:
+    st.title("🔐 Login")
+    name = st.text_input("Digite seu nome / Enter your name")
+    if st.button("Entrar / Login") and name:
+        st.session_state.user = name
+        st.session_state.logged = True
+        st.rerun()
+    st.stop()
 
-# Tema
-theme_toggle = st.sidebar.toggle("🌙 Modo Escuro", value=st.session_state.theme == "dark")
-st.session_state.theme = "dark" if theme_toggle else "light"
+# ============================================================
+# SIDEBAR CONFIG
+# ============================================================
+st.sidebar.title("⚙️ Settings")
 
-# Idioma
-lang = st.sidebar.selectbox("🌎 Language / Idioma", ["Português", "English"])
+theme = st.sidebar.toggle("🌙 Dark Mode", value=st.session_state.theme == "dark")
+st.session_state.theme = "dark" if theme else "light"
+
+lang = st.sidebar.selectbox("🌎 Language", ["Português", "English"])
 st.session_state.lang = "PT" if lang == "Português" else "EN"
 
 st.sidebar.markdown("---")
 
 # ============================================================
-# CSS DINÂMICO
+# CSS
 # ============================================================
 if st.session_state.theme == "dark":
-    bg = "#0e1117"
-    text = "#ffffff"
-    card = "#161b22"
+    bg, card, text = "#0e1117", "#161b22", "#ffffff"
 else:
-    bg = "#ffffff"
-    text = "#000000"
-    card = "#f1f3f6"
+    bg, card, text = "#ffffff", "#f1f3f6", "#000000"
 
 st.markdown(f"""
 <style>
@@ -60,177 +73,140 @@ body {{
     margin-bottom: 20px;
 }}
 .title {{
-    text-align: center;
-    font-size: 40px;
-    font-weight: bold;
-}}
-.subtitle {{
-    text-align: center;
-    font-size: 18px;
-    opacity: 0.8;
+    text-align:center;
+    font-size:40px;
+    font-weight:bold;
 }}
 </style>
 """, unsafe_allow_html=True)
 
 # ============================================================
-# TEXTOS (PT / EN)
+# TEXTOS
 # ============================================================
 T = {
-    "PT": {
-        "home": "Início",
-        "what": "O que é Ciência de Dados?",
-        "clean": "Análise e Limpeza de CSV",
-        "stats": "Estatística",
-        "lab": "Laboratório Interativo",
-        "about": "Sobre o Autor"
-    },
-    "EN": {
-        "home": "Home",
-        "what": "What is Data Science?",
-        "clean": "CSV Analysis & Cleaning",
-        "stats": "Statistics",
-        "lab": "Interactive Lab",
-        "about": "About the Author"
-    }
+    "PT": ["Início", "Teoria Acadêmica", "Limpeza de CSV", "Estatística", "Laboratório", "Certificado", "Sobre o Autor"],
+    "EN": ["Home", "Academic Theory", "CSV Cleaning", "Statistics", "Lab", "Certificate", "About the Author"]
 }
 
-# ============================================================
-# MENU
-# ============================================================
-menu = st.sidebar.radio(
-    "📚 Menu",
-    [
-        T[st.session_state.lang]["home"],
-        T[st.session_state.lang]["what"],
-        T[st.session_state.lang]["clean"],
-        T[st.session_state.lang]["stats"],
-        T[st.session_state.lang]["lab"],
-        T[st.session_state.lang]["about"]
-    ]
-)
+menu = st.sidebar.radio("📚 Menu", T[st.session_state.lang])
 
 # ============================================================
 # HOME
 # ============================================================
-if menu == T[st.session_state.lang]["home"]:
-    st.markdown("<div class='title'>Data Science Educational Project</div>", unsafe_allow_html=True)
-    st.markdown("<div class='subtitle'>Theory, practice and real data analysis</div>", unsafe_allow_html=True)
-
-    st.markdown("""
+if menu in ["Início", "Home"]:
+    st.markdown("<div class='title'>International Data Science Project</div>", unsafe_allow_html=True)
+    st.markdown(f"""
     <div class="section">
-    Este projeto foi desenvolvido para apresentar conceitos fundamentais de
-    Ciência de Dados de forma clara, prática e profissional.
+    Projeto educacional desenvolvido para demonstrar domínio em Ciência de Dados,
+    estatística, programação e análise crítica de dados.
+    <br><br>
+    Usuário logado: <strong>{st.session_state.user}</strong>
     </div>
     """, unsafe_allow_html=True)
 
 # ============================================================
-# WHAT IS DATA SCIENCE
+# THEORY
 # ============================================================
-elif menu == T[st.session_state.lang]["what"]:
-    st.title("📘 Data Science")
-
+elif menu in ["Teoria Acadêmica", "Academic Theory"]:
+    st.title("📘 Data Science – Academic Overview")
     st.markdown("""
     <div class="section">
-    Ciência de Dados é a área que combina <strong>estatística, programação e análise</strong>
-    para extrair conhecimento a partir de dados.
+    Data Science is an interdisciplinary field that combines statistics,
+    computer science and domain knowledge to extract insights from structured
+    and unstructured data.
+
+    It plays a central role in decision-making processes across industries,
+    including finance, healthcare, technology and public policy.
     </div>
     """, unsafe_allow_html=True)
 
 # ============================================================
 # CSV CLEANING
 # ============================================================
-elif menu == T[st.session_state.lang]["clean"]:
+elif menu in ["Limpeza de CSV", "CSV Cleaning"]:
     st.title("🧹 CSV Analysis & Cleaning")
 
-    uploaded = st.file_uploader("📤 Upload CSV", type=["csv"])
-
-    if uploaded:
-        df = pd.read_csv(uploaded)
-
-        st.subheader("📄 Dados Originais")
+    file = st.file_uploader("Upload CSV", type=["csv"])
+    if file:
+        df = pd.read_csv(file)
+        st.subheader("📄 Raw Data")
         st.dataframe(df.head())
 
-        df_clean = df.copy()
-        df_clean = df_clean.dropna()
-
-        st.subheader("✅ Dados Tratados")
+        df_clean = df.dropna()
+        st.subheader("✅ Cleaned Data")
         st.dataframe(df_clean.head())
 
-        # DOWNLOAD DO CSV TRATADO
-        csv_download = df_clean.to_csv(index=False).encode("utf-8")
-        st.download_button(
-            "📥 Baixar CSV Tratado",
-            data=csv_download,
-            file_name="dados_tratados.csv",
-            mime="text/csv"
-        )
+        csv = df_clean.to_csv(index=False).encode("utf-8")
+        st.download_button("📥 Download Clean CSV", csv, "clean_data.csv", "text/csv")
 
 # ============================================================
 # STATISTICS
 # ============================================================
-elif menu == T[st.session_state.lang]["stats"]:
-    st.title("📊 Estatística Descritiva")
-
-    data = pd.DataFrame({
-        "Valores": np.random.randint(10, 100, 50)
-    })
-
+elif menu in ["Estatística", "Statistics"]:
+    st.title("📊 Descriptive Statistics")
+    data = pd.DataFrame({"Values": np.random.randint(0, 100, 50)})
     st.dataframe(data)
 
     st.markdown(f"""
     <div class="section">
-    <ul>
-        <li><strong>Média:</strong> {data['Valores'].mean():.2f}</li>
-        <li><strong>Mediana:</strong> {data['Valores'].median()}</li>
-        <li><strong>Desvio Padrão:</strong> {data['Valores'].std():.2f}</li>
-    </ul>
+    Mean: {data['Values'].mean():.2f}<br>
+    Median: {data['Values'].median()}<br>
+    Std Dev: {data['Values'].std():.2f}
     </div>
     """, unsafe_allow_html=True)
 
 # ============================================================
-# INTERACTIVE LAB
+# LAB
 # ============================================================
-elif menu == T[st.session_state.lang]["lab"]:
+elif menu in ["Laboratório", "Lab"]:
     st.title("⚙️ Interactive Lab")
-
-    rows = st.slider("Linhas", 5, 100, 20)
-
+    rows = st.slider("Rows", 10, 100, 30)
     df = pd.DataFrame({
-        "A": np.random.randn(rows),
-        "B": np.random.rand(rows),
-        "C": np.random.randint(0, 100, rows)
+        "Feature_A": np.random.randn(rows),
+        "Feature_B": np.random.rand(rows),
+        "Target": np.random.randint(0, 2, rows)
     })
-
     st.dataframe(df)
     st.line_chart(df)
 
 # ============================================================
-# ABOUT THE AUTHOR
+# CERTIFICATE
 # ============================================================
-elif menu == T[st.session_state.lang]["about"]:
-    st.title("👤 About the Author")
+elif menu in ["Certificado", "Certificate"]:
+    st.title("🎓 Certificate Generator")
 
+    buffer = BytesIO()
+    c = canvas.Canvas(buffer, pagesize=A4)
+    c.setFont("Helvetica-Bold", 22)
+    c.drawCentredString(300, 750, "Certificate of Completion")
+    c.setFont("Helvetica", 14)
+    c.drawCentredString(300, 700, f"This certifies that {st.session_state.user}")
+    c.drawCentredString(300, 670, "has completed the Data Science Project")
+    c.drawCentredString(300, 640, datetime.now().strftime("%Y-%m-%d"))
+    c.showPage()
+    c.save()
+
+    st.download_button(
+        "📄 Download Certificate (PDF)",
+        buffer.getvalue(),
+        file_name="certificate.pdf",
+        mime="application/pdf"
+    )
+
+# ============================================================
+# ABOUT
+# ============================================================
+elif menu in ["Sobre o Autor", "About the Author"]:
+    st.title("👤 About the Author")
     st.markdown("""
     <div class="section">
-    <p>
-    Hi, my name is <strong>Matheus</strong>. I am 16 years old and I live in São Paulo, Brazil.
-    </p>
+    Hi, my name is <strong>Matheus</strong>, a Brazilian technical high school student
+    focused on Data Science.
 
-    <p>
-    I am currently a technical high school student focused on Data Science.
-    This project was developed independently as part of my academic journey.
-    </p>
+    This project represents my commitment to academic excellence, international
+    education standards and continuous learning.
 
-    <p>
-    I am interested in Data Science because I study this field daily and enjoy
-    working with data analysis, statistics and programming.
-    </p>
-
-    <p>
-    My goal is to pursue higher education in Data Science and build an international
-    academic and professional career.
-    </p>
+    My long-term goal is to pursue higher education abroad and build a career
+    in data-driven decision making.
     </div>
     """, unsafe_allow_html=True)
-
-    st.success("🚀 Project built with dedication and long-term vision.")
