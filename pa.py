@@ -12,193 +12,189 @@ st.set_page_config(
 )
 
 # ============================================================
-# CSS PERSONALIZADO
+# ESTADOS GLOBAIS
 # ============================================================
-st.markdown("""
+if "theme" not in st.session_state:
+    st.session_state.theme = "light"
+
+if "lang" not in st.session_state:
+    st.session_state.lang = "PT"
+
+# ============================================================
+# SIDEBAR – CONTROLES GERAIS
+# ============================================================
+st.sidebar.title("⚙️ Configurações")
+
+# Tema
+theme_toggle = st.sidebar.toggle("🌙 Modo Escuro", value=st.session_state.theme == "dark")
+st.session_state.theme = "dark" if theme_toggle else "light"
+
+# Idioma
+lang = st.sidebar.selectbox("🌎 Language / Idioma", ["Português", "English"])
+st.session_state.lang = "PT" if lang == "Português" else "EN"
+
+st.sidebar.markdown("---")
+
+# ============================================================
+# CSS DINÂMICO
+# ============================================================
+if st.session_state.theme == "dark":
+    bg = "#0e1117"
+    text = "#ffffff"
+    card = "#161b22"
+else:
+    bg = "#ffffff"
+    text = "#000000"
+    card = "#f1f3f6"
+
+st.markdown(f"""
 <style>
-.main-title {
-    text-align: center;
-    font-size: 42px;
-    font-weight: bold;
-    color: #1f77b4;
-}
-.subtitle {
-    text-align: center;
-    font-size: 18px;
-    color: #555;
-}
-.section {
-    background-color: #f8f9fa;
+body {{
+    background-color: {bg};
+    color: {text};
+}}
+.section {{
+    background-color: {card};
     padding: 25px;
     border-radius: 15px;
     margin-bottom: 20px;
-}
+}}
+.title {{
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}}
+.subtitle {{
+    text-align: center;
+    font-size: 18px;
+    opacity: 0.8;
+}}
 </style>
 """, unsafe_allow_html=True)
 
 # ============================================================
-# MENU LATERAL
+# TEXTOS (PT / EN)
 # ============================================================
-st.sidebar.title("📚 Navigation")
+T = {
+    "PT": {
+        "home": "Início",
+        "what": "O que é Ciência de Dados?",
+        "clean": "Análise e Limpeza de CSV",
+        "stats": "Estatística",
+        "lab": "Laboratório Interativo",
+        "about": "Sobre o Autor"
+    },
+    "EN": {
+        "home": "Home",
+        "what": "What is Data Science?",
+        "clean": "CSV Analysis & Cleaning",
+        "stats": "Statistics",
+        "lab": "Interactive Lab",
+        "about": "About the Author"
+    }
+}
+
+# ============================================================
+# MENU
+# ============================================================
 menu = st.sidebar.radio(
-    "Choose a section:",
+    "📚 Menu",
     [
-        "🏠 Home",
-        "📘 What is Data Science?",
-        "🧹 Data Cleaning & Analysis",
-        "📊 Statistics & Insights",
-        "⚙️ Interactive Lab",
-        "👤 About the Author"
+        T[st.session_state.lang]["home"],
+        T[st.session_state.lang]["what"],
+        T[st.session_state.lang]["clean"],
+        T[st.session_state.lang]["stats"],
+        T[st.session_state.lang]["lab"],
+        T[st.session_state.lang]["about"]
     ]
 )
 
 # ============================================================
 # HOME
 # ============================================================
-if menu == "🏠 Home":
-    st.markdown("<div class='main-title'>Data Science Educational Project</div>", unsafe_allow_html=True)
-    st.markdown("<div class='subtitle'>From theory to practice — an interactive learning experience</div>", unsafe_allow_html=True)
-
-    st.markdown("---")
+if menu == T[st.session_state.lang]["home"]:
+    st.markdown("<div class='title'>Data Science Educational Project</div>", unsafe_allow_html=True)
+    st.markdown("<div class='subtitle'>Theory, practice and real data analysis</div>", unsafe_allow_html=True)
 
     st.markdown("""
     <div class="section">
-    <h3>🎯 Project Objective</h3>
-    <p>
-    This project was developed to present the fundamentals of Data Science in a clear,
-    interactive and educational way. It combines theory, statistics and real data analysis
-    using Python.
-    </p>
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("""
-    <div class="section">
-    <h3>🛠 Tools Used</h3>
-    <ul>
-        <li>Python</li>
-        <li>Pandas & NumPy</li>
-        <li>Streamlit</li>
-        <li>CSV data processing</li>
-    </ul>
+    Este projeto foi desenvolvido para apresentar conceitos fundamentais de
+    Ciência de Dados de forma clara, prática e profissional.
     </div>
     """, unsafe_allow_html=True)
 
 # ============================================================
 # WHAT IS DATA SCIENCE
 # ============================================================
-elif menu == "📘 What is Data Science?":
-    st.title("📘 What is Data Science?")
+elif menu == T[st.session_state.lang]["what"]:
+    st.title("📘 Data Science")
 
     st.markdown("""
     <div class="section">
-    <p>
-    Data Science is an interdisciplinary field that combines <strong>statistics,
-    programming, and domain knowledge</strong> to extract meaningful insights from data.
-    </p>
-
-    <p>
-    It is widely used in areas such as:
-    </p>
-    <ul>
-        <li>Business and Marketing</li>
-        <li>Finance</li>
-        <li>Healthcare</li>
-        <li>Technology and Artificial Intelligence</li>
-    </ul>
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("""
-    <div class="section">
-    <h4>📌 Why Data Science matters?</h4>
-    <p>
-    Companies and institutions rely on data-driven decisions. Data Science allows
-    professionals to transform raw data into strategic information.
-    </p>
+    Ciência de Dados é a área que combina <strong>estatística, programação e análise</strong>
+    para extrair conhecimento a partir de dados.
     </div>
     """, unsafe_allow_html=True)
 
 # ============================================================
-# DATA CLEANING
+# CSV CLEANING
 # ============================================================
-elif menu == "🧹 Data Cleaning & Analysis":
-    st.title("🧹 Data Cleaning & Analysis")
+elif menu == T[st.session_state.lang]["clean"]:
+    st.title("🧹 CSV Analysis & Cleaning")
 
-    st.markdown("""
-    <div class="section">
-    <p>
-    Real-world data is often messy. Data cleaning is a crucial step to ensure accurate
-    analysis and reliable results.
-    </p>
-    <ul>
-        <li>Handling missing values</li>
-        <li>Correcting data types</li>
-        <li>Removing inconsistencies</li>
-    </ul>
-    </div>
-    """, unsafe_allow_html=True)
+    uploaded = st.file_uploader("📤 Upload CSV", type=["csv"])
 
-    uploaded = st.file_uploader("Upload a CSV file", type=["csv"])
     if uploaded:
         df = pd.read_csv(uploaded)
 
-        st.subheader("🔍 Raw Data")
+        st.subheader("📄 Dados Originais")
         st.dataframe(df.head())
 
-        st.subheader("🧼 Cleaned Data (Example)")
-        df_clean = df.dropna()
+        df_clean = df.copy()
+        df_clean = df_clean.dropna()
+
+        st.subheader("✅ Dados Tratados")
         st.dataframe(df_clean.head())
+
+        # DOWNLOAD DO CSV TRATADO
+        csv_download = df_clean.to_csv(index=False).encode("utf-8")
+        st.download_button(
+            "📥 Baixar CSV Tratado",
+            data=csv_download,
+            file_name="dados_tratados.csv",
+            mime="text/csv"
+        )
 
 # ============================================================
 # STATISTICS
 # ============================================================
-elif menu == "📊 Statistics & Insights":
-    st.title("📊 Statistics & Insights")
-
-    st.markdown("""
-    <div class="section">
-    <p>
-    Descriptive statistics help us understand the structure and distribution of data.
-    </p>
-    </div>
-    """, unsafe_allow_html=True)
+elif menu == T[st.session_state.lang]["stats"]:
+    st.title("📊 Estatística Descritiva")
 
     data = pd.DataFrame({
-        "Scores": np.random.randint(50, 100, 30)
+        "Valores": np.random.randint(10, 100, 50)
     })
 
     st.dataframe(data)
 
-    st.markdown("""
+    st.markdown(f"""
     <div class="section">
     <ul>
-        <li><strong>Mean:</strong> {}</li>
-        <li><strong>Median:</strong> {}</li>
-        <li><strong>Standard Deviation:</strong> {:.2f}</li>
+        <li><strong>Média:</strong> {data['Valores'].mean():.2f}</li>
+        <li><strong>Mediana:</strong> {data['Valores'].median()}</li>
+        <li><strong>Desvio Padrão:</strong> {data['Valores'].std():.2f}</li>
     </ul>
     </div>
-    """.format(
-        data["Scores"].mean(),
-        data["Scores"].median(),
-        data["Scores"].std()
-    ), unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 # ============================================================
 # INTERACTIVE LAB
 # ============================================================
-elif menu == "⚙️ Interactive Lab":
-    st.title("⚙️ Interactive Data Science Lab")
+elif menu == T[st.session_state.lang]["lab"]:
+    st.title("⚙️ Interactive Lab")
 
-    st.markdown("""
-    <div class="section">
-    <p>
-    This section allows users to interact with data and observe results in real time.
-    </p>
-    </div>
-    """, unsafe_allow_html=True)
+    rows = st.slider("Linhas", 5, 100, 20)
 
-    rows = st.slider("Number of rows", 5, 100, 20)
     df = pd.DataFrame({
         "A": np.random.randn(rows),
         "B": np.random.rand(rows),
@@ -211,31 +207,30 @@ elif menu == "⚙️ Interactive Lab":
 # ============================================================
 # ABOUT THE AUTHOR
 # ============================================================
-elif menu == "👤 About the Author":
+elif menu == T[st.session_state.lang]["about"]:
     st.title("👤 About the Author")
 
     st.markdown("""
     <div class="section">
     <p>
-    Hi! My name is <strong>Matheus</strong>, I am 16 years old and I live in São Paulo, Brazil.
+    Hi, my name is <strong>Matheus</strong>. I am 16 years old and I live in São Paulo, Brazil.
     </p>
 
     <p>
-    This project was developed independently as part of my technical high school studies.
-    Its main objective is to present Data Science concepts in a practical and accessible way.
+    I am currently a technical high school student focused on Data Science.
+    This project was developed independently as part of my academic journey.
     </p>
 
     <p>
-    I am interested in Data Science because I study this field every day at school and enjoy
-    working with data. I plan to study Data Science in the future, as it is an area with strong
-    growth and great potential to impact different industries.
+    I am interested in Data Science because I study this field daily and enjoy
+    working with data analysis, statistics and programming.
     </p>
 
     <p>
-    Through this project, I aim to improve my technical skills and take my first steps toward
-    an international academic and professional career.
+    My goal is to pursue higher education in Data Science and build an international
+    academic and professional career.
     </p>
     </div>
     """, unsafe_allow_html=True)
 
-    st.success("🚀 Project developed with dedication, curiosity and passion for learning.")
+    st.success("🚀 Project built with dedication and long-term vision.")
