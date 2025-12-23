@@ -445,4 +445,47 @@ elif menu == "❓ Quiz do Curso":
         else:
             st.success("🎉 Você acertou todas as perguntas!")
 
+            elif menu == "🧹 Análise e Limpeza de CSV (Profissional)":
+    st.title("🧹 Análise e Limpeza Profissional de CSV")
+
+    uploaded = st.file_uploader("Envie um arquivo CSV", type=["csv"])
+
+    if uploaded:
+        df = pd.read_csv(uploaded)
+
+        st.subheader("📄 Dados originais")
+        st.dataframe(df.head())
+
+        st.subheader("🔍 Diagnóstico dos dados")
+        st.write("Valores nulos por coluna:")
+        st.dataframe(df.isnull().sum())
+
+        st.write("Tipos de dados:")
+        st.write(df.dtypes)
+
+        # LIMPEZA
+        df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_")
+
+        for col in df.columns:
+            if df[col].dtype == object:
+                df[col] = df[col].str.strip()
+
+        df = df.drop_duplicates()
+
+        for col in df.select_dtypes(include=["float", "int"]).columns:
+            df[col].fillna(df[col].median(), inplace=True)
+
+        st.subheader("✅ Dados após limpeza")
+        st.dataframe(df.head())
+
+        csv = df.to_csv(index=False).encode("utf-8")
+        st.download_button(
+            "📥 Baixar CSV tratado",
+            csv,
+            "dados_tratados.csv",
+            "text/csv"
+        )
+
+
+
 
