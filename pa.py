@@ -69,8 +69,10 @@ menu = st.sidebar.radio("Navegue entre as seções:", [
     "🧠 Funções Python",
     "📂 Operações com Listas",
     "⚡ Módulo Avançado Interativo",
-    "❓ Quiz do Curso",
+    "❓ Quiz do Curso"
+])  # ← feche a lista aqui, sem vírgula extra
 
+# Agora os controles de tema e idioma
 st.sidebar.markdown("### ⚙️ Preferências")
 
 st.session_state.tema = st.sidebar.selectbox(
@@ -84,9 +86,6 @@ st.session_state.idioma = st.sidebar.selectbox(
     ["PT", "EN"]
 )
 
-st.sidebar.markdown("---")
-
-])
 st.sidebar.markdown("---")
 st.sidebar.info("💡 Dica: explore cada módulo em ordem para aproveitar melhor o conteúdo!")
 
@@ -550,5 +549,6 @@ elif menu == "❓ Quiz do Curso":
                 st.write(f"• {e}")
         else:
             st.success("🎉 Você acertou todas as perguntas!")
+
 
 
