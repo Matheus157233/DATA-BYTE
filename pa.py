@@ -427,6 +427,25 @@ Isso permite testar ideias e algoritmos rapidamente.
 # ------------------------------------------------------------
 # --- 6. Quiz ---
 # ------------------------------------------------------------
+elif menu == "👤 Sobre o Autor":
+    st.title("👤 About the Author")
+
+    st.markdown("""
+**Hi 👋, my name is Matheus.**  
+
+I am 16 years old and I live in São Paulo, Brazil.
+
+This project was developed entirely by me during high school,
+focused on teaching **Data Science in a practical and interactive way**.
+
+I like Data Science because I study it every day at school,
+and I want to work in this area in the future,
+especially in an **international environment**.
+
+This project aims to explain Data Science in a simple,
+educational and professional way.
+    """)
+
 elif menu == "❓ Quiz do Curso":
     st.title("❓ Quiz - Ciência de Dados com Python")
     st.subheader("Teste seus conhecimentos adquiridos no curso!")
