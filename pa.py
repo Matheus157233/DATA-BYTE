@@ -70,7 +70,7 @@ menu = st.sidebar.radio("Navegue entre as seções:", [
     "📂 Operações com Listas",
     "⚡ Módulo Avançado Interativo",
     "❓ Quiz do Curso",
-    
+
 st.sidebar.markdown("### ⚙️ Preferências")
 
 st.session_state.tema = st.sidebar.selectbox(
@@ -550,4 +550,5 @@ elif menu == "❓ Quiz do Curso":
                 st.write(f"• {e}")
         else:
             st.success("🎉 Você acertou todas as perguntas!")
+
 
