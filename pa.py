@@ -1,206 +1,199 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
-# ================= CONFIGURAÇÃO DA PÁGINA =================
+# ================= CONFIG =================
 st.set_page_config(
-    page_title="DATA BYTE | Projeto do Ano",
+    page_title="DATA BYTE | Data Science Project",
     page_icon="📊",
     layout="wide"
 )
 
-# ================= ESTILO VISUAL =================
+# ================= LANGUAGE =================
+lang = st.sidebar.radio("🌍 Language / Idioma", ["🇧🇷 Português", "🇺🇸 English"])
+
+def t(pt, en):
+    return pt if lang == "🇧🇷 Português" else en
+
+# ================= STYLE =================
 st.markdown("""
 <style>
-.big-title {
-    font-size: 42px;
-    font-weight: bold;
-}
-.subtitle {
-    font-size: 20px;
-    color: #6c757d;
-}
-.section {
-    margin-top: 40px;
-}
+.title {font-size:40px;font-weight:700;}
+.subtitle {font-size:18px;color:#6c757d;}
+.section {margin-top:40px;}
 </style>
 """, unsafe_allow_html=True)
 
-# ================= SIDEBAR =================
-st.sidebar.title("📊 DATA BYTE")
-st.sidebar.markdown("Projeto do Ano – Ciência de Dados")
-
-menu = st.sidebar.radio(
-    "Navegação",
-    [
-        "🏠 Apresentação",
-        "📘 Ciência de Dados",
-        "📂 Upload & Diagnóstico",
-        "🧹 Limpeza Profissional",
-        "📊 Análises",
-        "⬇️ Download Final"
-    ]
-)
-
-# ================= FUNÇÕES =================
-def diagnostico(df):
+# ================= FUNCTIONS =================
+def diagnose(df):
     return {
-        "Linhas": df.shape[0],
-        "Colunas": df.shape[1],
-        "Valores nulos": int(df.isnull().sum().sum()),
-        "Duplicados": int(df.duplicated().sum())
+        t("Linhas","Rows"): df.shape[0],
+        t("Colunas","Columns"): df.shape[1],
+        t("Valores nulos","Missing values"): int(df.isnull().sum().sum()),
+        t("Duplicados","Duplicates"): int(df.duplicated().sum())
     }
 
-def limpar_dados(df):
+def clean_data(df):
     df = df.copy()
+    df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_")
 
-    # Padronizar colunas
-    df.columns = df.columns.str.strip().str.replace(" ", "_")
-
-    # Converter números
     for col in df.columns:
         df[col] = pd.to_numeric(df[col], errors="ignore")
 
-    for col in df.select_dtypes(include=["float", "int"]).columns:
+    for col in df.select_dtypes(include=["int64","float64"]).columns:
         df[col] = pd.to_numeric(df[col], errors="coerce")
         df[col] = df[col].fillna(df[col].median())
 
     for col in df.select_dtypes(include=["object"]).columns:
-        df[col] = df[col].fillna("Não informado")
+        df[col] = df[col].fillna(t("Não informado","Not informed"))
 
     df = df.drop_duplicates()
-
     return df
 
-# ================= PÁGINAS =================
-if menu == "🏠 Apresentação":
-    st.markdown('<div class="big-title">📊 DATA BYTE</div>', unsafe_allow_html=True)
-    st.markdown('<div class="subtitle">Projeto do Ano – Ciência de Dados</div>', unsafe_allow_html=True)
+# ================= SIDEBAR =================
+menu = st.sidebar.radio(
+    t("Navegação","Navigation"),
+    [
+        t("🏠 Apresentação","🏠 Introduction"),
+        t("📘 Ciência de Dados","📘 Data Science"),
+        t("📂 Upload & Diagnóstico","📂 Upload & Diagnosis"),
+        t("🧹 Limpeza Profissional","🧹 Professional Cleaning"),
+        t("📊 Análise & Visualização","📊 Analysis & Visualization"),
+        t("⬇️ Download Final","⬇️ Final Download")
+    ]
+)
 
-    st.markdown("---")
-
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.markdown("""
-        **Aluno:** Matheus  
-        **Curso:** Ensino Médio Técnico em Ciência de Dados  
-        **Instituição:** SENAC Nações Unidas  
-        """)
-
-    with col2:
-        st.markdown("""
-        🎯 **Objetivo do Projeto**  
-        Demonstrar como dados reais, frequentemente desorganizados,
-        podem ser diagnosticados, tratados e analisados de forma profissional,
-        garantindo informações confiáveis para tomada de decisão.
-        """)
-
-    st.markdown("### 💡 Por que este projeto importa?")
-    st.markdown("""
-    Empresas dependem de dados para decisões estratégicas.  
-    Dados incorretos geram **prejuízos financeiros**, **erros operacionais**
-    e **análises enganosas**.
-
-    Este projeto simula um cenário real enfrentado por cientistas de dados.
-    """)
-
-elif menu == "📘 Ciência de Dados":
-    st.markdown('<div class="big-title">📘 Ciência de Dados</div>', unsafe_allow_html=True)
+# ================= PAGES =================
+if menu == t("🏠 Apresentação","🏠 Introduction"):
+    st.markdown(f"<div class='title'>📊 DATA BYTE</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='subtitle'>{t('Pipeline profissional de Ciência de Dados','Professional Data Science Pipeline')}</div>", unsafe_allow_html=True)
 
     st.markdown("""
-    **Ciência de Dados** é a área que combina **estatística, programação e análise**
-    para extrair conhecimento de dados.
-
-    ### 🔍 Etapas principais:
-    - Coleta de dados  
-    - Diagnóstico de qualidade  
-    - Limpeza e preparação  
-    - Análise estatística  
-    - Interpretação dos resultados  
-
-    ### ⚠️ Importância da Limpeza
-    Dados do mundo real raramente estão prontos para uso.
-    Erros simples podem comprometer toda a análise.
-
-    Este sistema demonstra um **pipeline completo**, do dado bruto ao dado confiável.
+    ---
     """)
+    st.markdown(
+        t(
+            """
+            ### 🎯 Objetivo
+            Este projeto demonstra como **dados reais e desorganizados**
+            podem ser transformados em informações confiáveis por meio
+            de um pipeline profissional de Ciência de Dados.
+            """,
+            """
+            ### 🎯 Objective
+            This project demonstrates how **real-world messy data**
+            can be transformed into reliable information through
+            a professional Data Science pipeline.
+            """
+        )
+    )
 
-elif menu == "📂 Upload & Diagnóstico":
-    st.markdown('<div class="big-title">📂 Upload & Diagnóstico</div>', unsafe_allow_html=True)
+elif menu == t("📘 Ciência de Dados","📘 Data Science"):
+    st.markdown(f"<div class='title'>{t('Ciência de Dados','Data Science')}</div>", unsafe_allow_html=True)
 
-    file = st.file_uploader("Envie um arquivo CSV", type=["csv"])
+    st.markdown(
+        t(
+            """
+            Ciência de Dados é a área que combina **estatística,
+            programação e análise de dados** para gerar conhecimento
+            e apoiar decisões estratégicas.
+            
+            ### Etapas principais:
+            - Coleta de dados
+            - Diagnóstico
+            - Limpeza e preparação
+            - Análise exploratória
+            - Interpretação
+            """,
+            """
+            Data Science combines **statistics, programming,
+            and data analysis** to extract knowledge and support
+            strategic decision-making.
+            
+            ### Main stages:
+            - Data collection
+            - Diagnosis
+            - Cleaning and preparation
+            - Exploratory analysis
+            - Interpretation
+            """
+        )
+    )
+
+elif menu == t("📂 Upload & Diagnóstico","📂 Upload & Diagnosis"):
+    st.markdown(f"<div class='title'>{t('Upload e Diagnóstico','Upload and Diagnosis')}</div>", unsafe_allow_html=True)
+
+    file = st.file_uploader(t("Envie um CSV","Upload a CSV"), type="csv")
 
     if file:
         df = pd.read_csv(file)
-        st.session_state["df_original"] = df
+        st.session_state["raw"] = df
 
-        st.markdown("### 📄 Pré-visualização dos dados")
+        st.subheader(t("Prévia dos dados","Data preview"))
         st.dataframe(df.head())
 
-        diag = diagnostico(df)
+        diag = diagnose(df)
+        cols = st.columns(4)
+        for i, (k, v) in enumerate(diag.items()):
+            cols[i].metric(k, v)
 
-        st.markdown("### 🔎 Diagnóstico Inicial")
-        c1, c2, c3, c4 = st.columns(4)
-        c1.metric("Linhas", diag["Linhas"])
-        c2.metric("Colunas", diag["Colunas"])
-        c3.metric("Valores nulos", diag["Valores nulos"])
-        c4.metric("Duplicados", diag["Duplicados"])
+elif menu == t("🧹 Limpeza Profissional","🧹 Professional Cleaning"):
+    st.markdown(f"<div class='title'>{t('Limpeza Profissional','Professional Cleaning')}</div>", unsafe_allow_html=True)
 
-elif menu == "🧹 Limpeza Profissional":
-    st.markdown('<div class="big-title">🧹 Limpeza Profissional</div>', unsafe_allow_html=True)
-
-    if "df_original" in st.session_state:
-        df = st.session_state["df_original"]
-
-        st.markdown("""
-        Clique no botão abaixo para executar um **processo automatizado de limpeza**,
-        simulando um pipeline profissional de Ciência de Dados.
-        """)
-
-        if st.button("🚀 Executar Limpeza"):
-            df_limpo = limpar_dados(df)
-            st.session_state["df_limpo"] = df_limpo
-
-            st.success("Limpeza concluída com sucesso!")
+    if "raw" in st.session_state:
+        if st.button(t("Executar limpeza","Run cleaning")):
+            clean = clean_data(st.session_state["raw"])
+            st.session_state["clean"] = clean
+            st.success(t("Limpeza concluída","Cleaning completed"))
 
             c1, c2 = st.columns(2)
-            c1.metric("Linhas antes", df.shape[0])
-            c2.metric("Linhas depois", df_limpo.shape[0])
+            c1.metric(t("Linhas antes","Rows before"), st.session_state["raw"].shape[0])
+            c2.metric(t("Linhas depois","Rows after"), clean.shape[0])
 
-            st.markdown("### 📄 Dados após limpeza")
-            st.dataframe(df_limpo.head())
-
+            st.subheader(t("Depois da limpeza","After cleaning"))
+            st.dataframe(clean.head())
     else:
-        st.warning("Envie um arquivo CSV primeiro.")
+        st.warning(t("Envie um arquivo primeiro","Upload a file first"))
 
-elif menu == "📊 Análises":
-    st.markdown('<div class="big-title">📊 Análises Estatísticas</div>', unsafe_allow_html=True)
+elif menu == t("📊 Análise & Visualização","📊 Analysis & Visualization"):
+    st.markdown(f"<div class='title'>{t('Análise e Visualização','Analysis and Visualization')}</div>", unsafe_allow_html=True)
 
-    if "df_limpo" in st.session_state:
-        df = st.session_state["df_limpo"]
+    if "raw" in st.session_state and "clean" in st.session_state:
+        raw = st.session_state["raw"]
+        clean = st.session_state["clean"]
 
-        st.markdown("""
-        Abaixo estão estatísticas descritivas geradas **após a limpeza**,
-        garantindo análises mais confiáveis.
-        """)
+        numeric_cols = clean.select_dtypes(include=["int64","float64"]).columns
 
-        st.dataframe(df.describe(include="all"))
+        if len(numeric_cols) > 0:
+            col = st.selectbox(t("Escolha uma coluna","Select a column"), numeric_cols)
+
+            fig, ax = plt.subplots(1,2, figsize=(12,4))
+            ax[0].hist(raw[col].dropna(), bins=20)
+            ax[0].set_title(t("Antes","Before"))
+
+            ax[1].hist(clean[col].dropna(), bins=20)
+            ax[1].set_title(t("Depois","After"))
+
+            st.pyplot(fig)
+
+            st.markdown(
+                t(
+                    "O gráfico mostra como a limpeza impacta a distribuição dos dados.",
+                    "The chart shows how data cleaning impacts the distribution."
+                )
+            )
     else:
-        st.warning("Execute a limpeza antes.")
+        st.warning(t("Execute as etapas anteriores","Run previous steps"))
 
-elif menu == "⬇️ Download Final":
-    st.markdown('<div class="big-title">⬇️ Download Final</div>', unsafe_allow_html=True)
+elif menu == t("⬇️ Download Final","⬇️ Final Download"):
+    st.markdown(f"<div class='title'>{t('Download Final','Final Download')}</div>", unsafe_allow_html=True)
 
-    if "df_limpo" in st.session_state:
-        csv = st.session_state["df_limpo"].to_csv(index=False).encode("utf-8")
-
-        st.markdown("Arquivo pronto para uso em análises e decisões.")
+    if "clean" in st.session_state:
+        csv = st.session_state["clean"].to_csv(index=False).encode("utf-8")
         st.download_button(
-            "📥 Baixar CSV Tratado",
+            t("Baixar CSV tratado","Download cleaned CSV"),
             csv,
             "dados_tratados.csv",
             "text/csv"
         )
-    else:
-        st.warning("Nenhum dado tratado disponível.")
