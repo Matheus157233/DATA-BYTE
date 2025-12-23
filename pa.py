@@ -481,7 +481,7 @@ elif menu == "📈 Análise de Dados":
         else:
             st.info("Nenhuma coluna numérica encontrada para análise e gráficos.")
 
-elif menu == "👤 Sobre o Autor":
+ elif menu == "👤 Sobre o Autor":
     st.title("👤 About the Author")
 
     st.markdown("""
@@ -626,6 +626,7 @@ elif menu == "❓ Quiz do Curso":
                 st.write(f"• {e}")
         else:
             st.success("🎉 Você acertou todas as perguntas!")
+
 
 
 
