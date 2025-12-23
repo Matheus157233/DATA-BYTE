@@ -6,22 +6,22 @@ import numpy as np
 # CONFIGURAÇÃO DA PÁGINA
 # ==================================================
 st.set_page_config(
-    page_title="Curso de Ciência de Dados com Python",
+    page_title="Projeto do Ano | Ciência de Dados",
     page_icon="🧠",
     layout="wide"
 )
 
 # ==================================================
-# ESTILO (CSS)
+# ESTILO VISUAL (CSS)
 # ==================================================
 st.markdown("""
 <style>
-    .main-title {
+    .titulo {
         text-align: center;
         color: #1f77b4;
         font-weight: bold;
     }
-    .sub-title {
+    .subtitulo {
         text-align: center;
         color: #555;
         font-style: italic;
@@ -30,142 +30,158 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ==================================================
-# FUNÇÕES DAS PÁGINAS
+# PÁGINAS
 # ==================================================
 
 def pagina_inicial():
-    st.markdown("<h1 class='main-title'>🚀 Curso de Ciência de Dados com Python</h1>", unsafe_allow_html=True)
-    st.markdown("<p class='sub-title'>Do zero à análise profissional de dados</p>", unsafe_allow_html=True)
-    st.image("https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif", width=300)
+    st.markdown("<h1 class='titulo'>🚀 Pipeline Interativo de Ciência de Dados</h1>", unsafe_allow_html=True)
+    st.markdown("<p class='subtitulo'>Projeto do Ano – Análise e Limpeza de Dados com Python</p>", unsafe_allow_html=True)
+
+    st.image(
+        "https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif",
+        width=300
+    )
 
     st.markdown("""
-    ### 📌 O que você vai aprender
-    - Fundamentos de Ciência de Dados  
-    - Python aplicado à análise  
-    - Limpeza de dados reais  
-    - Estatística básica  
-    - Projetos interativos com Streamlit  
+    ## 📌 Sobre o Projeto
+
+    Este projeto foi desenvolvido com o objetivo de **demonstrar, na prática,
+    o funcionamento da Ciência de Dados**, desde a teoria até a aplicação real.
+
+    Diferente de exemplos simplificados, aqui o sistema trabalha com **dados reais
+    em formato CSV**, que normalmente chegam **desorganizados, incompletos ou inconsistentes**.
+
+    ## 🎯 Objetivos
+    - Explicar **o que é Ciência de Dados**
+    - Simular o trabalho de um **cientista de dados**
+    - Analisar e limpar dados automaticamente
+    - Gerar estatísticas confiáveis
+    - Exportar dados prontos para análise
     """)
 
-def introducao_cd():
-    st.title("🧠 Introdução à Ciência de Dados")
-    st.write("""
-    Ciência de Dados combina **estatística, programação e análise** para gerar insights.
-    """)
-    st.code('print("Olá, mundo da Ciência de Dados!")', language="python")
+    st.success("📊 Projeto desenvolvido para apresentação acadêmica e portfólio técnico.")
 
-    idades = np.array([18, 22, 25, 30])
-    st.success(f"Média das idades: {np.mean(idades)}")
+def pagina_ciencia_dados():
+    st.markdown("<h1 class='titulo'>🧠 O que é Ciência de Dados?</h1>", unsafe_allow_html=True)
 
-def limpeza_dados():
-    st.title("📊 Limpeza de Dados")
-    st.write("""
-    A limpeza de dados é uma das etapas mais importantes da Ciência de Dados.
-    """)
     st.markdown("""
-    ✔ Remover valores nulos  
-    ✔ Corrigir tipos de dados  
-    ✔ Padronizar colunas  
-    ✔ Tratar erros e inconsistências  
+    ## 📘 Conceito
+
+    **Ciência de Dados** é uma área multidisciplinar que utiliza:
+
+    - 📊 Estatística  
+    - 🐍 Programação  
+    - 🧠 Análise crítica  
+
+    para **extrair conhecimento, padrões e informações relevantes a partir de dados**.
+
+    ---
+
+    ## 🌍 Onde a Ciência de Dados é usada?
+
+    A Ciência de Dados está presente em diversas áreas do cotidiano, como:
+
+    - 🎬 Plataformas de streaming (recomendações)
+    - 🏦 Bancos e fintechs (detecção de fraudes)
+    - 🏥 Saúde (análise de exames e diagnósticos)
+    - 📱 Redes sociais (algoritmos de engajamento)
+    - 🛒 Comércio (previsão de vendas)
+
+    ---
+
+    ## 🔄 Etapas do Processo de Ciência de Dados
+
+    1️⃣ Coleta dos dados  
+    2️⃣ Limpeza e organização  
+    3️⃣ Análise estatística  
+    4️⃣ Visualização dos resultados  
+    5️⃣ Tomada de decisão  
+
+    📌 **Este projeto foca principalmente nas etapas 2 e 3**, que são consideradas
+    as mais importantes na prática profissional.
+
+    > 💡 Sem dados limpos e confiáveis, nenhuma análise gera resultados corretos.
     """)
 
-def funcoes_python():
-    st.title("🧠 Funções em Python")
-    st.code("""
-def saudacao(nome):
-    return f"Olá, {nome}!"
-""", language="python")
+def pipeline_csv():
+    st.markdown("<h1 class='titulo'>🧹 Pipeline de Análise e Limpeza de CSV</h1>", unsafe_allow_html=True)
 
-    nome = st.text_input("Digite seu nome:")
-    if nome:
-        st.success(saudacao := f"Olá, {nome}!")
+    st.markdown("""
+    ## 🎯 Objetivo do Pipeline
 
-def listas_python():
-    st.title("📂 Operações com Listas")
-    lista = [10, 20, 30, 40]
-    st.write("Lista:", lista)
-    st.success(f"Soma: {sum(lista)} | Média: {sum(lista)/len(lista)}")
+    Este módulo simula um **ambiente real de trabalho em Ciência de Dados**,
+    onde o profissional recebe um arquivo CSV e precisa:
 
-def modulo_interativo():
-    st.title("⚡ Módulo Interativo")
+    - Avaliar a qualidade dos dados
+    - Identificar problemas
+    - Corrigir inconsistências
+    - Gerar estatísticas confiáveis
+    - Entregar dados prontos para uso
+    """)
 
-    st.subheader("🧮 Calculadora de Potência")
-    num = st.number_input("Número:", value=2.0)
-    exp = st.number_input("Expoente:", value=2.0)
-    st.success(f"Resultado: {num ** exp}")
-
-    st.subheader("📊 Gerador de Dados")
-    linhas = st.slider("Quantidade de linhas", 5, 100, 10)
-    df = pd.DataFrame({
-        "A": np.random.randn(linhas),
-        "B": np.random.rand(linhas),
-        "C": np.random.randint(0, 100, linhas)
-    })
-    st.dataframe(df)
-    st.line_chart(df)
-
-def analise_csv_profissional():
-    st.title("🧹 Análise e Limpeza de CSV (Profissional)")
-    st.write("Envie um arquivo CSV real para análise automática.")
-
-    arquivo = st.file_uploader("📤 Envie um CSV", type=["csv"])
+    arquivo = st.file_uploader("📤 Envie um arquivo CSV", type=["csv"])
 
     if arquivo:
         df = pd.read_csv(arquivo)
 
-        st.subheader("📄 Visualização Inicial")
+        st.markdown("---")
+        st.subheader("📄 Visualização dos Dados Originais")
         st.dataframe(df.head())
 
-        st.subheader("📉 Valores Nulos")
-        st.write(df.isnull().sum())
+        st.markdown("---")
+        st.subheader("⚠️ Diagnóstico Inicial")
 
-        st.subheader("📐 Estatísticas")
-        st.dataframe(df.describe())
+        col1, col2 = st.columns(2)
 
-        st.subheader("🧼 Limpeza Automática")
+        with col1:
+            st.write("🔎 Valores nulos por coluna:")
+            st.write(df.isnull().sum())
+
+        with col2:
+            st.write("📂 Tipos de dados:")
+            st.write(df.dtypes)
+
+        st.markdown("""
+        ## 🧼 Processo de Limpeza Aplicado
+
+        As seguintes etapas são executadas automaticamente:
+        - Padronização dos nomes das colunas
+        - Remoção de linhas totalmente vazias
+        - Remoção de valores nulos
+        """)
+
         df_limpo = df.copy()
+
+        # Padronização dos nomes das colunas
         df_limpo.columns = df_limpo.columns.str.strip().str.lower()
+
+        # Remoção de linhas completamente vazias
+        df_limpo = df_limpo.dropna(how="all")
+
+        # Remoção de valores nulos
         df_limpo = df_limpo.dropna()
 
-        st.success("Dados limpos com sucesso!")
+        st.success("✅ Limpeza de dados concluída com sucesso!")
+
+        st.markdown("---")
+        st.subheader("📊 Dados Após Limpeza")
         st.dataframe(df_limpo.head())
 
+        st.markdown("---")
+        st.subheader("📈 Estatísticas Descritivas")
+        st.dataframe(df_limpo.describe())
+
         st.download_button(
-            "📥 Baixar CSV Limpo",
+            "📥 Baixar CSV Tratado",
             df_limpo.to_csv(index=False),
-            file_name="dados_limpos.csv",
+            file_name="dados_tratados.csv",
             mime="text/csv"
         )
 
-def quiz():
-    st.title("❓ Quiz de Ciência de Dados")
-
-    pontos = 0
-
-    q1 = st.radio("O que é Pandas?", ["Biblioteca", "Linguagem", "Sistema Operacional"])
-    if q1 == "Biblioteca":
-        pontos += 1
-
-    q2 = st.radio("Para que serve df.describe()?", [
-        "Excluir colunas",
-        "Mostrar estatísticas",
-        "Criar gráficos"
-    ])
-    if q2 == "Mostrar estatísticas":
-        pontos += 1
-
-    q3 = st.radio("O que significa CSV?", [
-        "Código Simples Visual",
-        "Comma-Separated Values",
-        "Cálculo de Séries Variadas"
-    ])
-    if q3 == "Comma-Separated Values":
-        pontos += 1
-
-    if st.button("Ver Resultado"):
-        st.success(f"🎯 Pontuação final: {pontos}/3")
-        if pontos == 3:
-            st.balloons()
+        st.info("""
+        📌 Este processo representa uma etapa essencial da Ciência de Dados,
+        garantindo que as análises sejam realizadas sobre dados confiáveis.
+        """)
 
 # ==================================================
 # MENU LATERAL
@@ -173,33 +189,20 @@ def quiz():
 menu = st.sidebar.radio(
     "📚 Navegação",
     [
-        "🏠 Página Inicial",
-        "🧩 Introdução à Ciência de Dados",
-        "📊 Limpeza de Dados",
-        "🧠 Funções Python",
-        "📂 Operações com Listas",
-        "⚡ Módulo Interativo",
-        "🧹 Análise e Limpeza de CSV (Profissional)",
-        "❓ Quiz"
+        "🏠 Apresentação do Projeto",
+        "🧠 O que é Ciência de Dados?",
+        "🧹 Pipeline de CSV (Projeto do Ano)"
     ]
 )
 
 # ==================================================
-# ROTEAMENTO
+# CONTROLE DE NAVEGAÇÃO
 # ==================================================
-if menu == "🏠 Página Inicial":
+if menu == "🏠 Apresentação do Projeto":
     pagina_inicial()
-elif menu == "🧩 Introdução à Ciência de Dados":
-    introducao_cd()
-elif menu == "📊 Limpeza de Dados":
-    limpeza_dados()
-elif menu == "🧠 Funções Python":
-    funcoes_python()
-elif menu == "📂 Operações com Listas":
-    listas_python()
-elif menu == "⚡ Módulo Interativo":
-    modulo_interativo()
-elif menu == "🧹 Análise e Limpeza de CSV (Profissional)":
-    analise_csv_profissional()
-elif menu == "❓ Quiz":
-    quiz()
+
+elif menu == "🧠 O que é Ciência de Dados?":
+    pagina_ciencia_dados()
+
+elif menu == "🧹 Pipeline de CSV (Projeto do Ano)":
+    pipeline_csv()
