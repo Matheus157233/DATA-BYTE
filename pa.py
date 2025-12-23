@@ -499,7 +499,7 @@ especially in an **international environment**.
 This project aims to explain Data Science in a simple,
 educational and professional way.
     """)
-p
+     
 # ------------------------------------------------------------
 # --- 7. Quiz ---
 # ------------------------------------------------------------
@@ -607,6 +607,7 @@ elif menu == "❓ Quiz do Curso":
                 st.write(f"• {e}")
         else:
             st.success("🎉 Você acertou todas as perguntas!")
+
 
 
 
