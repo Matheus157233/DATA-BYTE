@@ -445,7 +445,7 @@ elif menu == "❓ Quiz do Curso":
         else:
             st.success("🎉 Você acertou todas as perguntas!")
 
-            elif menu == "🧹 Análise e Limpeza de CSV (Profissional)":
+elif menu == "🧹 Análise e Limpeza de CSV (Profissional)":
     st.title("🧹 Análise e Limpeza Profissional de CSV")
 
     uploaded = st.file_uploader("Envie um arquivo CSV", type=["csv"])
@@ -485,6 +485,7 @@ elif menu == "❓ Quiz do Curso":
             "dados_tratados.csv",
             "text/csv"
         )
+
 
 
 
