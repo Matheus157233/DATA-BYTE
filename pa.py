@@ -66,6 +66,7 @@ menu = st.sidebar.radio("Navegue entre as seções:", [
     "🧩 Introdução à Ciência de Dados",
     "📊 Limpeza de Dados",
     "🧹 Limpeza de CSV (Profissional)",
+    "📈 Análise de Dados",
     "🧠 Funções Python",
     "📂 Operações com Listas",
     "⚡ Módulo Avançado Interativo",
@@ -424,7 +425,64 @@ Isso permite testar ideias e algoritmos rapidamente.
     st.success("🎉 Parabéns! Você concluiu o módulo interativo!")
 
 # ------------------------------------------------------------
-# --- 6. Quiz ---
+# --- 6. Análise de Dados ---
+# ------------------------------------------------------------
+elif menu == "📈 Análise de Dados":
+    st.title("📈 Análise de Dados")
+    st.subheader("Explore, visualize e entenda seus dados!")
+
+    uploaded_file = st.file_uploader("📂 Envie um arquivo CSV para análise", type=["csv"])
+
+    if uploaded_file is not None:
+        df = pd.read_csv(uploaded_file)
+        
+        # --- Visualização básica ---
+        st.subheader("📄 Visualização das primeiras linhas")
+        st.dataframe(df.head(10))
+
+        st.subheader("📊 Estatísticas descritivas")
+        st.dataframe(df.describe())
+
+        st.subheader("📌 Informações do DataFrame")
+        st.write(f"Linhas: {df.shape[0]}, Colunas: {df.shape[1]}")
+        st.text(df.info())
+
+        # --- Seleção de colunas numéricas ---
+        numeric_cols = df.select_dtypes(include=np.number).columns.tolist()
+        if numeric_cols:
+            st.subheader("🔹 Gráficos das colunas numéricas")
+            col_to_plot = st.selectbox("Escolha a coluna para visualizar", numeric_cols)
+
+            # Histograma
+            st.write(f"📈 Histograma de **{col_to_plot}**")
+            st.bar_chart(df[col_to_plot].value_counts().sort_index())
+
+            # Boxplot
+            st.write(f"📦 Boxplot de **{col_to_plot}**")
+            st.box_chart(df[col_to_plot])
+
+            # Dispersão (scatter) entre duas colunas numéricas
+            st.subheader("📊 Gráfico de Dispersão")
+            col_x = st.selectbox("Escolha o eixo X", numeric_cols, index=0)
+            col_y = st.selectbox("Escolha o eixo Y", numeric_cols, index=1 if len(numeric_cols) > 1 else 0)
+            st.write(f"Scatter plot entre **{col_x}** e **{col_y}**")
+            st.altair_chart(
+                alt.Chart(df).mark_circle(size=60).encode(
+                    x=col_x,
+                    y=col_y,
+                    tooltip=numeric_cols
+                ).interactive(),
+                use_container_width=True
+            )
+
+            # Correlação
+            st.subheader("📌 Matriz de Correlação")
+            st.dataframe(df[numeric_cols].corr())
+        else:
+            st.info("Nenhuma coluna numérica encontrada para análise e gráficos.")
+
+# ------------------------------------------------------------
+# --- 7. Quiz ---
 # ------------------------------------------------------------
 elif menu == "👤 Sobre o Autor":
     st.title("👤 About the Author")
@@ -549,6 +607,7 @@ elif menu == "❓ Quiz do Curso":
                 st.write(f"• {e}")
         else:
             st.success("🎉 Você acertou todas as perguntas!")
+
 
 
 
