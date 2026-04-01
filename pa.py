@@ -14,7 +14,7 @@ if "tema" not in st.session_state:
 
 
 if "idioma" not in st.session_state:
-    st.session_state.idioma = "PT"
+ st.session_state.idioma = "PT"
 
 
 
