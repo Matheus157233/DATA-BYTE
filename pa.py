@@ -9,7 +9,7 @@ import math
 # CONTROLES GLOBAIS (TEMA E IDIOMA)
 # ------------------------------------------------------------
 if "tema" not in st.session_state:
-    st.session_state.tema = "Claro"
+ st.session_state.tema = "Claro"
 
 
 
