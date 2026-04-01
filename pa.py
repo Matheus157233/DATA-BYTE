@@ -9,16 +9,16 @@ import math
 # CONTROLES GLOBAIS (TEMA E IDIOMA)
 # ------------------------------------------------------------
 if "tema" not in st.session_state:
-    st.session_state.tema = "Claro"
+    st.session_state.tema = "Claro"
 
 
 
 if "idioma" not in st.session_state:
-    st.session_state.idioma = "PT"
+    st.session_state.idioma = "PT"
 
 
 
-def aplicar_tema():
+def aplicar tema():
     if st.session_state.tema == "Escuro":
         st.markdown("""
         <style>
