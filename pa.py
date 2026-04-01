@@ -31,8 +31,7 @@ def aplicar_tema():
 
 
 def t(pt, en):
-    return pt if st.session_state.idioma == "PT" else en
-
+    return pt if st.session_state.idioma == "PT" else en
 
 
 aplicar_tema()
