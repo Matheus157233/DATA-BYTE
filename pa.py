@@ -20,7 +20,7 @@ if "idioma" not in st.session_state:
 
 def aplicar_tema():
     if st.session_state.tema == "Escuro":
-        st.markdown("""
+       st.markdown("""
         <style>
         body { background-color: #0e1117; color: white; }
         </style>
