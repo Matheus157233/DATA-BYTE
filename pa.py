@@ -18,7 +18,7 @@ if "idioma" not in st.session_state:
 
 
 
-def aplicar tema():
+def aplicar_tema():
     if st.session_state.tema == "Escuro":
         st.markdown("""
         <style>
