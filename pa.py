@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import math
+import altair as alt
 
 
 
@@ -9,22 +10,21 @@ import math
 # CONTROLES GLOBAIS (TEMA E IDIOMA)
 # ------------------------------------------------------------
 if "tema" not in st.session_state:
-    st.session_state.tema = "Claro"
+  st.session_state.tema = "Claro"
 
 
 
 if "idioma" not in st.session_state:
-    st.session_state.idioma = "PT"
-
+    st.session_state.idioma = "PT"
 
 
 def aplicar_tema():
-    if st.session_state.tema == "Escuro":
-        st.markdown("""
-        <style>
-        body { background-color: #0e1117; color: white; }
-        </style>
-        """, unsafe_allow_html=True)
+    if st.session_state.tema == "Escuro":
+        st.markdown("""
+        <style>
+        body { background-color: #0e1117; color: white; }
+        </style>
+        """, unsafe_allow_html=True)
 
 
 
