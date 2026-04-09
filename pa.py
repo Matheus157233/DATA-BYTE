@@ -274,10 +274,13 @@ elif menu == "🧹 Limpeza de CSV (Profissional)":
 
         # Tratar valores nulos
         for col in df_limpo.columns:
-            if df_limpo[col].dtype == "object":
-                df_limpo[col].fillna("Desconhecido", inplace=True)
-            else:
-                df_limpo[col].fillna(df_limpo[col].mean(), inplace=True)
+    # Tenta converter para número
+    df_limpo[col] = pd.to_numeric(df_limpo[col], errors="ignore")
+
+    if pd.api.types.is_numeric_dtype(df_limpo[col]):
+        df_limpo[col].fillna(df_limpo[col].mean(), inplace=True)
+    else:
+        df_limpo[col].fillna("Desconhecido", inplace=True)
 
 
 
