@@ -273,13 +273,12 @@ elif menu == "🧹 Limpeza de CSV (Profissional)":
 
 
         # Tratar valores nulos
-    for col in df_limpo.columns:
-    df_limpo[col] = pd.to_numeric(df_limpo[col], errors="ignore")
+        for col in df_limpo.columns:
+            if df_limpo[col].dtype == "object":
+                df_limpo[col].fillna("Desconhecido", inplace=True)
+            else:
+                df_limpo[col].fillna(df_limpo[col].mean(), inplace=True)
 
-    if pd.api.types.is_numeric_dtype(df_limpo[col]):
-        df_limpo[col].fillna(df_limpo[col].mean(), inplace=True)
-    else:
-        df_limpo[col].fillna("Desconhecido", inplace=True)
 
 
         st.success("✅ Limpeza concluída com sucesso!")
@@ -576,12 +575,7 @@ elif menu == "📈 Análise de Dados":
 
             # Boxplot
             st.write(f"📦 Boxplot de **{col_to_plot}**")
-            st.altair_chart(
-    alt.Chart(df).mark_boxplot().encode(
-        y=col_to_plot
-    ),
-    use_container_width=True
-)
+            st.box_chart(df[col_to_plot])
 
 
 
