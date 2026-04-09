@@ -575,7 +575,12 @@ elif menu == "📈 Análise de Dados":
 
             # Boxplot
             st.write(f"📦 Boxplot de **{col_to_plot}**")
-            st.box_chart(df[col_to_plot])
+            st.altair_chart(
+    alt.Chart(df).mark_boxplot().encode(
+        y=col_to_plot
+    ),
+    use_container_width=True
+)
 
 
 
