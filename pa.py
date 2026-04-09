@@ -544,7 +544,7 @@ elif menu == "📈 Análise de Dados":
         
         # --- Visualização básica ---
         st.subheader("📄 Visualização das primeiras linhas")
-        st.dataframe(df.head(10))
+        st.dataframe(df)
 
 
 
