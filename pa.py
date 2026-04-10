@@ -269,6 +269,12 @@ elif menu == "🧹 Limpeza de CSV (Profissional)":
 
         # Remover duplicados
         df_limpo.drop_duplicates(inplace=True)
+        # Converter números automaticamente
+for col in df_limpo.columns:
+    try:
+        df_limpo[col] = pd.to_numeric(df_limpo[col])
+    except:
+        pass
 
 
 
@@ -485,7 +491,18 @@ Com `pandas.read_csv()`, você lê o arquivo e pode analisá-lo diretamente com 
 
     # 5️⃣ Simulador de previsão simples
     st.markdown("---")
-    st.header("🤖 Simulador de Previsão Linear")
+    st.header("🤖 Machine Learning Simples (Regressão)")
+
+x_vals = np.array([1, 2, 3, 4, 5])
+y_vals = np.array([2, 4, 6, 8, 10])
+
+coef = np.polyfit(x_vals, y_vals, 1)
+
+x_input = st.number_input("Digite um valor para prever:", value=6.0)
+
+y_pred = coef[0] * x_input + coef[1]
+
+st.success(f"🔮 Previsão real do modelo: {y_pred:.2f}")
     x = st.number_input("Digite o valor de X:", value=5.0)
     coef = st.slider("Coeficiente (a):", 0.0, 10.0, 2.0)
     intercepto = st.slider("Intercepto (b):", 0.0, 10.0, 1.0)
@@ -556,6 +573,14 @@ elif menu == "📈 Análise de Dados":
         st.subheader("📌 Informações do DataFrame")
         st.write(f"Linhas: {df.shape[0]}, Colunas: {df.shape[1]}")
         st.text(df.info())
+        # 🔍 Valores nulos
+st.subheader("🚨 Valores ausentes")
+st.dataframe(df.isnull().sum())
+
+# 📊 Distribuição de dados
+st.subheader("📊 Distribuição dos dados")
+col_dist = st.selectbox("Escolha coluna para distribuição", numeric_cols)
+st.line_chart(df[col_dist])
 
 
 
@@ -576,6 +601,17 @@ elif menu == "📈 Análise de Dados":
             # Boxplot
             st.write(f"📦 Boxplot de **{col_to_plot}**")
             st.box_chart(df[col_to_plot])
+            # 📊 Gráfico de barras mais detalhado
+st.subheader("📊 Análise por Categoria")
+col_bar = st.selectbox("Escolha uma coluna para análise", df.columns)
+
+st.bar_chart(df[col_bar].value_counts())
+
+# 🔥 Correlação entre variáveis
+st.subheader("🔥 Correlação entre variáveis numéricas")
+
+corr = df[numeric_cols].corr()
+st.dataframe(corr)
 
 
 
@@ -606,7 +642,8 @@ elif menu == "📈 Análise de Dados":
 # ------------------------------------------------------------
 # --- 7. Quiz ---
 # ------------------------------------------------------------
-elif menu == "❓ Quiz do Curso":
+elif menu == "❓ Quiz do Curso",
+"🧪 Desafio de Dados":
     st.title("❓ Quiz - Ciência de Dados com Python")
     st.subheader("Teste seus conhecimentos adquiridos no curso!")
 
@@ -736,3 +773,27 @@ elif menu == "❓ Quiz do Curso":
                 st.write(f"• {e}")
         else:
             st.success("🎉 Você acertou todas as perguntas!")
+            # ------------------------------------------------------------
+# --- 8. Desafio de Dados ---
+# ------------------------------------------------------------
+elif menu == "🧪 Desafio de Dados":
+    st.title("🧪 Desafio de Análise de Dados")
+
+    df = pd.DataFrame({
+        "Produto": ["A", "B", "C", "A", "B", "A"],
+        "Vendas": [10, 20, 15, 25, 30, 5]
+    })
+
+    st.dataframe(df)
+
+    resposta = st.text_input("Qual produto vendeu mais?")
+
+    if st.button("Ver resposta"):
+        correto = df.groupby("Produto")["Vendas"].sum().idxmax()
+
+        if resposta.upper() == correto:
+            st.success("🔥 Acertou! Você pensa como um analista!")
+        else:
+            st.error(f"❌ Errado! O correto era: {correto}")
+
+        st.bar_chart(df.groupby("Produto")["Vendas"].sum())
