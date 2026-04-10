@@ -251,23 +251,15 @@ elif menu == "🧹 Limpeza de CSV (Profissional)":
         "Upload a messy CSV, clean it automatically and download the processed file."
     ))
 
-
-
     file = st.file_uploader("📂 Upload do CSV", type=["csv"])
-
-
 
     if file:
         df = pd.read_csv(file)
         st.subheader("📄 Dados Originais")
         st.dataframe(df)
 
-
-
         st.subheader("⚙️ Processo de Limpeza")
         df_limpo = df.copy()
-
-
 
         # Padronizar colunas
         df_limpo.columns = (
@@ -277,31 +269,26 @@ elif menu == "🧹 Limpeza de CSV (Profissional)":
             .str.replace(" ", "_")
         )
 
-
-
         # Remover duplicados
-df_limpo.drop_duplicates(inplace=True)
+        df_limpo.drop_duplicates(inplace=True)
 
-# Converter números automaticamente
-for col in df_limpo.columns:
-    try:
-        df_limpo[col] = pd.to_numeric(df_limpo[col])
-    except:
-        pass
+        # Converter números automaticamente
+        for col in df_limpo.columns:
+            try:
+                df_limpo[col] = pd.to_numeric(df_limpo[col])
+            except:
+                pass
 
-# Tratar valores nulos
-for col in df_limpo.columns:
-    if df_limpo[col].dtype == "object":
-        df_limpo[col].fillna("Desconhecido", inplace=True)
-    else:
-        df_limpo[col].fillna(df_limpo[col].mean(), inplace=True)
-
+        # Tratar valores nulos
+        for col in df_limpo.columns:
+            if df_limpo[col].dtype == "object":
+                df_limpo[col].fillna("Desconhecido", inplace=True)
+            else:
+                df_limpo[col].fillna(df_limpo[col].mean(), inplace=True)
 
         st.success("✅ Limpeza concluída com sucesso!")
         st.subheader("📊 Dados Tratados")
         st.dataframe(df_limpo)
-
-
 
         csv = df_limpo.to_csv(index=False).encode("utf-8")
         st.download_button(
