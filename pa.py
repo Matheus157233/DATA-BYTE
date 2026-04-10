@@ -509,7 +509,7 @@ st.success(f"🔮 Previsão: **y = {coef}x + {intercepto} → y = {previsao:.2f}
 
 
 
-    st.info("""
+st.info("""
 **Teoria:**  
 Esta é a base de um **modelo de regressão linear simples**, usado para prever valores.  
 A equação `y = ax + b` mostra como uma variável (x) afeta outra (y).
