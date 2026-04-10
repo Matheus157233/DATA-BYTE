@@ -39,30 +39,34 @@ aplicar_tema()
 # ESTILO PERSONALIZADO (CSS)
 # ------------------------------------------------------------
 st.markdown("""
+<style>
+
+.main-title {
+    text-align: center;
+    color: #1f77b4;
+    font-weight: bold;
+}
+
+.sub-title {
+    text-align: center;
+    font-style: italic;
+    color: #555;
+}
+
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
 .stButton>button {
     border-radius: 10px;
     height: 3em;
     font-size: 16px;
     font-weight: bold;
 }
-<style>
-.main-title {
-    text-align: center;
-    color: #1f77b4;
-    font-weight: bold;
-}
-.sub-title {
-    text-align: center;
-    font-style: italic;
-    color: #555;
-}
-.block-container {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
+
 </style>
 """, unsafe_allow_html=True)
-
 # ------------------------------------------------------------
 # MENU LATERAL (NAVBAR)
 # ------------------------------------------------------------
@@ -276,23 +280,21 @@ elif menu == "🧹 Limpeza de CSV (Profissional)":
 
 
         # Remover duplicados
-        df_limpo.drop_duplicates(inplace=True)
-        # Converter números automaticamente
+df_limpo.drop_duplicates(inplace=True)
+
+# Converter números automaticamente
 for col in df_limpo.columns:
     try:
         df_limpo[col] = pd.to_numeric(df_limpo[col])
     except:
         pass
 
-
-
-        # Tratar valores nulos
-        for col in df_limpo.columns:
-            if df_limpo[col].dtype == "object":
-                df_limpo[col].fillna("Desconhecido", inplace=True)
-            else:
-                df_limpo[col].fillna(df_limpo[col].mean(), inplace=True)
-
+# Tratar valores nulos
+for col in df_limpo.columns:
+    if df_limpo[col].dtype == "object":
+        df_limpo[col].fillna("Desconhecido", inplace=True)
+    else:
+        df_limpo[col].fillna(df_limpo[col].mean(), inplace=True)
 
 
         st.success("✅ Limpeza concluída com sucesso!")
@@ -497,9 +499,9 @@ Com `pandas.read_csv()`, você lê o arquivo e pode analisá-lo diretamente com 
 
 
 
-    # 5️⃣ Simulador de previsão simples
-    st.markdown("---")
-    st.header("🤖 Machine Learning Simples (Regressão)")
+   # 5️⃣ Machine Learning
+st.markdown("---")
+st.header("🤖 Machine Learning Simples (Regressão)")
 
 x_vals = np.array([1, 2, 3, 4, 5])
 y_vals = np.array([2, 4, 6, 8, 10])
@@ -566,6 +568,7 @@ elif menu == "📈 Análise de Dados":
 
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
+        st.subheader("🚨 Valores ausentes")
         
         # --- Visualização básica ---
         st.subheader("📄 Visualização das primeiras linhas")
@@ -582,7 +585,6 @@ elif menu == "📈 Análise de Dados":
         st.write(f"Linhas: {df.shape[0]}, Colunas: {df.shape[1]}")
         st.text(df.info())
         # 🔍 Valores nulos
-st.subheader("🚨 Valores ausentes")
 st.dataframe(df.isnull().sum())
 
 # 📊 Distribuição de dados
@@ -650,8 +652,7 @@ st.dataframe(corr)
 # ------------------------------------------------------------
 # --- 7. Quiz ---
 # ------------------------------------------------------------
-elif menu == "❓ Quiz do Curso",
-"🧪 Desafio de Dados":
+elif menu == "❓ Quiz do Curso":
     st.title("❓ Quiz - Ciência de Dados com Python")
     st.subheader("Teste seus conhecimentos adquiridos no curso!")
 
@@ -781,7 +782,7 @@ elif menu == "❓ Quiz do Curso",
                 st.write(f"• {e}")
         else:
             st.success("🎉 Você acertou todas as perguntas!")
-            # ------------------------------------------------------------
+# ------------------------------------------------------------
 # --- 8. Desafio de Dados ---
 # ------------------------------------------------------------
 elif menu == "🧪 Desafio de Dados":
@@ -805,7 +806,10 @@ elif menu == "🧪 Desafio de Dados":
             st.error(f"❌ Errado! O correto era: {correto}")
 
         st.bar_chart(df.groupby("Produto")["Vendas"].sum())
-        elif menu == "👨‍💻 Sobre o Projeto":
+# ------------------------------------------------------------
+# --- 9. Sobre o Projeto ---
+# ------------------------------------------------------------
+elif menu == "👨‍💻 Sobre o Projeto":
     st.title("👨‍💻 Sobre o Projeto")
 
     st.write("""
@@ -814,7 +818,7 @@ Este projeto foi desenvolvido para demonstrar habilidades em:
 - Análise de Dados 📊  
 - Python 🐍  
 - Visualização 📈  
-- Desenvolvimento de aplicações com Streamlit ⚡  
+- Desenvolvimento com Streamlit ⚡  
 """)
 
     st.write("📱 Instagram: @_mattsrv")
