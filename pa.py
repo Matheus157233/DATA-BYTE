@@ -83,6 +83,7 @@ menu = st.sidebar.radio("Navegue entre as seções:", [
     "⚡ Módulo Avançado Interativo",
     "❓ Quiz do Curso",
     "🧪 Desafio de Dados",
+    "👨‍💻 Sobre o Projeto",
 ])
 
 # Agora os controles de tema e idioma
@@ -804,3 +805,16 @@ elif menu == "🧪 Desafio de Dados":
             st.error(f"❌ Errado! O correto era: {correto}")
 
         st.bar_chart(df.groupby("Produto")["Vendas"].sum())
+        elif menu == "👨‍💻 Sobre o Projeto":
+    st.title("👨‍💻 Sobre o Projeto")
+
+    st.write("""
+Este projeto foi desenvolvido para demonstrar habilidades em:
+
+- Análise de Dados 📊  
+- Python 🐍  
+- Visualização 📈  
+- Desenvolvimento de aplicações com Streamlit ⚡  
+""")
+
+    st.write("📱 Instagram: @_mattsrv")
