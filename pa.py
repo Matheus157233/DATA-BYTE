@@ -40,33 +40,23 @@ aplicar_tema()
 # ------------------------------------------------------------
 st.markdown("""
 <style>
-
 .main-title {
     text-align: center;
     color: #1f77b4;
     font-weight: bold;
 }
-
 .sub-title {
     text-align: center;
     font-style: italic;
     color: #555;
 }
-
 .block-container {
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
-
-.stButton>button {
-    border-radius: 10px;
-    height: 3em;
-    font-size: 16px;
-    font-weight: bold;
-}
-
 </style>
 """, unsafe_allow_html=True)
+
 # ------------------------------------------------------------
 # MENU LATERAL (NAVBAR)
 # ------------------------------------------------------------
@@ -85,9 +75,7 @@ menu = st.sidebar.radio("Navegue entre as seções:", [
     "🧠 Funções Python",
     "📂 Operações com Listas",
     "⚡ Módulo Avançado Interativo",
-    "❓ Quiz do Curso",
-    "🧪 Desafio de Dados",
-    "👨‍💻 Sobre o Projeto",
+    "❓ Quiz do Curso"
 ])
 
 # Agora os controles de tema e idioma
@@ -251,15 +239,23 @@ elif menu == "🧹 Limpeza de CSV (Profissional)":
         "Upload a messy CSV, clean it automatically and download the processed file."
     ))
 
+
+
     file = st.file_uploader("📂 Upload do CSV", type=["csv"])
+
+
 
     if file:
         df = pd.read_csv(file)
         st.subheader("📄 Dados Originais")
         st.dataframe(df)
 
+
+
         st.subheader("⚙️ Processo de Limpeza")
         df_limpo = df.copy()
+
+
 
         # Padronizar colunas
         df_limpo.columns = (
@@ -269,15 +265,12 @@ elif menu == "🧹 Limpeza de CSV (Profissional)":
             .str.replace(" ", "_")
         )
 
+
+
         # Remover duplicados
         df_limpo.drop_duplicates(inplace=True)
 
-        # Converter números automaticamente
-        for col in df_limpo.columns:
-            try:
-                df_limpo[col] = pd.to_numeric(df_limpo[col])
-            except:
-                pass
+
 
         # Tratar valores nulos
         for col in df_limpo.columns:
@@ -286,9 +279,13 @@ elif menu == "🧹 Limpeza de CSV (Profissional)":
             else:
                 df_limpo[col].fillna(df_limpo[col].mean(), inplace=True)
 
+
+
         st.success("✅ Limpeza concluída com sucesso!")
         st.subheader("📊 Dados Tratados")
         st.dataframe(df_limpo)
+
+
 
         csv = df_limpo.to_csv(index=False).encode("utf-8")
         st.download_button(
@@ -486,30 +483,18 @@ Com `pandas.read_csv()`, você lê o arquivo e pode analisá-lo diretamente com 
 
 
 
-   # 5️⃣ Machine Learning
-st.markdown("---")
-st.header("🤖 Machine Learning Simples (Regressão)")
-
-x_vals = np.array([1, 2, 3, 4, 5])
-y_vals = np.array([2, 4, 6, 8, 10])
-
-coef = np.polyfit(x_vals, y_vals, 1)
-
-x_input = st.number_input("Digite um valor para prever:", value=6.0)
-
-y_pred = coef[0] * x_input + coef[1]
-
-st.success(f"🔮 Previsão real do modelo: {y_pred:.2f}")
-
-x = st.number_input("Digite o valor de X:", value=5.0)
-coef = st.slider("Coeficiente (a):", 0.0, 10.0, 2.0)
-intercepto = st.slider("Intercepto (b):", 0.0, 10.0, 1.0)
-previsao = coef * x + intercepto
-st.success(f"🔮 Previsão: **y = {coef}x + {intercepto} → y = {previsao:.2f}**")
+    # 5️⃣ Simulador de previsão simples
+    st.markdown("---")
+    st.header("🤖 Simulador de Previsão Linear")
+    x = st.number_input("Digite o valor de X:", value=5.0)
+    coef = st.slider("Coeficiente (a):", 0.0, 10.0, 2.0)
+    intercepto = st.slider("Intercepto (b):", 0.0, 10.0, 1.0)
+    previsao = coef * x + intercepto
+    st.success(f"🔮 Previsão: **y = {coef}x + {intercepto} → y = {previsao:.2f}**")
 
 
 
-st.info("""
+    st.info("""
 **Teoria:**  
 Esta é a base de um **modelo de regressão linear simples**, usado para prever valores.  
 A equação `y = ax + b` mostra como uma variável (x) afeta outra (y).
@@ -556,7 +541,6 @@ elif menu == "📈 Análise de Dados":
 
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
-        st.subheader("🚨 Valores ausentes")
         
         # --- Visualização básica ---
         st.subheader("📄 Visualização das primeiras linhas")
@@ -572,13 +556,6 @@ elif menu == "📈 Análise de Dados":
         st.subheader("📌 Informações do DataFrame")
         st.write(f"Linhas: {df.shape[0]}, Colunas: {df.shape[1]}")
         st.text(df.info())
-        # 🔍 Valores nulos
-st.dataframe(df.isnull().sum())
-
-# 📊 Distribuição de dados
-st.subheader("📊 Distribuição dos dados")
-col_dist = st.selectbox("Escolha coluna para distribuição", numeric_cols)
-st.line_chart(df[col_dist])
 
 
 
@@ -599,17 +576,6 @@ st.line_chart(df[col_dist])
             # Boxplot
             st.write(f"📦 Boxplot de **{col_to_plot}**")
             st.box_chart(df[col_to_plot])
-            # 📊 Gráfico de barras mais detalhado
-st.subheader("📊 Análise por Categoria")
-col_bar = st.selectbox("Escolha uma coluna para análise", df.columns)
-
-st.bar_chart(df[col_bar].value_counts())
-
-# 🔥 Correlação entre variáveis
-st.subheader("🔥 Correlação entre variáveis numéricas")
-
-corr = df[numeric_cols].corr()
-st.dataframe(corr)
 
 
 
@@ -770,43 +736,3 @@ elif menu == "❓ Quiz do Curso":
                 st.write(f"• {e}")
         else:
             st.success("🎉 Você acertou todas as perguntas!")
-# ------------------------------------------------------------
-# --- 8. Desafio de Dados ---
-# ------------------------------------------------------------
-elif menu == "🧪 Desafio de Dados":
-    st.title("🧪 Desafio de Análise de Dados")
-
-    df = pd.DataFrame({
-        "Produto": ["A", "B", "C", "A", "B", "A"],
-        "Vendas": [10, 20, 15, 25, 30, 5]
-    })
-
-    st.dataframe(df)
-
-    resposta = st.text_input("Qual produto vendeu mais?")
-
-    if st.button("Ver resposta"):
-        correto = df.groupby("Produto")["Vendas"].sum().idxmax()
-
-        if resposta.upper() == correto:
-            st.success("🔥 Acertou! Você pensa como um analista!")
-        else:
-            st.error(f"❌ Errado! O correto era: {correto}")
-
-        st.bar_chart(df.groupby("Produto")["Vendas"].sum())
-# ------------------------------------------------------------
-# --- 9. Sobre o Projeto ---
-# ------------------------------------------------------------
-elif menu == "👨‍💻 Sobre o Projeto":
-    st.title("👨‍💻 Sobre o Projeto")
-
-    st.write("""
-Este projeto foi desenvolvido para demonstrar habilidades em:
-
-- Análise de Dados 📊  
-- Python 🐍  
-- Visualização 📈  
-- Desenvolvimento com Streamlit ⚡  
-""")
-
-    st.write("📱 Instagram: @_mattsrv")
