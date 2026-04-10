@@ -39,6 +39,12 @@ aplicar_tema()
 # ESTILO PERSONALIZADO (CSS)
 # ------------------------------------------------------------
 st.markdown("""
+.stButton>button {
+    border-radius: 10px;
+    height: 3em;
+    font-size: 16px;
+    font-weight: bold;
+}
 <style>
 .main-title {
     text-align: center;
@@ -75,7 +81,8 @@ menu = st.sidebar.radio("Navegue entre as seções:", [
     "🧠 Funções Python",
     "📂 Operações com Listas",
     "⚡ Módulo Avançado Interativo",
-    "❓ Quiz do Curso"
+    "❓ Quiz do Curso",
+    "🧪 Desafio de Dados",
 ])
 
 # Agora os controles de tema e idioma
