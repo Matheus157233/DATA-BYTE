@@ -500,11 +500,12 @@ x_input = st.number_input("Digite um valor para prever:", value=6.0)
 y_pred = coef[0] * x_input + coef[1]
 
 st.success(f"🔮 Previsão real do modelo: {y_pred:.2f}")
-    x = st.number_input("Digite o valor de X:", value=5.0)
-    coef = st.slider("Coeficiente (a):", 0.0, 10.0, 2.0)
-    intercepto = st.slider("Intercepto (b):", 0.0, 10.0, 1.0)
-    previsao = coef * x + intercepto
-    st.success(f"🔮 Previsão: **y = {coef}x + {intercepto} → y = {previsao:.2f}**")
+
+x = st.number_input("Digite o valor de X:", value=5.0)
+coef = st.slider("Coeficiente (a):", 0.0, 10.0, 2.0)
+intercepto = st.slider("Intercepto (b):", 0.0, 10.0, 1.0)
+previsao = coef * x + intercepto
+st.success(f"🔮 Previsão: **y = {coef}x + {intercepto} → y = {previsao:.2f}**")
 
 
 
