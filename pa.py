@@ -22,6 +22,17 @@ import sqlite3
 conn = sqlite3.connect("usuarios.db", check_same_thread=False)
 c = conn.cursor()
 
+# 🔥 ADICIONA ISSO AQUI
+try:
+    c.execute("ALTER TABLE usuarios ADD COLUMN telefone TEXT")
+except:
+    pass
+
+try:
+    c.execute("ALTER TABLE usuarios ADD COLUMN foto TEXT")
+except:
+    pass
+
 c.execute("""
 CREATE TABLE IF NOT EXISTS usuarios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
