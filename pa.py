@@ -215,6 +215,7 @@ menu = st.sidebar.radio("Navegue entre as seções:", [
     "🔒 Área Admin",
     "👤 Perfil",
     "🐍 Python Básico",
+    "📊 Pandas Avançado",
 ])
 
 # Agora os controles de tema e idioma
@@ -780,6 +781,164 @@ elif menu == "📈 Análise de Dados":
         else:
             st.info("Nenhuma coluna numérica encontrada para análise e gráficos.")
 
+#-----------------------------------------------------------------------
+#pandas avançado
+# ----------------------------------------------------------------------            
+
+elif menu == "📊 Pandas Avançado":
+
+    st.title("📊 Pandas Avançado")
+    st.subheader("Manipulação e análise de dados como um profissional")
+
+    st.markdown("---")
+
+    # 🎬 VÍDEO
+    st.video("https://youtu.be/vmEHCJofslg")
+
+    # 📖 INTRODUÇÃO
+    st.header("📖 O que é Pandas?")
+    st.write("""
+Pandas é uma biblioteca usada para manipulação e análise de dados.
+
+Com ela você pode:
+- 📊 Ler arquivos (CSV, Excel)
+- 🧹 Limpar dados
+- 🔍 Filtrar informações
+- 📈 Analisar dados
+""")
+
+    st.info("💡 Pandas é uma das ferramentas mais usadas em Ciência de Dados.")
+
+    st.markdown("---")
+
+    # 📂 IMPORTAÇÃO DE DADOS
+    st.header("📂 Importando dados")
+
+    st.code("""
+import pandas as pd
+df = pd.read_csv("dados.csv")
+""")
+
+    arquivo = st.file_uploader("Envie um CSV", type=["csv"])
+
+    if arquivo:
+        df = pd.read_csv(arquivo)
+
+        st.subheader("📄 Dados carregados")
+        st.dataframe(df)
+
+        st.markdown("---")
+
+        # 🔍 INFO
+        st.header("🔍 Informações do DataFrame")
+        st.write(f"Linhas: {df.shape[0]}")
+        st.write(f"Colunas: {df.shape[1]}")
+        st.dataframe(df.describe())
+
+        st.markdown("---")
+
+        # 🧹 LIMPEZA
+        st.header("🧹 Limpeza de Dados")
+
+        if st.button("Remover valores nulos"):
+            df = df.dropna()
+            st.success("Valores nulos removidos")
+            st.dataframe(df)
+
+        if st.button("Preencher nulos com média"):
+            for col in df.select_dtypes(include="number"):
+                df[col].fillna(df[col].mean(), inplace=True)
+            st.success("Valores preenchidos")
+            st.dataframe(df)
+
+        st.warning("⚠️ Dados sujos geram análises erradas.")
+
+        st.markdown("---")
+
+        # 🔍 FILTRO
+        st.header("🔍 Filtrando dados")
+
+        colunas = df.columns.tolist()
+        coluna = st.selectbox("Escolha uma coluna", colunas)
+
+        valor = st.text_input("Digite valor para filtrar")
+
+        if valor:
+            filtrado = df[df[coluna].astype(str).str.contains(valor)]
+            st.dataframe(filtrado)
+
+        st.markdown("---")
+
+        # 📊 AGRUPAMENTO
+        st.header("📊 Agrupamento (GroupBy)")
+
+        col_group = st.selectbox("Agrupar por", colunas)
+        col_valor = st.selectbox("Coluna numérica", df.select_dtypes(include="number").columns)
+
+        if st.button("Agrupar"):
+            agrupado = df.groupby(col_group)[col_valor].mean()
+            st.dataframe(agrupado)
+
+        st.markdown("---")
+
+        # 🔗 MERGE (TEORIA)
+        st.header("🔗 Junção de dados (merge)")
+
+        st.code("""
+df_final = pd.merge(df1, df2, on="id")
+""")
+
+        st.write("""
+O merge permite juntar duas tabelas com base em uma coluna em comum.
+""")
+
+        st.markdown("---")
+
+        # 📈 VISUALIZAÇÃO
+        st.header("📈 Visualização de dados")
+
+        col_num = df.select_dtypes(include="number").columns
+
+        if len(col_num) > 0:
+            coluna_grafico = st.selectbox("Escolha coluna para gráfico", col_num)
+
+            st.bar_chart(df[coluna_grafico])
+            st.line_chart(df[coluna_grafico])
+
+        st.markdown("---")
+
+        # 📥 EXPORTAÇÃO
+        st.header("📥 Exportar dados")
+
+        csv = df.to_csv(index=False).encode("utf-8")
+
+        st.download_button(
+            "📥 Baixar CSV tratado",
+            data=csv,
+            file_name="dados_tratados.csv",
+            mime="text/csv"
+        )
+
+    else:
+        st.info("📂 Envie um arquivo CSV para começar")
+
+    st.markdown("---")
+
+    # 🎯 RESUMO
+    st.header("🎯 Resumo")
+
+    st.success("""
+Você aprendeu:
+- 📂 Importar dados
+- 🧹 Limpar dados
+- 🔍 Filtrar
+- 📊 Agrupar
+- 📈 Visualizar
+- 📥 Exportar
+
+🚀 Agora você domina o Pandas!
+""")
+
 # ------------------------------------------------------------
 # --- ÁREA ADMIN (CORRETA)
 # ------------------------------------------------------------
@@ -797,6 +956,10 @@ elif menu == "🔒 Área Admin":
     df = pd.DataFrame(dados, columns=["ID", "Nome", "Email"])
 
     st.dataframe(df, use_container_width=True)
+
+#---------------------------------------------------------------------
+#python Basico
+#---------------------------------------------------------------------
 
 elif menu == "🐍 Python Básico":
 
