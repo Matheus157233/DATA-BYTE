@@ -27,7 +27,9 @@ CREATE TABLE IF NOT EXISTS usuarios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT,
     email TEXT,
-    senha TEXT
+    senha TEXT,
+    telefone TEXT,
+    foto TEXT
 )
 """)
 
@@ -54,6 +56,7 @@ def tela_login():
 
             if user:
                 st.session_state["logado"] = "user"
+                st.session_state["email"] = email
                 st.rerun()
             else:
                 st.error("Login inválido")
@@ -92,6 +95,49 @@ if not st.session_state["logado"]:
         tela_cadastro()
     st.stop()
 
+# ------------------------
+# VERIFICA PERFIL COMPLETO
+# ------------------------
+if st.session_state["logado"] == "user":
+
+    email = st.session_state.get("email")
+
+    c.execute("SELECT telefone, foto FROM usuarios WHERE email=?", (email,))
+    dados = c.fetchone()
+
+    if dados:
+        telefone, foto = dados
+
+        if not telefone or not foto:
+            st.warning("⚠️ Complete seu perfil para acessar o curso")
+
+            menu = st.sidebar.radio("Menu", ["👤 Perfil"])
+
+            if menu == "👤 Perfil":
+                st.title("👤 Complete seu perfil")
+
+                telefone_input = st.text_input("📱 Telefone")
+                foto_input = st.file_uploader("📸 Foto", type=["png", "jpg"])
+
+                if st.button("Salvar"):
+                    caminho = None
+
+                    if foto_input:
+                        caminho = f"foto_{email}.png"
+                        with open(caminho, "wb") as f:
+                            f.write(foto_input.read())
+
+                    c.execute("""
+                    UPDATE usuarios
+                    SET telefone=?, foto=?
+                    WHERE email=?
+                    """, (telefone_input, caminho, email))
+
+                    conn.commit()
+                    st.success("Perfil completo!")
+                    st.rerun()
+
+            st.stop()
 # ------------------------------------------------------------
 # CONTROLES GLOBAIS (TEMA E IDIOMA)
 # ------------------------------------------------------------
@@ -156,6 +202,7 @@ menu = st.sidebar.radio("Navegue entre as seções:", [
     "⚡ Módulo Avançado Interativo",
     "❓ Quiz do Curso",
     "🔒 Área Admin",
+    "👤 Perfil",
 ])
 
 # Agora os controles de tema e idioma
@@ -604,7 +651,47 @@ Isso permite testar ideias e algoritmos rapidamente.
 
     st.success("🎉 Parabéns! Você concluiu o módulo interativo!")
 
+# ------------------------------------------------------------
+# --- PERFIL DO USUÁRIO
+# ------------------------------------------------------------
+elif menu == "👤 Perfil":
 
+    st.title("👤 Meu Perfil")
+
+    email = st.session_state.get("email")
+
+    c.execute("SELECT nome, email, telefone, foto FROM usuarios WHERE email=?", (email,))
+    user = c.fetchone()
+
+    if user:
+        nome, email, telefone, foto = user
+
+        st.write(f"Nome: {nome}")
+        st.write(f"Email: {email}")
+
+        telefone_input = st.text_input("📱 Telefone", value=telefone if telefone else "")
+        foto_input = st.file_uploader("📸 Foto de perfil", type=["png", "jpg", "jpeg"])
+
+        if st.button("Salvar Perfil"):
+            caminho_foto = foto
+
+            if foto_input:
+                caminho_foto = f"foto_{email}.png"
+                with open(caminho_foto, "wb") as f:
+                    f.write(foto_input.read())
+
+            c.execute("""
+            UPDATE usuarios
+            SET telefone=?, foto=?
+            WHERE email=?
+            """, (telefone_input, caminho_foto, email))
+
+            conn.commit()
+            st.success("Perfil atualizado!")
+            st.rerun()
+
+        if foto:
+            st.image(foto, width=150)
 
 # ------------------------------------------------------------
 # --- 6. Análise de Dados ---
