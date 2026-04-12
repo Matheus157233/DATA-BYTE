@@ -214,6 +214,7 @@ menu = st.sidebar.radio("Navegue entre as seções:", [
     "❓ Quiz do Curso",
     "🔒 Área Admin",
     "👤 Perfil",
+    "🐍 Python Básico",
 ])
 
 # Agora os controles de tema e idioma
@@ -796,6 +797,167 @@ elif menu == "🔒 Área Admin":
     df = pd.DataFrame(dados, columns=["ID", "Nome", "Email"])
 
     st.dataframe(df, use_container_width=True)
+
+elif menu == "🐍 Python Básico":
+
+    st.title("🐍 Python Básico")
+    st.subheader("Aprenda os fundamentos da programação com Python")
+
+    st.markdown("---")
+
+    # 🎬 VÍDEO
+    st.video("https://youtu.be/rfscVS0vtbw")
+
+    # 📖 TEORIA
+    st.header("📖 O que é Python?")
+    st.write("""
+Python é uma linguagem de programação simples e poderosa.
+
+Ela é usada para:
+- 📊 Ciência de Dados
+- 🌐 Desenvolvimento Web
+- 🤖 Inteligência Artificial
+- 📈 Automação de tarefas
+
+👉 É uma das linguagens mais usadas do mundo.
+""")
+
+    st.info("💡 Curiosidade: empresas como Google e Netflix usam Python.")
+
+    st.markdown("---")
+
+    # 🧠 VARIÁVEIS
+    st.header("🧠 Variáveis")
+
+    st.write("""
+Variáveis servem para guardar informações na memória.
+""")
+
+    st.code("""
+nome = "João"
+idade = 20
+altura = 1.75
+""")
+
+    nome = st.text_input("Digite seu nome:")
+    if nome:
+        st.success(f"Olá, {nome}!")
+
+    st.warning("⚠️ Erro comum: esquecer as aspas em textos.")
+
+    st.markdown("---")
+
+    # 🔢 TIPOS DE DADOS
+    st.header("🔢 Tipos de Dados")
+
+    st.write("""
+Os principais tipos são:
+- int → números inteiros (10, 20)
+- float → números decimais (1.5, 2.7)
+- str → textos ("olá")
+- bool → verdadeiro ou falso (True/False)
+""")
+
+    valor = st.text_input("Digite algo:")
+    if valor:
+        st.write(f"Tipo detectado: {type(valor)}")
+
+    st.markdown("---")
+
+    # 🖨️ PRINT
+    st.header("🖨️ Exibindo informações (print)")
+
+    st.code("""
+print("Olá mundo!")
+""")
+
+    st.success("O comando print mostra informações na tela.")
+
+    st.markdown("---")
+
+    # ➕ OPERAÇÕES
+    st.header("➕ Operações Matemáticas")
+
+    a = st.number_input("Digite o primeiro número:", value=0)
+    b = st.number_input("Digite o segundo número:", value=0)
+
+    st.write(f"Soma: {a + b}")
+    st.write(f"Subtração: {a - b}")
+    st.write(f"Multiplicação: {a * b}")
+    if b != 0:
+        st.write(f"Divisão: {a / b}")
+    else:
+        st.warning("⚠️ Não é possível dividir por zero")
+
+    st.markdown("---")
+
+    # 🔀 CONDIÇÕES
+    st.header("🔀 Condições (if/else)")
+
+    numero = st.number_input("Digite um número para testar:", value=0)
+
+    if numero > 0:
+        st.success("Número positivo")
+    elif numero < 0:
+        st.error("Número negativo")
+    else:
+        st.info("Número é zero")
+
+    st.code("""
+if numero > 0:
+    print("positivo")
+else:
+    print("negativo ou zero")
+""")
+
+    st.markdown("---")
+
+    # 🔁 LAÇOS
+    st.header("🔁 Laços de repetição (for)")
+
+    st.code("""
+for i in range(5):
+    print(i)
+""")
+
+    if st.button("Mostrar contagem"):
+        for i in range(5):
+            st.write(i)
+
+    st.markdown("---")
+
+    # 📋 LISTAS
+    st.header("📋 Listas")
+
+    st.write("""
+Listas armazenam vários valores:
+""")
+
+    st.code("""
+lista = [1, 2, 3, 4]
+""")
+
+    lista = [1, 2, 3, 4]
+    st.write(f"Lista: {lista}")
+    st.write(f"Soma: {sum(lista)}")
+
+    st.markdown("---")
+
+    # 🎯 RESUMO
+    st.header("🎯 Resumo Final")
+
+    st.success("""
+Você aprendeu:
+- 🧠 Variáveis
+- 🔢 Tipos de dados
+- 🖨️ Print
+- ➕ Operações
+- 🔀 Condições
+- 🔁 Laços
+- 📋 Listas
+
+🚀 Agora você já sabe o básico de Python!
+""")
 
 # ------------------------------------------------------------
 # --- 7. Quiz ---
