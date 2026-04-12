@@ -5,6 +5,7 @@ import math
 import altair as alt
 import sqlite3
 import re
+from sklearn.linear_model import LinearRegression
 # ------------------------------------------------------------
 # CONFIGURAÇÃO GERAL DA PÁGINA (TEM QUE SER PRIMEIRO)
 # ------------------------------------------------------------
@@ -1166,11 +1167,6 @@ que permite que sistemas aprendam com dados.
     st.write("""
 Vamos criar um modelo que prevê valores com base em uma relação matemática.
 """)
-
-    import numpy as np
-    import pandas as pd
-    from sklearn.linear_model import LinearRegression
-
     # Dados fake
     x = np.array([1, 2, 3, 4, 5]).reshape(-1, 1)
     y = np.array([2, 4, 6, 8, 10])
