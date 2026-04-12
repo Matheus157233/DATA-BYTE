@@ -104,8 +104,8 @@ menu = st.sidebar.radio("Navegue entre as seções:", [
     "🧠 Funções Python",
     "📂 Operações com Listas",
     "⚡ Módulo Avançado Interativo",
-    "❓ Quiz do Curso"
-    "🔒 Área Admin"
+    "❓ Quiz do Curso",
+    "🔒 Área Admin",
 ])
 
 # Agora os controles de tema e idioma
