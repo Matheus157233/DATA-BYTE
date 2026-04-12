@@ -3,7 +3,8 @@ import pandas as pd
 import numpy as np
 import math
 import altair as alt
-
+import sqlite3
+import re
 # ------------------------------------------------------------
 # CONFIGURAÇÃO GERAL DA PÁGINA (TEM QUE SER PRIMEIRO)
 # ------------------------------------------------------------
@@ -12,6 +13,24 @@ st.set_page_config(
     page_icon="🧠",
     layout="wide"
 )
+
+# 🔐 LOGIN ADMIN (COLOCA AQUI)
+def login():
+    st.sidebar.title("🔐 Login Admin")
+
+    usuario = st.sidebar.text_input("Usuário")
+    senha = st.sidebar.text_input("Senha", type="password")
+
+    if st.sidebar.button("Entrar"):
+        if usuario == "admin" and senha == "1234":
+            st.session_state["logado"] = True
+        else:
+            st.sidebar.error("Login incorreto")
+
+if "logado" not in st.session_state:
+    st.session_state["logado"] = False
+
+login()
 
 # ------------------------------------------------------------
 # CONTROLES GLOBAIS (TEMA E IDIOMA)
@@ -76,6 +95,7 @@ menu = st.sidebar.radio("Navegue entre as seções:", [
     "📂 Operações com Listas",
     "⚡ Módulo Avançado Interativo",
     "❓ Quiz do Curso"
+    "🔒 Área Admin"
 ])
 
 # Agora os controles de tema e idioma
@@ -736,3 +756,97 @@ elif menu == "❓ Quiz do Curso":
                 st.write(f"• {e}")
         else:
             st.success("🎉 Você acertou todas as perguntas!")
+            # ------------------------------------------------------------
+# --- ÁREA ADMIN (PROTEGIDA)
+# ------------------------------------------------------------
+elif menu == "🔒 Área Admin":
+
+    if not st.session_state["logado"]:
+        st.warning("🔒 Você precisa estar logado como admin")
+        st.stop()
+
+    import sqlite3
+    import pandas as pd
+    import re
+
+    st.title("🔒 Painel Administrativo")
+
+    conn = sqlite3.connect("cadastro.db", check_same_thread=False)
+    c = conn.cursor()
+
+    c.execute("""
+    CREATE TABLE IF NOT EXISTS usuarios (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome TEXT,
+        email TEXT,
+        cpf TEXT
+    )
+    """)
+
+    def validar_email(email):
+        return re.match(r"[^@]+@[^@]+\.[^@]+", email)
+
+    def validar_cpf(cpf):
+        return len(cpf) == 11 and cpf.isdigit()
+
+    aba = st.radio("Funções:", ["Cadastrar", "Visualizar"])
+
+    # ---------------- CADASTRAR ----------------
+    if aba == "Cadastrar":
+        nome = st.text_input("Nome")
+        email = st.text_input("Email")
+        cpf = st.text_input("CPF")
+
+        if st.button("Salvar"):
+            if not nome or not email or not cpf:
+                st.warning("Preencha tudo")
+            elif not validar_email(email):
+                st.error("Email inválido")
+            elif not validar_cpf(cpf):
+                st.error("CPF inválido")
+            else:
+                c.execute("INSERT INTO usuarios (nome, email, cpf) VALUES (?, ?, ?)", (nome, email, cpf))
+                conn.commit()
+                st.success("Salvo com sucesso")
+
+    # ---------------- VISUALIZAR ----------------
+    if aba == "Visualizar":
+        busca = st.text_input("Buscar por nome")
+
+        if busca:
+            c.execute("SELECT * FROM usuarios WHERE nome LIKE ?", ('%' + busca + '%',))
+        else:
+            c.execute("SELECT * FROM usuarios")
+
+        dados = c.fetchall()
+        df = pd.DataFrame(dados, columns=["ID", "Nome", "Email", "CPF"])
+
+        st.dataframe(df, use_container_width=True)
+
+        # EDITAR
+        st.subheader("Editar")
+        id_edit = st.number_input("ID", min_value=1)
+
+        novo_nome = st.text_input("Novo nome")
+        novo_email = st.text_input("Novo email")
+        novo_cpf = st.text_input("Novo CPF")
+
+        if st.button("Atualizar"):
+            c.execute("""
+            UPDATE usuarios 
+            SET nome = COALESCE(?, nome),
+                email = COALESCE(?, email),
+                cpf = COALESCE(?, cpf)
+            WHERE id = ?
+            """, (novo_nome, novo_email, novo_cpf, id_edit))
+            conn.commit()
+            st.success("Atualizado")
+
+        # DELETAR
+        st.subheader("Deletar")
+        id_delete = st.number_input("ID para deletar", min_value=1, key="del")
+
+        if st.button("Deletar"):
+            c.execute("DELETE FROM usuarios WHERE id = ?", (id_delete,))
+            conn.commit()
+            st.warning("Deletado")
