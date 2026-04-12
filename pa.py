@@ -177,23 +177,23 @@ aplicar_tema()
 # ------------------------------------------------------------
 st.markdown("""
 <style>
-.main-title {
-    text-align: center;
-    color: #1f77b4;
-    font-weight: bold;
+.stButton>button {
+    background: linear-gradient(90deg, #4CAF50, #00c6ff);
+    color: white;
+    border-radius: 10px;
+    height: 45px;
+    width: 100%;
 }
-.sub-title {
-    text-align: center;
-    font-style: italic;
-    color: #555;
+
+.stTextInput>div>div>input {
+    border-radius: 10px;
 }
-.block-container {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+
+[data-testid="stSidebar"] {
+    background-color: #111;
 }
 </style>
 """, unsafe_allow_html=True)
-
 # ------------------------------------------------------------
 # MENU LATERAL (NAVBAR)
 # ------------------------------------------------------------
