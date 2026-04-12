@@ -216,6 +216,7 @@ menu = st.sidebar.radio("Navegue entre as seções:", [
     "👤 Perfil",
     "🐍 Python Básico",
     "📊 Pandas Avançado",
+    "🤖 Machine Learning",
 ])
 
 # Agora os controles de tema e idioma
@@ -1122,6 +1123,146 @@ Você aprendeu:
 🚀 Agora você já sabe o básico de Python!
 """)
 
+#--------------------------------------------------------------------
+#Machine Learning
+#--------------------------------------------------------------------
+elif menu == "🤖 Machine Learning":
+
+    st.title("🤖 Machine Learning")
+    st.subheader("Aprenda a criar modelos que fazem previsões")
+
+    st.markdown("---")
+
+    # 🎬 VÍDEO
+    st.video("https://youtu.be/GwIo3gDZCVQ")
+
+    # 📖 INTRODUÇÃO
+    st.header("📖 O que é Machine Learning?")
+    st.write("""
+Machine Learning (Aprendizado de Máquina) é uma área da Inteligência Artificial
+que permite que sistemas aprendam com dados.
+
+👉 Em vez de programar regras, você ensina o modelo com exemplos.
+""")
+
+    st.info("💡 Ex: Netflix recomendando filmes, Instagram mostrando posts, bancos detectando fraudes.")
+
+    st.markdown("---")
+
+    # 🧠 TIPOS
+    st.header("🧠 Tipos de Machine Learning")
+
+    st.write("""
+- 📊 Supervisionado → aprende com dados rotulados
+- 🔍 Não supervisionado → encontra padrões sozinho
+- 🎮 Reforço → aprende com tentativa e erro
+""")
+
+    st.markdown("---")
+
+    # 📊 EXEMPLO PRÁTICO
+    st.header("📊 Exemplo: Previsão com Regressão Linear")
+
+    st.write("""
+Vamos criar um modelo que prevê valores com base em uma relação matemática.
+""")
+
+    import numpy as np
+    import pandas as pd
+    from sklearn.linear_model import LinearRegression
+
+    # Dados fake
+    x = np.array([1, 2, 3, 4, 5]).reshape(-1, 1)
+    y = np.array([2, 4, 6, 8, 10])
+
+    modelo = LinearRegression()
+    modelo.fit(x, y)
+
+    valor = st.number_input("Digite um valor de entrada (X):", value=6)
+
+    previsao = modelo.predict([[valor]])
+
+    st.success(f"🔮 Previsão do modelo: {previsao[0]:.2f}")
+
+    st.code("""
+from sklearn.linear_model import LinearRegression
+
+modelo = LinearRegression()
+modelo.fit(x, y)
+previsao = modelo.predict([[valor]])
+""")
+
+    st.markdown("---")
+
+    # 📈 VISUALIZAÇÃO
+    st.header("📈 Visualização do Modelo")
+
+    df = pd.DataFrame({
+        "X": x.flatten(),
+        "Y": y
+    })
+
+    st.dataframe(df)
+    st.line_chart(df)
+
+    st.markdown("---")
+
+    # 🧪 TESTE COM CSV
+    st.header("🧪 Teste com seus próprios dados")
+
+    arquivo = st.file_uploader("Envie um CSV com 2 colunas numéricas", type=["csv"])
+
+    if arquivo:
+        df_user = pd.read_csv(arquivo)
+
+        st.dataframe(df_user)
+
+        if len(df_user.columns) >= 2:
+            col_x = df_user.columns[0]
+            col_y = df_user.columns[1]
+
+            X = df_user[[col_x]]
+            Y = df_user[col_y]
+
+            modelo2 = LinearRegression()
+            modelo2.fit(X, Y)
+
+            valor_user = st.number_input("Digite um valor para prever:", value=0.0)
+
+            pred = modelo2.predict([[valor_user]])
+
+            st.success(f"🔮 Previsão: {pred[0]:.2f}")
+
+        else:
+            st.error("O CSV precisa ter pelo menos 2 colunas")
+
+    st.markdown("---")
+
+    # ⚠️ CONCEITOS IMPORTANTES
+    st.header("⚠️ Conceitos importantes")
+
+    st.write("""
+- Overfitting → modelo decora os dados
+- Underfitting → modelo aprende pouco
+- Treino vs Teste → separar dados
+""")
+
+    st.markdown("---")
+
+    # 🎯 RESUMO
+    st.header("🎯 Resumo")
+
+    st.success("""
+Você aprendeu:
+- 🤖 O que é Machine Learning
+- 🧠 Tipos de aprendizado
+- 📊 Regressão Linear
+- 🔮 Fazer previsões
+- 📂 Usar seus próprios dados
+
+🚀 Você já começou no mundo da IA!
+""")
+    
 # ------------------------------------------------------------
 # --- 7. Quiz ---
 # ------------------------------------------------------------
