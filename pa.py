@@ -763,8 +763,8 @@ elif menu == "❓ Quiz do Curso":
 elif menu == "🔒 Área Admin":
 
     if st.session_state["logado"] != "admin":
-    st.warning("🔒 Apenas admin pode acessar")
-    st.stop()
+        st.warning("🔒 Apenas admin pode acessar")
+        st.stop()
 
     st.title("🔒 Painel Administrativo")
 
