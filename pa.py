@@ -958,12 +958,6 @@ elif menu == "🔒 Área Admin":
     df = pd.DataFrame(dados, columns=["ID", "Nome", "Email"])
 
     st.dataframe(df, use_container_width=True)
-    st.subheader("📊 Estatísticas")
-
-st.write(f"Total de usuários: {len(df)}")
-
-if not df.empty:
-    st.bar_chart(df["Nome"].value_counts())
 
 #---------------------------------------------------------------------
 #python Basico
