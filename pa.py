@@ -14,32 +14,82 @@ st.set_page_config(
     layout="wide"
 )
 
-# ------------------------
-# LOGIN OBRIGATÓRIO
-# ------------------------
-def login():
-    st.title("🔐 Acesso ao Sistema")
+# =========================
+# LOGIN + CADASTRO (AQUI)
+# =========================
+import sqlite3
 
-    usuario = st.text_input("Usuário")
-    senha = st.text_input("Senha", type="password")
+conn = sqlite3.connect("usuarios.db", check_same_thread=False)
+c = conn.cursor()
 
-    if st.button("Entrar"):
-        if usuario == "admin" and senha == "1234":
-            st.session_state["logado"] = "admin"
-            st.rerun()
-        elif usuario == "user" and senha == "1234":
-            st.session_state["logado"] = "user"
-            st.rerun()
-        else:
-            st.error("Login inválido")
+c.execute("""
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT,
+    email TEXT,
+    senha TEXT
+)
+""")
 
-# estado inicial
 if "logado" not in st.session_state:
     st.session_state["logado"] = None
 
-# 🚨 BLOQUEIO TOTAL DO SITE
+if "pagina" not in st.session_state:
+    st.session_state["pagina"] = "login"
+
+# -------- LOGIN --------
+def tela_login():
+    st.title("🔐 Login")
+
+    email = st.text_input("Email")
+    senha = st.text_input("Senha", type="password")
+
+    if st.button("Entrar"):
+        if email == "admin" and senha == "1234":
+            st.session_state["logado"] = "admin"
+            st.rerun()
+        else:
+            c.execute("SELECT * FROM usuarios WHERE email=? AND senha=?", (email, senha))
+            user = c.fetchone()
+
+            if user:
+                st.session_state["logado"] = "user"
+                st.rerun()
+            else:
+                st.error("Login inválido")
+
+    if st.button("Criar conta"):
+        st.session_state["pagina"] = "cadastro"
+        st.rerun()
+
+# -------- CADASTRO --------
+def tela_cadastro():
+    st.title("➕ Cadastro")
+
+    nome = st.text_input("Nome")
+    email = st.text_input("Email")
+    senha = st.text_input("Senha", type="password")
+
+    if st.button("Cadastrar"):
+        if not nome or not email or not senha:
+            st.warning("Preencha tudo")
+        else:
+            c.execute("INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)", (nome, email, senha))
+            conn.commit()
+            st.success("Cadastro realizado!")
+            st.session_state["pagina"] = "login"
+            st.rerun()
+
+    if st.button("Já tenho conta"):
+        st.session_state["pagina"] = "login"
+        st.rerun()
+
+# -------- BLOQUEIO --------
 if not st.session_state["logado"]:
-    login()
+    if st.session_state["pagina"] == "login":
+        tela_login()
+    else:
+        tela_cadastro()
     st.stop()
 
 # ------------------------------------------------------------
@@ -631,7 +681,23 @@ elif menu == "📈 Análise de Dados":
         else:
             st.info("Nenhuma coluna numérica encontrada para análise e gráficos.")
 
+# ------------------------------------------------------------
+# --- ÁREA ADMIN (CORRETA)
+# ------------------------------------------------------------
+elif menu == "🔒 Área Admin":
 
+    if st.session_state["logado"] != "admin":
+        st.warning("🔒 Apenas admin pode acessar")
+        st.stop()
+
+    st.title("📊 Usuários cadastrados")
+
+    c.execute("SELECT id, nome, email FROM usuarios")
+    dados = c.fetchall()
+
+    df = pd.DataFrame(dados, columns=["ID", "Nome", "Email"])
+
+    st.dataframe(df, use_container_width=True)
 
 # ------------------------------------------------------------
 # --- 7. Quiz ---
@@ -766,93 +832,3 @@ elif menu == "❓ Quiz do Curso":
                 st.write(f"• {e}")
         else:
             st.success("🎉 Você acertou todas as perguntas!")
-            # ------------------------------------------------------------
-# --- ÁREA ADMIN (PROTEGIDA)
-# ------------------------------------------------------------
-elif menu == "🔒 Área Admin":
-
-    if st.session_state["logado"] != "admin":
-        st.warning("🔒 Apenas admin pode acessar")
-        st.stop()
-
-    st.title("🔒 Painel Administrativo")
-
-    conn = sqlite3.connect("cadastro.db", check_same_thread=False)
-    c = conn.cursor()
-
-    c.execute("""
-    CREATE TABLE IF NOT EXISTS usuarios (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome TEXT,
-        email TEXT,
-        cpf TEXT
-    )
-    """)
-
-    def validar_email(email):
-        return re.match(r"[^@]+@[^@]+\.[^@]+", email)
-
-    def validar_cpf(cpf):
-        return len(cpf) == 11 and cpf.isdigit()
-
-    aba = st.radio("Funções:", ["Cadastrar", "Visualizar"])
-
-    # ---------------- CADASTRAR ----------------
-    if aba == "Cadastrar":
-        nome = st.text_input("Nome")
-        email = st.text_input("Email")
-        cpf = st.text_input("CPF")
-
-        if st.button("Salvar"):
-            if not nome or not email or not cpf:
-                st.warning("Preencha tudo")
-            elif not validar_email(email):
-                st.error("Email inválido")
-            elif not validar_cpf(cpf):
-                st.error("CPF inválido")
-            else:
-                c.execute("INSERT INTO usuarios (nome, email, cpf) VALUES (?, ?, ?)", (nome, email, cpf))
-                conn.commit()
-                st.success("Salvo com sucesso")
-
-    # ---------------- VISUALIZAR ----------------
-    if aba == "Visualizar":
-        busca = st.text_input("Buscar por nome")
-
-        if busca:
-            c.execute("SELECT * FROM usuarios WHERE nome LIKE ?", ('%' + busca + '%',))
-        else:
-            c.execute("SELECT * FROM usuarios")
-
-        dados = c.fetchall()
-        df = pd.DataFrame(dados, columns=["ID", "Nome", "Email", "CPF"])
-
-        st.dataframe(df, use_container_width=True)
-
-        # EDITAR
-        st.subheader("Editar")
-        id_edit = st.number_input("ID", min_value=1)
-
-        novo_nome = st.text_input("Novo nome")
-        novo_email = st.text_input("Novo email")
-        novo_cpf = st.text_input("Novo CPF")
-
-        if st.button("Atualizar"):
-            c.execute("""
-            UPDATE usuarios 
-            SET nome = COALESCE(?, nome),
-                email = COALESCE(?, email),
-                cpf = COALESCE(?, cpf)
-            WHERE id = ?
-            """, (novo_nome, novo_email, novo_cpf, id_edit))
-            conn.commit()
-            st.success("Atualizado")
-
-        # DELETAR
-        st.subheader("Deletar")
-        id_delete = st.number_input("ID para deletar", min_value=1, key="del")
-
-        if st.button("Deletar"):
-            c.execute("DELETE FROM usuarios WHERE id = ?", (id_delete,))
-            conn.commit()
-            st.warning("Deletado")
