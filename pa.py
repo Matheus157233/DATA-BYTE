@@ -14,24 +14,33 @@ st.set_page_config(
     layout="wide"
 )
 
-# 🔐 LOGIN ADMIN (COLOCA AQUI)
+# ------------------------
+# LOGIN OBRIGATÓRIO
+# ------------------------
 def login():
-    st.sidebar.title("🔐 Login Admin")
+    st.title("🔐 Acesso ao Sistema")
 
-    usuario = st.sidebar.text_input("Usuário")
-    senha = st.sidebar.text_input("Senha", type="password")
+    usuario = st.text_input("Usuário")
+    senha = st.text_input("Senha", type="password")
 
-    if st.sidebar.button("Entrar"):
+    if st.button("Entrar"):
         if usuario == "admin" and senha == "1234":
-            st.session_state["logado"] = True
-            st.rerun()  # 🔥 ISSO AQUI RESOLVE
+            st.session_state["logado"] = "admin"
+            st.rerun()
+        elif usuario == "user" and senha == "1234":
+            st.session_state["logado"] = "user"
+            st.rerun()
         else:
-            st.sidebar.error("Login incorreto")
+            st.error("Login inválido")
 
+# estado inicial
 if "logado" not in st.session_state:
-    st.session_state["logado"] = False
+    st.session_state["logado"] = None
 
-login()
+# 🚨 BLOQUEIO TOTAL DO SITE
+if not st.session_state["logado"]:
+    login()
+    st.stop()
 
 # ------------------------------------------------------------
 # CONTROLES GLOBAIS (TEMA E IDIOMA)
@@ -95,8 +104,8 @@ menu = st.sidebar.radio("Navegue entre as seções:", [
     "🧠 Funções Python",
     "📂 Operações com Listas",
     "⚡ Módulo Avançado Interativo",
-    "❓ Quiz do Curso",
-    "🔒 Área Admin",
+    "❓ Quiz do Curso"
+    "🔒 Área Admin"
 ])
 
 # Agora os controles de tema e idioma
