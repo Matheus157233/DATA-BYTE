@@ -95,8 +95,8 @@ menu = st.sidebar.radio("Navegue entre as seções:", [
     "🧠 Funções Python",
     "📂 Operações com Listas",
     "⚡ Módulo Avançado Interativo",
-    "❓ Quiz do Curso",
-    "🔒 Área Admin",
+    "❓ Quiz do Curso"
+    "🔒 Área Admin"
 ])
 
 # Agora os controles de tema e idioma
@@ -762,13 +762,9 @@ elif menu == "❓ Quiz do Curso":
 # ------------------------------------------------------------
 elif menu == "🔒 Área Admin":
 
-    if not st.session_state["logado"]:
-        st.warning("🔒 Você precisa estar logado como admin")
-        st.stop()
-
-    import sqlite3
-    import pandas as pd
-    import re
+    if st.session_state["logado"] != "admin":
+    st.warning("🔒 Apenas admin pode acessar")
+    st.stop()
 
     st.title("🔒 Painel Administrativo")
 
