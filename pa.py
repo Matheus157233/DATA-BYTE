@@ -24,6 +24,7 @@ def login():
     if st.sidebar.button("Entrar"):
         if usuario == "admin" and senha == "1234":
             st.session_state["logado"] = True
+            st.rerun()  # 🔥 ISSO AQUI RESOLVE
         else:
             st.sidebar.error("Login incorreto")
 
