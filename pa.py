@@ -286,7 +286,7 @@ Ao final deste curso, você será capaz de:
 """)
     st.success("✅ Clique no menu lateral para iniciar sua jornada!")
     
-    if st.button("✅ Marcar módulo como concluído", key="modulo_concluido_limpeza"):
+    if st.button("✅ Marcar módulo como concluído", key="concluir_modulo_1"):
         st.session_state.progresso += 10
         st.success("Módulo concluído!")
 
@@ -363,7 +363,7 @@ O Pandas permite criar tabelas chamadas **DataFrames**.
 Elas são essenciais para manipular, filtrar e analisar dados estruturados.
 """)
 
-if st.button("✅ Marcar módulo como concluído", key="modulo_concluido_limpeza"):
+if st.button("✅ Marcar módulo como concluído", key="concluir_modulo_2"):
         st.session_state.progresso += 10
         st.success("Módulo concluído!")
 
@@ -459,7 +459,7 @@ elif menu == "🧹 Limpeza de CSV (Profissional)":
             mime="text/csv"
         )
 
-if st.button("✅ Marcar módulo como concluído", key="modulo_concluido_limpeza"):
+if st.button("✅ Marcar módulo como concluído", key="concluir_modulo_4"):
         st.session_state.progresso += 10
         st.success("Módulo concluído!")
 
@@ -494,7 +494,7 @@ def saudacao(nome):
 Aqui, `def` define a função, `nome` é o parâmetro e `return` devolve o resultado.
 """)
 
-if st.button("✅ Marcar módulo como concluído", key="modulo_concluido_limpeza"):
+if st.button("✅ Marcar módulo como concluído", key="concluir_modulo_5"):
         st.session_state.progresso += 10
         st.success("Módulo concluído!")
 
@@ -528,7 +528,7 @@ Com `sum()` somamos os valores, e com `len()` contamos os itens da lista.
 A média é a soma dividida pela quantidade de elementos.
 """)
 
-if st.button("✅ Marcar módulo como concluído", key="modulo_concluido_limpeza"):
+if st.button("✅ Marcar módulo como concluído", key="concluir_modulo_6"):
         st.session_state.progresso += 10
         st.success("Módulo concluído!")
 
@@ -697,7 +697,7 @@ Isso permite testar ideias e algoritmos rapidamente.
 
     st.success("🎉 Parabéns! Você concluiu o módulo interativo!")
 
-if st.button("✅ Marcar módulo como concluído", key="modulo_concluido_limpeza"):
+if st.button("✅ Marcar módulo como concluído", key="concluir_modulo_7"):
         st.session_state.progresso += 10
         st.success("Módulo concluído!")
 
@@ -823,7 +823,7 @@ elif menu == "📈 Análise de Dados":
         else:
             st.info("Nenhuma coluna numérica encontrada para análise e gráficos.")
 
-if st.button("✅ Marcar módulo como concluído", key="modulo_concluido_limpeza"):
+if st.button("✅ Marcar módulo como concluído", key="concluir_modulo_8"):
         st.session_state.progresso += 10
         st.success("Módulo concluído!")
 
@@ -1171,7 +1171,7 @@ Você aprendeu:
 🚀 Agora você já sabe o básico de Python!
 """)
 
-if st.button("✅ Marcar módulo como concluído", key="modulo_concluido_limpeza"):
+if st.button("✅ Marcar módulo como concluído", key="concluir_modulo_9"):
         st.session_state.progresso += 10
         st.success("Módulo concluído!")
 
@@ -1311,7 +1311,7 @@ Você aprendeu:
 🚀 Você já começou no mundo da IA!
 """)
 
-if st.button("✅ Marcar módulo como concluído", key="modulo_concluido_limpeza"):
+if st.button("✅ Marcar módulo como concluído", key="concluir_modulo_10"):
         st.session_state.progresso += 10
         st.success("Módulo concluído!")
 
@@ -1450,7 +1450,7 @@ elif menu == "❓ Quiz do Curso":
         else:
             st.success("🎉 Você acertou todas as perguntas!")
 
-if st.button("✅ Marcar módulo como concluído", key="modulo_concluido_limpeza"):
+if st.button("✅ Marcar módulo como concluído", key="concluir_modulo_11"):
         st.session_state.progresso += 10
         st.success("Módulo concluído!")
 
