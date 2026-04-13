@@ -50,6 +50,15 @@ if "logado" not in st.session_state:
 
 if "pagina" not in st.session_state:
     st.session_state["pagina"] = "login"
+    
+if "progresso" not in st.session_state:
+    st.session_state.progresso = 0
+
+if "badges" not in st.session_state:
+    st.session_state.badges = []
+
+if "nota_quiz" not in st.session_state:
+    st.session_state.nota_quiz = 0
 
 # -------- LOGIN --------
 def tela_login():
@@ -241,6 +250,12 @@ st.sidebar.info("💡 Dica: explore cada módulo em ordem para aproveitar melhor
 # --- 0. PÁGINA INICIAL ---
 # ------------------------------------------------------------
 if menu == "🏠 Página Inicial":
+    
+    col1, col2, col3 = st.columns(3)
+    col1.metric("📚 Módulos", "10")
+    col2.metric("⏱ Tempo", "3h+")
+    col3.metric("📊 Progresso", f"{st.session_state.progresso}%")
+    
     st.markdown("<h1 class='main-title'>🚀 Curso Completo da introdução de Ciência de Dados com Python</h1>", unsafe_allow_html=True)
     st.markdown("<p class='sub-title'>Do zero à prática — entenda, limpe, analise e visualize dados com Python!</p>", unsafe_allow_html=True)
 
@@ -270,6 +285,10 @@ Ao final deste curso, você será capaz de:
 - Construir **projetos interativos com Streamlit**
 """)
     st.success("✅ Clique no menu lateral para iniciar sua jornada!")
+    
+    if st.button("✅ Marcar módulo como concluído"):
+        st.session_state.progresso += 10
+        st.success("Módulo concluído!")
 
 # ------------------------------------------------------------
 # --- 1. Introdução à Ciência de Dados ---
@@ -344,6 +363,9 @@ O Pandas permite criar tabelas chamadas **DataFrames**.
 Elas são essenciais para manipular, filtrar e analisar dados estruturados.
 """)
 
+if st.button("✅ Marcar módulo como concluído"):
+        st.session_state.progresso += 10
+        st.success("Módulo concluído!")
 
 
 # ------------------------------------------------------------
@@ -437,6 +459,9 @@ elif menu == "🧹 Limpeza de CSV (Profissional)":
             mime="text/csv"
         )
 
+if st.button("✅ Marcar módulo como concluído"):
+        st.session_state.progresso += 10
+        st.success("Módulo concluído!")
 
 
 
@@ -469,6 +494,9 @@ def saudacao(nome):
 Aqui, `def` define a função, `nome` é o parâmetro e `return` devolve o resultado.
 """)
 
+if st.button("✅ Marcar módulo como concluído"):
+        st.session_state.progresso += 10
+        st.success("Módulo concluído!")
 
 
 # ------------------------------------------------------------
@@ -500,6 +528,9 @@ Com `sum()` somamos os valores, e com `len()` contamos os itens da lista.
 A média é a soma dividida pela quantidade de elementos.
 """)
 
+if st.button("✅ Marcar módulo como concluído"):
+        st.session_state.progresso += 10
+        st.success("Módulo concluído!")
 
 
 # ------------------------------------------------------------
@@ -666,10 +697,19 @@ Isso permite testar ideias e algoritmos rapidamente.
 
     st.success("🎉 Parabéns! Você concluiu o módulo interativo!")
 
+if st.button("✅ Marcar módulo como concluído"):
+        st.session_state.progresso += 10
+        st.success("Módulo concluído!")
+
+
 # ------------------------------------------------------------
 # --- PERFIL DO USUÁRIO
 # ------------------------------------------------------------
 elif menu == "👤 Perfil":
+    
+    st.header("🏅 Conquistas")
+    for badge in st.session_state.badges:
+        st.write(badge)
 
     st.title("👤 Meu Perfil")
 
@@ -782,6 +822,11 @@ elif menu == "📈 Análise de Dados":
             st.dataframe(df[numeric_cols].corr())
         else:
             st.info("Nenhuma coluna numérica encontrada para análise e gráficos.")
+
+if st.button("✅ Marcar módulo como concluído"):
+        st.session_state.progresso += 10
+        st.success("Módulo concluído!")
+
 
 #-----------------------------------------------------------------------
 #pandas avançado
@@ -957,6 +1002,8 @@ elif menu == "🔒 Área Admin":
 
     df = pd.DataFrame(dados, columns=["ID", "Nome", "Email"])
 
+    st.metric("👤 Usuários", len(df))
+
     st.dataframe(df, use_container_width=True)
 
 #---------------------------------------------------------------------
@@ -1124,6 +1171,11 @@ Você aprendeu:
 🚀 Agora você já sabe o básico de Python!
 """)
 
+if st.button("✅ Marcar módulo como concluído"):
+        st.session_state.progresso += 10
+        st.success("Módulo concluído!")
+
+
 #--------------------------------------------------------------------
 #Machine Learning
 #--------------------------------------------------------------------
@@ -1258,6 +1310,11 @@ Você aprendeu:
 
 🚀 Você já começou no mundo da IA!
 """)
+
+if st.button("✅ Marcar módulo como concluído"):
+        st.session_state.progresso += 10
+        st.success("Módulo concluído!")
+
     
 # ------------------------------------------------------------
 # --- 7. Quiz ---
@@ -1392,3 +1449,8 @@ elif menu == "❓ Quiz do Curso":
                 st.write(f"• {e}")
         else:
             st.success("🎉 Você acertou todas as perguntas!")
+
+if st.button("✅ Marcar módulo como concluído"):
+        st.session_state.progresso += 10
+        st.success("Módulo concluído!")
+
