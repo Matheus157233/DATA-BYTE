@@ -23,6 +23,7 @@ import sqlite3
 conn = sqlite3.connect("usuarios.db", check_same_thread=False)
 c = conn.cursor()
 
+# 🔥 ADICIONA ISSO AQUI
 try:
     c.execute("ALTER TABLE usuarios ADD COLUMN telefone TEXT")
 except:
@@ -83,27 +84,6 @@ def tela_cadastro():
     nome = st.text_input("Nome")
     email = st.text_input("Email")
     senha = st.text_input("Senha", type="password")
-
-    padrao_email = r'^[\w\.-]+@[\w\.-]+\.\w+$'
-
-    email_valido = re.match(padrao_email, email)
-
-    if st.button("Cadastrar"):
-        if not nome or not email or not senha:
-            st.warning("Preencha tudo")
-        
-        elif not email_valido:
-            st.error("Digite um e-mail válido (ex: nome@gmail.com) ❌")
-        
-        else:
-            c.execute(
-                "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)",
-                (nome, email, senha)
-            )
-            conn.commit()
-            st.success("Cadastro realizado!")
-            st.session_state["pagina"] = "login"
-            st.rerun()
 
     if st.button("Cadastrar"):
         if not nome or not email or not senha:
