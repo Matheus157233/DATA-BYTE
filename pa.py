@@ -6,8 +6,6 @@ import altair as alt
 import sqlite3
 import re
 from sklearn.linear_model import LinearRegression
-import time
-
 # ------------------------------------------------------------
 # CONFIGURAÇÃO GERAL DA PÁGINA (TEM QUE SER PRIMEIRO)
 # ------------------------------------------------------------
@@ -188,33 +186,21 @@ aplicar_tema()
 # ------------------------------------------------------------
 st.markdown("""
 <style>
-
-body {
-    background-color: #0f0f0f;
+.stButton>button {
+    background: linear-gradient(90deg, #4CAF50, #00c6ff);
     color: white;
-}
-
-/* botões estilo Netflix */
-div.stButton > button {
-    background-color: #e50914;
-    color: white;
-    border-radius: 8px;
-    height: 40px;
+    border-radius: 10px;
+    height: 45px;
     width: 100%;
-    font-weight: bold;
 }
 
-div.stButton > button:hover {
-    background-color: #b00610;
-    transform: scale(1.02);
-    transition: 0.2s;
+.stTextInput>div>div>input {
+    border-radius: 10px;
 }
 
-/* sidebar estilo Netflix */
 [data-testid="stSidebar"] {
-    background-color: #141414;
+    background-color: #111;
 }
-
 </style>
 """, unsafe_allow_html=True)
 # ------------------------------------------------------------
@@ -264,47 +250,41 @@ st.sidebar.info("💡 Dica: explore cada módulo em ordem para aproveitar melhor
 # --- 0. PÁGINA INICIAL ---
 # ------------------------------------------------------------
 if menu == "🏠 Página Inicial":
-
-    st.markdown("<h1>🎬 DataByte - Plataforma de Cursos</h1>", unsafe_allow_html=True)
-    st.write("Escolha um módulo para começar 👇")
-
+    
     col1, col2, col3 = st.columns(3)
-
-    with col1:
-        st.markdown("### 📊 Limpeza de Dados")
-        st.write("Aprenda a tratar dados como um profissional")
-        if st.button("Assistir", key="net_limpeza"):
-            st.session_state.last_menu = "📊 Limpeza de Dados"
-            st.rerun()
-
-    with col2:
-        st.markdown("### 🐍 Python Básico")
-        st.write("Fundamentos da programação")
-        if st.button("Assistir", key="net_python"):
-            st.session_state.last_menu = "🐍 Python Básico"
-            st.rerun()
-
-    with col3:
-        st.markdown("### 🤖 Machine Learning")
-        st.write("Crie modelos de IA reais")
-        if st.button("Assistir", key="net_ml"):
-            st.session_state.last_menu = "🤖 Machine Learning"
-            st.rerun()
-
-    st.progress(st.session_state.get("progresso", 0) / 100)
-    st.write(f"📊 Progresso: {st.session_state.get('progresso', 0)}%")
+    col1.metric("📚 Módulos", "10")
+    col2.metric("⏱ Tempo", "3h+")
+    col3.metric("📊 Progresso", f"{st.session_state.progresso}%")
     
-    
-import time
+    st.markdown("<h1 class='main-title'>🚀 Curso Completo da introdução de Ciência de Dados com Python</h1>", unsafe_allow_html=True)
+    st.markdown("<p class='sub-title'>Do zero à prática — entenda, limpe, analise e visualize dados com Python!</p>", unsafe_allow_html=True)
 
-if "last_menu" not in st.session_state:
-    st.session_state.last_menu = menu
+    st.markdown("---")
+    st.image("https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif", width=300)
 
-if st.session_state.last_menu != menu:
-    with st.spinner("Carregando conteúdo... 🎬"):
-        time.sleep(0.5)
+    st.header("📖 Sobre o Curso")
+    st.write("""
+Este curso foi desenvolvido para **introduzir você à Ciência de Dados**, combinando **teoria e prática** em um ambiente interativo com Python.
 
-    st.session_state.last_menu = menu
+Você aprenderá:
+- 🧮 Conceitos fundamentais de Ciência de Dados
+- 🐍 Programação prática em Python
+- 📊 Limpeza e manipulação de dados com Pandas e Numpy
+- 💡 Funções e estruturas de dados em Python
+- ⚡ Interatividade com Streamlit
+""")
+    st.video("https://youtu.be/cm_tM0m9zcI")
+
+    st.header("🎯 Objetivo do Curso")
+    st.write("""
+Ao final deste curso, você será capaz de:
+- Compreender os **fundamentos da análise de dados**
+- Criar e limpar **DataFrames**
+- Escrever **funções eficientes**
+- Trabalhar com **listas e estruturas dinâmicas**
+- Construir **projetos interativos com Streamlit**
+""")
+    st.success("✅ Clique no menu lateral para iniciar sua jornada!")
 
 
 # ------------------------------------------------------------
