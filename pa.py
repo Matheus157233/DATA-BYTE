@@ -225,20 +225,14 @@ elif aba == "🎥 Vídeos":
     st.write("Conteúdos curtos para entender threat modeling na prática.")
 
     st.subheader("🔐 O que é Modelagem de Ameaças")
-    st.video("https://www.youtube.com/watch?v=iMirQcUtFJI")
+    st.video("https://youtu.be/UWDqnhJsafY?si=2IJDvl8XNQgbqJTz")
 
     st.subheader("🧠 STRIDE explicado")
     st.video("https://www.youtube.com/watch?v=rEnJYNkUde0")
 
     st.subheader("📊 Análise de risco (DREAD)")
-    st.video("https://www.youtube.com/watch?v=8c6mG9lY9Wg")
-
-    st.subheader("🛡️ Segurança de aplicações")
-    st.video("https://www.youtube.com/watch?v=3Kq1MIfTWCE")
-
-    st.subheader("⚡ Segurança resumida")
-    st.video("https://www.youtube.com/watch?v=inWWhr5tnEA")
-
+    st.video("https://youtu.be/R2NBddNL9Ic?si=OR6YCFRVvXPfFM4A")
+    
     st.divider()
 
     st.subheader("📌 O que aprender com esses vídeos")
