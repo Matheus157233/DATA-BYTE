@@ -1,13 +1,14 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import os
 
 st.set_page_config(page_title="Threat Modeling Dashboard", layout="wide")
 
 # =========================
 # MENU
 # =========================
-aba = st.sidebar.radio("Navegação", ["📚 Teoria", "📊 Dashboard", "🧪 Prática"])
+aba = st.sidebar.radio("Navegação", ["📚 Teoria", "📊 Dashboard", "🧪 Prática", "🎥 Vídeos"])
 
 # =========================
 # 📚 ABA TEORIA
@@ -73,9 +74,7 @@ Responde quatro perguntas:
     st.write("- % mitigado\n- cobertura")
 
     st.header("6. Dashboards")
-    st.write("""
-KPIs, gráficos, heatmaps e séries temporais ajudam na decisão.
-""")
+    st.write("KPIs, gráficos, heatmaps e séries temporais ajudam na decisão.")
 
     st.header("7. Ferramentas")
     st.write("Streamlit permite dashboards interativos com Python.")
@@ -106,6 +105,32 @@ KPIs, gráficos, heatmaps e séries temporais ajudam na decisão.
 A modelagem de ameaças + métricas + dashboards melhora a segurança e tomada de decisão.
 """)
 
+    st.header("12. Aprofundamento Técnico")
+
+    st.write("""
+### 🔍 Fluxo de Modelagem de Ameaças
+
+1. Identificação de ativos  
+2. Mapeamento de fluxos de dados  
+3. Identificação de ameaças (STRIDE)  
+4. Análise de risco (DREAD)  
+5. Definição de contramedidas  
+""")
+
+    st.write("""
+### 🧱 Conceitos importantes
+
+- Superfície de ataque  
+- Ativos  
+- Trust Boundaries  
+""")
+
+    st.write("""
+### 🔐 Security by Design
+
+A segurança deve ser construída desde o início do sistema.
+""")
+
 # =========================
 # 📊 ABA DASHBOARD
 # =========================
@@ -113,7 +138,19 @@ elif aba == "📊 Dashboard":
 
     st.title("📊 Dashboard de Ameaças")
 
-    df = pd.read_csv("data.csv")
+    # fallback caso não exista CSV
+    try:
+        df = pd.read_csv("data.csv")
+    except:
+        df = pd.DataFrame({
+            "sistema": ["Login", "API", "Banco", "Frontend", "Admin"],
+            "ameaca": ["Spoofing", "DoS", "Tampering", "Info Leak", "EoP"],
+            "STRIDE": ["Spoofing", "Denial of Service", "Tampering", "Information Disclosure", "Elevation of Privilege"],
+            "impacto": [9, 7, 8, 6, 9],
+            "probabilidade": [8, 9, 7, 6, 7],
+            "data": ["2026-05-01", "2026-05-02", "2026-05-03", "2026-05-04", "2026-05-05"]
+        })
+
     df["risco"] = df["impacto"] * df["probabilidade"]
 
     # filtros
@@ -137,21 +174,18 @@ elif aba == "📊 Dashboard":
     fig3 = px.line(df, x="data", y="risco", color="sistema", title="Evolução do Risco")
     st.plotly_chart(fig3, use_container_width=True)
 
+    st.subheader("📋 Dados")
+    st.dataframe(df)
+
 # =========================
 # 🧪 ABA PRÁTICA
 # =========================
 elif aba == "🧪 Prática":
 
-    st.title("🧪 Exemplo Prático de Modelagem de Ameaça")
-
-    st.subheader("Sistema: Login de Usuário")
-
-    st.write("""
-Vamos simular uma análise real usando STRIDE e cálculo de risco.
-""")
+    st.title("🧪 Exemplo Prático")
 
     exemplo = pd.DataFrame({
-        "Ameaça": ["Roubo de senha", "Ataque de força bruta", "Session hijacking"],
+        "Ameaça": ["Roubo de senha", "Força bruta", "Session hijacking"],
         "STRIDE": ["Spoofing", "DoS", "Elevation"],
         "Impacto": [9, 7, 8],
         "Probabilidade": [8, 9, 6]
@@ -161,17 +195,7 @@ Vamos simular uma análise real usando STRIDE e cálculo de risco.
 
     st.dataframe(exemplo)
 
-    st.subheader("Análise")
-
-    st.write("""
-- Roubo de senha → risco alto → precisa MFA
-- Força bruta → implementar bloqueio
-- Session hijacking → usar HTTPS + tokens seguros
-""")
-
     st.bar_chart(exemplo.set_index("Ameaça")["Risco"])
-
-    st.subheader("Classificação automática")
 
     def classificar(r):
         if r > 70:
@@ -184,4 +208,43 @@ Vamos simular uma análise real usando STRIDE e cálculo de risco.
 
     st.dataframe(exemplo)
 
-    st.success("Esse é exatamente o tipo de análise usada em empresas.")
+    st.write("""
+Análise:
+- Roubo de senha → usar MFA  
+- Força bruta → bloquear tentativas  
+- Session hijacking → HTTPS e tokens  
+""")
+
+# =========================
+# 🎥 ABA VÍDEOS
+# =========================
+elif aba == "🎥 Vídeos":
+
+    st.title("🎥 Vídeos Explicativos (Português)")
+
+    st.write("Conteúdos curtos para entender threat modeling na prática.")
+
+    st.subheader("🔐 O que é Modelagem de Ameaças")
+    st.video("https://www.youtube.com/watch?v=iMirQcUtFJI")
+
+    st.subheader("🧠 STRIDE explicado")
+    st.video("https://www.youtube.com/watch?v=rEnJYNkUde0")
+
+    st.subheader("📊 Análise de risco (DREAD)")
+    st.video("https://www.youtube.com/watch?v=8c6mG9lY9Wg")
+
+    st.subheader("🛡️ Segurança de aplicações")
+    st.video("https://www.youtube.com/watch?v=3Kq1MIfTWCE")
+
+    st.subheader("⚡ Segurança resumida")
+    st.video("https://www.youtube.com/watch?v=inWWhr5tnEA")
+
+    st.divider()
+
+    st.subheader("📌 O que aprender com esses vídeos")
+    st.write("""
+- Identificar ameaças com STRIDE  
+- Priorizar riscos com DREAD  
+- Aplicar segurança na prática  
+- Pensar como um analista de segurança  
+""")
