@@ -1,0 +1,6 @@
+sistema,ameaca,STRIDE,impacto,probabilidade,data
+Login,Spoofing,Spoofing,9,8,2026-05-01
+API,DoS,Denial of Service,7,9,2026-05-02
+Banco,Tampering,Tampering,8,7,2026-05-03
+Frontend,Info Leak,Information Disclosure,6,6,2026-05-04
+Admin,EoP,Elevation of Privilege,9,7,2026-05-05
